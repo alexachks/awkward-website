@@ -40,7 +40,7 @@ RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
     echo '    gzip on;' >> /etc/nginx/conf.d/default.conf && \
     echo '    gzip_vary on;' >> /etc/nginx/conf.d/default.conf && \
     echo '    gzip_min_length 1024;' >> /etc/nginx/conf.d/default.conf && \
-    echo '    gzip_proxied expired no-cache no-store private must-revalidate auth;' >> /etc/nginx/conf.d/default.conf && \
+    echo '    gzip_proxied expired no-cache no-store private auth;' >> /etc/nginx/conf.d/default.conf && \
     echo '    gzip_types' >> /etc/nginx/conf.d/default.conf && \
     echo '        text/plain' >> /etc/nginx/conf.d/default.conf && \
     echo '        text/css' >> /etc/nginx/conf.d/default.conf && \
@@ -72,8 +72,8 @@ RUN chown -R appuser:appgroup /var/cache/nginx && \
     chown -R appuser:appgroup /var/run/nginx.pid && \
     chown -R appuser:appgroup /usr/share/nginx/html
 
-# Update nginx.conf to run as non-root
-RUN sed -i 's/user nginx;/user appuser;/g' /etc/nginx/nginx.conf
+# Update nginx.conf to run as non-root (comment out user directive)
+RUN sed -i 's/^user/#user/g' /etc/nginx/nginx.conf
 
 # Switch to non-root user
 USER appuser
