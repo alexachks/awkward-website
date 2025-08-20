@@ -31,6 +31,11 @@ This is a modern, SEO-optimized website for Awkward Media (a Canadian SEO agency
 - `npm run docker:run` - Run Docker container
 - `npm run docker:stop` - Stop Docker services
 
+### Deployment
+- Auto-deploys to staging on push to main branch
+- Staging URL: awkward.dev.pushkarev.xyz (port 3001)
+- Simple workflow: HTML validation → Docker build on server → Deploy
+
 ## Architecture
 
 ### File Structure
