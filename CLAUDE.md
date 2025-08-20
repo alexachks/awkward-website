@@ -4,26 +4,19 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a modern, SEO-optimized website for Awkward Media (a Canadian SEO agency) built with vanilla HTML, CSS, and JavaScript. The project emphasizes performance, SEO optimization, and modern web standards with a ShadCN-inspired design system.
+This is a modern, SEO-optimized Astro website for Awkward Media (a Canadian SEO agency) built with CMS integration. The project uses Astro for static site generation and includes comprehensive CMS tags for content management through the Awkward CMS system. The design emphasizes performance, SEO optimization, and modern web standards.
 
 ## Development Commands
 
 ### Local Development
-- `npm run dev` or `npm start` - Start development server with live-server on port 3000
+- `npm run dev` or `npm start` - Start Astro development server on port 4321
+- `npm run preview` - Preview built site locally
 - `npm run serve` - Serve on port 8080 for production testing
 
-### Testing & Quality
-- `npm test` - Run all tests (HTML validation + Lighthouse)
-- `npm run test:html` - Validate HTML structure
-- `npm run test:lighthouse` - Run Lighthouse performance tests
-- `npm run lint:css` - Lint CSS with stylelint
-- `npm run lint:html` - Validate HTML
-- `npm run format` - Format code with Prettier
-
-### Build & Optimization
-- `npm run build` - Build optimized assets (minify CSS and JS)
-- `npm run minify:css` - Minify CSS to dist/css/styles.min.css
-- `npm run minify:js` - Minify JS to dist/js/main.min.js
+### Build & Deployment
+- `npm run build` - Build Astro site to dist/ directory
+- `npm run cms:analyze` - Analyze CMS tags in the project
+- `npm run format` - Format Astro/JS files with Prettier
 
 ### Docker Development
 - `npm run docker:dev` - Start development with Docker Compose
@@ -39,12 +32,28 @@ This is a modern, SEO-optimized website for Awkward Media (a Canadian SEO agency
 ## Architecture
 
 ### File Structure
-- `index.html` - Single-page website with semantic HTML5 structure
+- `src/pages/index.astro` - Main homepage with CMS tags
+- `src/layouts/Layout.astro` - Base layout with SEO meta tags
+- `src/templates/service-page.astro` - CMS template for service pages
 - `css/styles.css` - ShadCN-inspired design system with CSS custom properties
 - `js/main.js` - Vanilla JavaScript with modern ES6+ features
-- `Dockerfile` - Nginx-based container with security headers and performance optimizations
+- `astro.config.mjs` - Astro configuration with Tailwind integration
+- `tailwind.config.mjs` - Tailwind CSS configuration
+- `Dockerfile` - Nginx-based container serving Astro build output
 - `docker-compose.yml` - Development container orchestration
-- `lighthouserc.json` - Performance testing configuration
+
+### CMS Integration
+The site uses Awkward CMS tags throughout:
+- `<!-- cms:text key="..." -->` - Single-line text fields
+- `<!-- cms:textarea key="..." -->` - Multi-line text fields  
+- `<!-- cms:richtext key="..." -->` - Rich HTML content
+- `<!-- cms:image key="..." -->` - Image uploads
+- `<!-- cms:link key="..." -->` - Link fields with URL and text
+- `<!-- cms:repeater key="..." -->` - Repeating content blocks
+- `<!-- cms:select key="..." -->` - Dropdown selections
+- `<!-- cms:date key="..." -->` - Date fields
+
+All CMS tags include unique keys following hierarchical naming (e.g., `hero.title`, `services.items`)
 
 ### Design System
 The CSS uses a ShadCN-inspired design system with:

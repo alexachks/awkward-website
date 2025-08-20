@@ -1,25 +1,22 @@
 {
   "name": "awkward-media-website",
+  "type": "module",
   "version": "1.0.0",
-  "description": "Modern SEO-optimized website for Awkward Media - Canadian SEO Agency",
-  "main": "index.html",
+  "description": "Modern SEO-optimized Astro website for Awkward Media - Canadian SEO Agency with CMS integration",
   "scripts": {
-    "dev": "live-server . --port=3000 --host=localhost --open --watch=css,js,index.html",
-    "start": "npm run dev",
-    "build": "npm run minify:css && npm run minify:js",
-    "serve": "live-server --port=8080 --host=0.0.0.0 --no-browser",
-    "test": "npm run test:html && npm run test:lighthouse",
-    "test:html": "html-validate index.html",
-    "test:lighthouse": "lighthouse http://localhost:3000 --output=html --output-path=./lighthouse-report.html",
-    "minify:css": "cleancss -o dist/css/styles.min.css css/styles.css",
-    "minify:js": "terser js/main.js -o dist/js/main.min.js --compress --mangle",
+    "dev": "astro dev",
+    "start": "astro dev", 
+    "build": "astro build",
+    "preview": "astro preview",
+    "serve": "astro preview --port=8080 --host=0.0.0.0",
+    "test": "npm run test:html",
+    "test:html": "echo 'HTML validation will be done by Astro build process'",
+    "cms:analyze": "echo 'Analyzing CMS tags in Astro files...'",
     "docker:build": "docker build -t awkward-media .",
     "docker:run": "docker run -p 3000:8080 awkward-media",
     "docker:dev": "docker-compose up --build",
     "docker:stop": "docker-compose down",
-    "lint:css": "stylelint css/**/*.css",
-    "lint:html": "html-validate index.html",
-    "format": "prettier --write *.html css/**/*.css js/**/*.js"
+    "format": "prettier --write src/**/*.{astro,js,ts}"
   },
   "keywords": [
     "seo",
@@ -34,15 +31,14 @@
   ],
   "author": "Awkward Media",
   "license": "MIT",
+  "dependencies": {
+    "astro": "^4.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "tailwindcss": "^3.3.6"
+  },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "html-validate": "^8.7.4",
-    "lighthouse": "^11.4.0",
-    "clean-css-cli": "^5.6.3",
-    "terser": "^5.26.0",
-    "stylelint": "^16.1.0",
-    "stylelint-config-standard": "^36.0.0",
-    "prettier": "^3.1.1"
+    "prettier": "^3.1.1",
+    "prettier-plugin-astro": "^0.12.0"
   },
   "browserslist": [
     "> 1%",

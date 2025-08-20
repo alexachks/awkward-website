@@ -1,0 +1,107 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "Awkward Media - Canadian SEO Agency", description = "Professional SEO agency in Canada. We increase website traffic and improve search rankings for businesses across Canada." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <!-- cms:text key="meta.title" label="Page Title" maxlength="70" required="true" -->
+    <title>{title}</title>
+    <!-- /cms:text -->
+    
+    <!-- cms:textarea key="meta.description" label="Meta Description" maxlength="160" required="true" -->
+    <meta name="description" content={description}>
+    <!-- /cms:textarea -->
+    
+    <!-- cms:text key="meta.keywords" label="Keywords" -->
+    <meta name="keywords" content="SEO agency Canada, search engine optimization, website traffic growth, Google rankings, digital marketing, Toronto SEO, Vancouver SEO">
+    <!-- /cms:text -->
+    
+    <meta name="author" content="Awkward Media">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://awkwardmedia.ca/">
+    <!-- cms:text key="og.title" label="Open Graph Title" -->
+    <meta property="og:title" content="Awkward Media - Leading Canadian SEO Agency">
+    <!-- /cms:text -->
+    <!-- cms:textarea key="og.description" label="Open Graph Description" -->
+    <meta property="og:description" content="Professional SEO agency in Canada. We increase website traffic and improve search rankings for businesses across Canada.">
+    <!-- /cms:textarea -->
+    <!-- cms:image key="og.image" alt="Open Graph Image" -->
+    <meta property="og:image" content="https://awkwardmedia.ca/og-image.jpg">
+    <!-- /cms:image -->
+    <meta property="og:site_name" content="Awkward Media">
+    <meta property="og:locale" content="en_CA">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://awkwardmedia.ca/">
+    <!-- cms:text key="twitter.title" label="Twitter Title" -->
+    <meta property="twitter:title" content="Awkward Media - Leading Canadian SEO Agency">
+    <!-- /cms:text -->
+    <!-- cms:textarea key="twitter.description" label="Twitter Description" -->
+    <meta property="twitter:description" content="Professional SEO agency in Canada. We increase website traffic and improve search rankings.">
+    <!-- /cms:textarea -->
+    <!-- cms:image key="twitter.image" alt="Twitter Image" -->
+    <meta property="twitter:image" content="https://awkwardmedia.ca/og-image.jpg">
+    <!-- /cms:image -->
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://awkwardmedia.ca/">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/css/styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" as="style">
+    
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css?v=1.1">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Awkward Media",
+        "description": "Leading Canadian SEO agency specializing in search engine optimization and traffic growth",
+        "url": "https://awkwardmedia.ca",
+        "logo": "https://awkwardmedia.ca/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-XXX-XXX-XXXX",
+            "contactType": "customer service",
+            "availableLanguage": ["English", "French"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "CA"
+        },
+        "sameAs": [
+            "https://linkedin.com/company/awkward-media"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <slot />
+    
+    <!-- Scripts -->
+    <script src="/js/main.js" defer></script>
+</body>
+</html>

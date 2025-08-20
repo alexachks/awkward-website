@@ -1,0 +1,213 @@
+---
+// cms:template name="service-page" title="Service Page" description="Template for service pages" category="services"
+import Layout from '../layouts/Layout.astro';
+
+export interface Props {
+  slug: string;
+  title: string;
+  category: string;
+}
+
+const { title = "SEO Services" } = Astro.props;
+---
+
+<Layout title={title}>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
+    <div class="container mx-auto px-4 text-center">
+      <!-- cms:text key="service.hero.title" required="true" -->
+      <h1 class="text-5xl font-bold mb-6">SEO Optimization Services</h1>
+      <!-- /cms:text -->
+      
+      <!-- cms:textarea key="service.hero.subtitle" maxlength="200" -->
+      <p class="text-xl mb-8">Drive your website to the top of search engine results</p>
+      <!-- /cms:textarea -->
+      
+      <!-- cms:link key="service.hero.cta" text="Main CTA Button" -->
+      <a href="#contact" class="bg-white text-blue-600 px-8 py-3 rounded-full font-semibold inline-block">
+        Get Free Consultation
+      </a>
+      <!-- /cms:link -->
+    </div>
+  </section>
+  
+  <!-- Service Description -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- cms:text key="service.overview.title" -->
+      <h2 class="text-3xl font-bold text-center mb-8">What's Included</h2>
+      <!-- /cms:text -->
+      
+      <!-- cms:richtext key="service.overview.content" -->
+      <div class="prose prose-lg max-w-4xl mx-auto">
+        <p>Our comprehensive SEO service includes everything you need to improve your search engine rankings and drive more organic traffic to your website.</p>
+        
+        <h3>Technical SEO Audit</h3>
+        <p>We analyze your website's technical foundation to identify and fix issues that may be preventing search engines from properly crawling and indexing your content.</p>
+        
+        <h3>Keyword Research & Strategy</h3>
+        <p>In-depth keyword research to identify the most valuable search terms for your business, along with a strategic plan for targeting them effectively.</p>
+        
+        <h3>Content Optimization</h3>
+        <p>We optimize your existing content and create new, high-quality content that resonates with both search engines and your target audience.</p>
+      </div>
+      <!-- /cms:richtext -->
+    </div>
+  </section>
+  
+  <!-- Benefits Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <!-- cms:text key="service.benefits.title" -->
+      <h2 class="text-3xl font-bold text-center mb-12">Why Choose Our SEO Services</h2>
+      <!-- /cms:text -->
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <!-- cms:repeater key="service.benefits.items" max="6" label="Service Benefits" -->
+        <div class="text-center p-6 bg-white rounded-lg shadow-md">
+          <!-- cms:text key="icon" placeholder="⚡" -->
+          <div class="text-4xl mb-4">⚡</div>
+          <!-- /cms:text -->
+          
+          <!-- cms:text key="title" required="true" -->
+          <h3 class="text-xl font-semibold mb-3">Fast Results</h3>
+          <!-- /cms:text -->
+          
+          <!-- cms:textarea key="description" maxlength="150" -->
+          <p class="text-gray-600">See improvements in your search rankings within the first month of our optimization work.</p>
+          <!-- /cms:textarea -->
+        </div>
+        <!-- /cms:repeater -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Process Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- cms:text key="service.process.title" -->
+      <h2 class="text-3xl font-bold text-center mb-12">Our Process</h2>
+      <!-- /cms:text -->
+      
+      <div class="max-w-4xl mx-auto">
+        <!-- cms:repeater key="service.process.steps" max="5" label="Process Steps" -->
+        <div class="flex items-start mb-8">
+          <!-- cms:text key="stepNumber" placeholder="1" -->
+          <div class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0">
+            1
+          </div>
+          <!-- /cms:text -->
+          
+          <div>
+            <!-- cms:text key="title" required="true" -->
+            <h3 class="text-xl font-semibold mb-2">Initial Audit</h3>
+            <!-- /cms:text -->
+            
+            <!-- cms:textarea key="description" -->
+            <p class="text-gray-600">We start with a comprehensive audit of your website to identify opportunities and issues.</p>
+            <!-- /cms:textarea -->
+          </div>
+        </div>
+        <!-- /cms:repeater -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- Pricing Section -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <!-- cms:text key="service.pricing.title" -->
+      <h2 class="text-3xl font-bold text-center mb-12">Investment Options</h2>
+      <!-- /cms:text -->
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- cms:repeater key="service.pricing.plans" max="4" label="Pricing Plans" -->
+        <div class="bg-white p-8 rounded-lg shadow-lg border">
+          <!-- cms:text key="name" required="true" -->
+          <h3 class="text-2xl font-bold mb-4">Starter Package</h3>
+          <!-- /cms:text -->
+          
+          <!-- cms:text key="price" placeholder="$2,500/mo" -->
+          <div class="text-4xl font-bold text-blue-600 mb-2">$2,500</div>
+          <!-- /cms:text -->
+          
+          <!-- cms:text key="billing" placeholder="per month" -->
+          <div class="text-gray-500 mb-6">per month</div>
+          <!-- /cms:text -->
+          
+          <!-- cms:richtext key="features" -->
+          <ul class="space-y-2 mb-8">
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Technical SEO Audit
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Keyword Research
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              Monthly Reporting
+            </li>
+            <li class="flex items-center">
+              <span class="text-green-500 mr-2">✓</span>
+              5 Pages Optimized
+            </li>
+          </ul>
+          <!-- /cms:richtext -->
+          
+          <!-- cms:link key="ctaButton" text="Package CTA" -->
+          <a href="#contact" class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg text-center block font-semibold hover:bg-blue-700 transition-colors">
+            Get Started
+          </a>
+          <!-- /cms:link -->
+        </div>
+        <!-- /cms:repeater -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- FAQ Section -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <!-- cms:text key="service.faq.title" -->
+      <h2 class="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+      <!-- /cms:text -->
+      
+      <div class="max-w-3xl mx-auto space-y-6">
+        <!-- cms:repeater key="service.faq.items" max="8" label="FAQ Items" -->
+        <div class="border-b pb-6">
+          <!-- cms:text key="question" required="true" -->
+          <h3 class="text-xl font-semibold mb-3">How long does it take to see results?</h3>
+          <!-- /cms:text -->
+          
+          <!-- cms:richtext key="answer" -->
+          <p class="text-gray-600">
+            Most clients begin to see improvements in their search rankings within 4-6 weeks of starting our SEO services. However, significant traffic increases typically occur within 3-6 months as search engines need time to fully index and rank your optimized content.
+          </p>
+          <!-- /cms:richtext -->
+        </div>
+        <!-- /cms:repeater -->
+      </div>
+    </div>
+  </section>
+  
+  <!-- CTA Section -->
+  <section class="py-16 bg-blue-600 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <!-- cms:text key="service.finalCta.title" -->
+      <h2 class="text-3xl font-bold mb-4">Ready to Boost Your Search Rankings?</h2>
+      <!-- /cms:text -->
+      
+      <!-- cms:textarea key="service.finalCta.description" -->
+      <p class="text-xl mb-8">Get a free SEO audit and discover how we can help grow your business</p>
+      <!-- /cms:textarea -->
+      
+      <!-- cms:link key="service.finalCta.button" text="Final CTA Button" -->
+      <a href="#contact" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg inline-block hover:bg-gray-100 transition-colors">
+        Get Free SEO Audit
+      </a>
+      <!-- /cms:link -->
+    </div>
+  </section>
+</Layout>

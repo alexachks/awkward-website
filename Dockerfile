@@ -7,10 +7,8 @@ WORKDIR /usr/share/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 
-# Copy static website files
-COPY index.html .
-COPY css/ ./css/
-COPY js/ ./js/
+# Copy Astro build output
+COPY dist/ .
 
 # Create directories for assets if needed
 RUN mkdir -p ./images ./fonts

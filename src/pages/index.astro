@@ -1,0 +1,280 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="nav-brand">
+                <a href="/" class="logo">
+                    <!-- cms:text key="header.logo.text" label="Logo Text" -->
+                    <span class="logo-text">Awkward Media</span>
+                    <!-- /cms:text -->
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#cases" class="nav-link">Case Studies</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <!-- cms:link key="header.cta" text="Header CTA Button" -->
+            <button type="button" class="btn btn-primary">Get Free Consultation</button>
+            <!-- /cms:link -->
+            <button type="button" class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
+                    <h1 class="hero-title">
+                        Increase Your Website Traffic
+                        <span class="highlight">by 3-5x</span>
+                        in 6 Months
+                    </h1>
+                    <!-- /cms:text -->
+                    
+                    <!-- cms:textarea key="hero.description" label="Hero Description" maxlength="300" -->
+                    <p class="hero-description">
+                        Awkward Media is Canada's premier SEO agency. We help businesses attract more customers through comprehensive search engine optimization and proven digital marketing strategies.
+                    </p>
+                    <!-- /cms:textarea -->
+                    
+                    <div class="hero-actions">
+                        <!-- cms:link key="hero.primaryCta" text="Primary CTA" -->
+                        <button type="button" class="btn btn-primary btn-large">Get Free SEO Audit</button>
+                        <!-- /cms:link -->
+                        
+                        <!-- cms:link key="hero.secondaryCta" text="Secondary CTA" -->
+                        <button type="button" class="btn btn-outline btn-large">View Case Studies</button>
+                        <!-- /cms:link -->
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <!-- cms:repeater key="hero.stats" max="4" label="Hero Statistics" -->
+                        <div class="stat">
+                            <!-- cms:text key="number" placeholder="150+" -->
+                            <span class="stat-number">150+</span>
+                            <!-- /cms:text -->
+                            <!-- cms:text key="label" placeholder="Projects" -->
+                            <span class="stat-label">Projects</span>
+                            <!-- /cms:text -->
+                        </div>
+                        <!-- /cms:repeater -->
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-chart">
+                        <div class="chart-placeholder">
+                            <div class="chart-bars">
+                                <div class="bar chart-bar-1"></div>
+                                <div class="bar chart-bar-2"></div>
+                                <div class="bar chart-bar-3"></div>
+                                <div class="bar chart-bar-4"></div>
+                                <div class="bar chart-bar-5"></div>
+                            </div>
+                            <!-- cms:text key="hero.chart.label" -->
+                            <p class="chart-label">Organic Traffic Growth</p>
+                            <!-- /cms:text -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <!-- cms:text key="services.title" label="Services Section Title" -->
+                    <h2 class="section-title">Our Services</h2>
+                    <!-- /cms:text -->
+                    
+                    <!-- cms:textarea key="services.description" label="Services Description" -->
+                    <p class="section-description">Comprehensive SEO solutions for maximum results</p>
+                    <!-- /cms:textarea -->
+                </div>
+                
+                <div class="services-grid">
+                    <!-- cms:repeater key="services.items" max="6" label="Service Items" -->
+                    <article class="service-card">
+                        <!-- cms:text key="icon" placeholder="🔍" -->
+                        <div class="service-icon">🔍</div>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:text key="title" required="true" -->
+                        <h3 class="service-title">SEO Audit</h3>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:textarea key="description" maxlength="200" -->
+                        <p class="service-description">In-depth analysis of your website identifying all technical and content optimization opportunities</p>
+                        <!-- /cms:textarea -->
+                        
+                        <!-- cms:richtext key="features" label="Service Features" -->
+                        <ul class="service-features">
+                            <li>Technical audit</li>
+                            <li>Content analysis</li>
+                            <li>Competitor research</li>
+                            <li>Optimization roadmap</li>
+                        </ul>
+                        <!-- /cms:richtext -->
+                    </article>
+                    <!-- /cms:repeater -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <!-- cms:text key="about.title" label="About Section Title" -->
+                        <h2 class="section-title">Why Choose Awkward Media</h2>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:richtext key="about.description" label="About Description" -->
+                        <p class="about-description">
+                            We don't just do SEO — we grow businesses. Over 5 years, we've helped hundreds of Canadian companies increase their organic traffic and sales through proven strategies.
+                        </p>
+                        <!-- /cms:richtext -->
+                        
+                        <div class="benefits-list">
+                            <!-- cms:repeater key="about.benefits" max="4" label="Benefits List" -->
+                            <div class="benefit">
+                                <!-- cms:text key="icon" placeholder="✅" -->
+                                <div class="benefit-icon">✅</div>
+                                <!-- /cms:text -->
+                                
+                                <div class="benefit-content">
+                                    <!-- cms:text key="title" required="true" -->
+                                    <h3 class="benefit-title">Guaranteed Results</h3>
+                                    <!-- /cms:text -->
+                                    
+                                    <!-- cms:textarea key="description" maxlength="100" -->
+                                    <p class="benefit-description">We fix KPIs in our contract and guarantee measurable outcomes</p>
+                                    <!-- /cms:textarea -->
+                                </div>
+                            </div>
+                            <!-- /cms:repeater -->
+                        </div>
+                    </div>
+                    <div class="about-visual">
+                        <div class="metrics-dashboard">
+                            <!-- cms:repeater key="about.metrics" max="3" label="Metrics Dashboard" -->
+                            <div class="metric-card">
+                                <!-- cms:text key="value" placeholder="+340%" -->
+                                <span class="metric-value">+340%</span>
+                                <!-- /cms:text -->
+                                
+                                <!-- cms:text key="label" placeholder="Traffic Growth" -->
+                                <span class="metric-label">Traffic Growth</span>
+                                <!-- /cms:text -->
+                            </div>
+                            <!-- /cms:repeater -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <div class="cta-content">
+                    <!-- cms:text key="cta.title" label="CTA Title" -->
+                    <h2 class="cta-title">Ready to Increase Your Website Traffic?</h2>
+                    <!-- /cms:text -->
+                    
+                    <!-- cms:textarea key="cta.description" label="CTA Description" -->
+                    <p class="cta-description">Get a free SEO audit and optimization plan for your website</p>
+                    <!-- /cms:textarea -->
+                    
+                    <div class="cta-form">
+                        <input type="url" placeholder="Enter your website URL" class="cta-input" required>
+                        
+                        <!-- cms:text key="cta.buttonText" -->
+                        <button type="submit" class="btn btn-primary">Get Free Audit</button>
+                        <!-- /cms:text -->
+                    </div>
+                    
+                    <!-- cms:text key="cta.note" -->
+                    <p class="cta-note">🔒 Confidential. Results for your eyes only</p>
+                    <!-- /cms:text -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <!-- cms:text key="footer.logo.text" -->
+                        <span class="logo-text">Awkward Media</span>
+                        <!-- /cms:text -->
+                    </div>
+                    
+                    <!-- cms:textarea key="footer.description" -->
+                    <p class="footer-description">Canadian SEO agency that increases traffic and sales</p>
+                    <!-- /cms:textarea -->
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <!-- cms:text key="footer.services.title" -->
+                        <h4 class="footer-title">Services</h4>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:repeater key="footer.services.links" max="6" -->
+                        <ul class="footer-menu">
+                            <li>
+                                <!-- cms:link key="url" text="Service Link" -->
+                                <a href="#" class="footer-link">SEO Optimization</a>
+                                <!-- /cms:link -->
+                            </li>
+                        </ul>
+                        <!-- /cms:repeater -->
+                    </div>
+                    
+                    <div class="footer-column">
+                        <!-- cms:text key="footer.contact.title" -->
+                        <h4 class="footer-title">Contact</h4>
+                        <!-- /cms:text -->
+                        
+                        <ul class="footer-menu">
+                            <!-- cms:text key="footer.contact.phone" -->
+                            <li><a href="tel:+1XXXXXXXXX" class="footer-link">+1&nbsp;(XXX)&nbsp;XXX&#8209;XXXX</a></li>
+                            <!-- /cms:text -->
+                            
+                            <!-- cms:text key="footer.contact.email" -->
+                            <li><a href="mailto:hello@awkwardmedia.ca" class="footer-link">hello@awkwardmedia.ca</a></li>
+                            <!-- /cms:text -->
+                            
+                            <!-- cms:link key="footer.contact.linkedin" text="LinkedIn Link" -->
+                            <li><a href="#" class="footer-link">LinkedIn</a></li>
+                            <!-- /cms:link -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <!-- cms:text key="footer.copyright" -->
+                <p class="copyright">&copy; 2024 Awkward Media. All rights reserved.</p>
+                <!-- /cms:text -->
+            </div>
+        </div>
+    </footer>
+</Layout>
