@@ -47,10 +47,11 @@ jobs:
           docker stop awkward-media-staging || true
           docker rm awkward-media-staging || true
           
-          # Run new container
+          # Run new container in same network as Caddy
           docker run -d \
             --name awkward-media-staging \
             --restart unless-stopped \
+            --network n8n-docker_n8n \
             -p 3001:8080 \
             awkward-media:latest
           
