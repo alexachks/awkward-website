@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  awkward-media-web:
+    build: .
+    container_name: awkward-media-website
+    ports:
+      - "3000:8080"
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.awkward-media.rule=Host(`localhost`)"
+      - "traefik.http.routers.awkward-media.entrypoints=web"
+      - "traefik.http.services.awkward-media.loadbalancer.server.port=8080"
+    networks:
+      - awkward-media-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+networks:
+  awkward-media-network:
+    driver: bridge
