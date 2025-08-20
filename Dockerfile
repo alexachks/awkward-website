@@ -15,9 +15,6 @@ COPY js/ ./js/
 # Create directories for assets if needed
 RUN mkdir -p ./images ./fonts
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
 # Add security headers and optimizations via nginx config
 RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
     echo '    listen 80;' >> /etc/nginx/conf.d/default.conf && \
