@@ -70,7 +70,7 @@ RUN chown -R appuser:appgroup /var/cache/nginx && \
     chown -R appuser:appgroup /etc/nginx/conf.d && \
     touch /var/run/nginx.pid && \
     chown -R appuser:appgroup /var/run/nginx.pid && \
-    chown -R appuser:appuser /usr/share/nginx/html
+    chown -R appuser:appgroup /usr/share/nginx/html
 
 # Update nginx.conf to run as non-root
 RUN sed -i 's/user nginx;/user appuser;/g' /etc/nginx/nginx.conf
