@@ -1,4 +1,21 @@
-# Use nginx alpine image for small size and security
+# Build stage
+FROM node:18-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build Astro project
+RUN npm run build
+
+# Production stage
 FROM nginx:alpine
 
 # Set working directory
@@ -7,8 +24,8 @@ WORKDIR /usr/share/nginx/html
 # Remove default nginx static assets
 RUN rm -rf ./*
 
-# Copy Astro build output
-COPY dist/ .
+# Copy Astro build output from builder stage
+COPY --from=builder /app/dist/ .
 
 # Create directories for assets if needed
 RUN mkdir -p ./images ./fonts
@@ -79,13 +96,13 @@ USER appuser
 # Expose port 8080 (non-privileged port)
 EXPOSE 8080
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
-    CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
-
 # Update nginx to listen on port 8080
 RUN sed -i 's/listen 80;/listen 8080;/g' /etc/nginx/conf.d/default.conf && \
     sed -i 's/listen \[::\]:80;/listen [::]:8080;/g' /etc/nginx/conf.d/default.conf
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+    CMD wget --quiet --tries=1 --spider http://localhost:8080/ || exit 1
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
