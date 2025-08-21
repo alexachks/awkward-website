@@ -620,18 +620,32 @@ import Layout from '../layouts/Layout.astro';
                                 <div class="text-sm text-gray-300">https://awkward-media.com</div>
                             </div>
                         </div>
-                        <!-- Video Container -->
+                        <!-- Video Container with YouTube Facade -->
                         <div class="bg-black rounded-b-xl overflow-hidden shadow-2xl">
                             <!-- cms:text key="hero.video" label="Hero Video URL" -->
-                            <iframe 
-                                class="w-full aspect-video" 
-                                src="https://www.youtube.com/embed/NBYvS_w6yMQ?autoplay=1&mute=1&loop=1&playlist=NBYvS_w6yMQ&controls=1&showinfo=0&rel=0&modestbranding=1"
-                                title="Awkward Media SEO Services - Professional SEO Agency Video"
-                                frameborder="0"
-                                allow="autoplay; encrypted-media"
-                                allowfullscreen
-                                loading="lazy"
-                            ></iframe>
+                            <div class="youtube-facade relative w-full aspect-video cursor-pointer bg-black flex items-center justify-center group" data-video-id="NBYvS_w6yMQ">
+                                <!-- Video Thumbnail -->
+                                <img 
+                                    class="w-full h-full object-cover opacity-90 group-hover:opacity-75 transition-opacity duration-300" 
+                                    src="https://img.youtube.com/vi/NBYvS_w6yMQ/maxresdefault.jpg"
+                                    alt="Awkward Media SEO Services Video Preview"
+                                    loading="lazy"
+                                    width="1280"
+                                    height="720"
+                                >
+                                <!-- Play Button Overlay -->
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="bg-red-600 bg-opacity-90 hover:bg-opacity-100 rounded-full p-6 transform group-hover:scale-110 transition-all duration-300 shadow-2xl">
+                                        <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <!-- Loading indicator (hidden by default) -->
+                                <div class="loading-indicator absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden">
+                                    <div class="w-8 h-8 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                                </div>
+                            </div>
                             <!-- /cms:text -->
                         </div>
                     </div>
@@ -687,6 +701,8 @@ import Layout from '../layouts/Layout.astro';
                             .logo-cell {
                                 position: relative;
                                 overflow: hidden;
+                                contain: layout style paint;
+                                will-change: auto;
                             }
                             
                             .logo-text {
@@ -704,7 +720,9 @@ import Layout from '../layouts/Layout.astro';
                                 transform: translate(-50%, -50%);
                                 width: 100%;
                                 text-align: center;
-                                transition: all 0.5s ease-in-out;
+                                transition: opacity 0.3s ease-in-out;
+                                backface-visibility: hidden;
+                                transform-style: preserve-3d;
                             }
                             
                             .logo-text::before {
@@ -716,7 +734,31 @@ import Layout from '../layouts/Layout.astro';
                                 content: "";
                                 z-index: 1;
                                 opacity: 0;
-                                transform: translate(-50%, -50%) translateY(20px);
+                            }
+                            
+                            /* Use transform3d for GPU acceleration */
+                            @media (prefers-reduced-motion: no-preference) {
+                                .logo-text::before,
+                                .logo-text::after {
+                                    transform: translate3d(-50%, -50%, 0);
+                                }
+                            }
+                            
+                            /* Pause animations when not visible */
+                            @media (prefers-reduced-motion: reduce) {
+                                .logo-cell:nth-child(1) .logo-text::before,
+                                .logo-cell:nth-child(2) .logo-text::before,
+                                .logo-cell:nth-child(3) .logo-text::before,
+                                .logo-cell:nth-child(4) .logo-text::before,
+                                .logo-cell:nth-child(5) .logo-text::before,
+                                .logo-cell:nth-child(6) .logo-text::before,
+                                .logo-cell:nth-child(7) .logo-text::before,
+                                .logo-cell:nth-child(8) .logo-text::before {
+                                    animation: none;
+                                }
+                                .logo-text::before {
+                                    content: "Business";
+                                }
                             }
                             
                             .logo-cell:nth-child(1) .logo-text::before {
@@ -752,92 +794,35 @@ import Layout from '../layouts/Layout.astro';
                             }
                             
                             @keyframes logoSlide1 {
-                                0%, 11% { 
-                                    content: "Bolt"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                12%, 13% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                13.5%, 24% { 
-                                    content: "Netflix"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                25%, 26% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                26.5%, 36% { 
-                                    content: "Spotify"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                37%, 38% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                38.5%, 49% { 
-                                    content: "Adobe"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                50%, 51% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                51.5%, 61% { 
-                                    content: "Microsoft"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                62%, 63% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                63.5%, 74% { 
-                                    content: "Apple"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                75%, 76% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                76.5%, 86% { 
-                                    content: "Google"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
-                                87%, 88% { 
-                                    opacity: 0; 
-                                    transform: translate(-50%, -50%) translateY(-20px);
-                                }
-                                88.5%, 100% { 
-                                    content: "Tesla"; 
-                                    opacity: 1; 
-                                    transform: translate(-50%, -50%) translateY(0px);
-                                }
+                                0%, 12% { content: "Bolt"; opacity: 1; }
+                                13%, 15% { opacity: 0; }
+                                16%, 28% { content: "Netflix"; opacity: 1; }
+                                29%, 31% { opacity: 0; }
+                                32%, 44% { content: "Spotify"; opacity: 1; }
+                                45%, 47% { opacity: 0; }
+                                48%, 60% { content: "Adobe"; opacity: 1; }
+                                61%, 63% { opacity: 0; }
+                                64%, 76% { content: "Microsoft"; opacity: 1; }
+                                77%, 79% { opacity: 0; }
+                                80%, 92% { content: "Apple"; opacity: 1; }
+                                93%, 95% { opacity: 0; }
+                                96%, 100% { content: "Google"; opacity: 1; }
                             }
                             
                             @keyframes logoSlide2 {
-                                0%, 11% { content: "Opera"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                12%, 13% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                13.5%, 24% { content: "Zoom"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                25%, 26% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                26.5%, 36% { content: "Slack"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                37%, 38% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                38.5%, 49% { content: "Discord"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                50%, 51% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                51.5%, 61% { content: "Twitter"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                62%, 63% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                63.5%, 74% { content: "Meta"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                75%, 76% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                76.5%, 86% { content: "Amazon"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
-                                87%, 88% { opacity: 0; transform: translate(-50%, -50%) translateY(-20px); }
-                                88.5%, 100% { content: "Shopify"; opacity: 1; transform: translate(-50%, -50%) translateY(0px); }
+                                0%, 12% { content: "Opera"; opacity: 1; }
+                                13%, 15% { opacity: 0; }
+                                16%, 28% { content: "Zoom"; opacity: 1; }
+                                29%, 31% { opacity: 0; }
+                                32%, 44% { content: "Slack"; opacity: 1; }
+                                45%, 47% { opacity: 0; }
+                                48%, 60% { content: "Discord"; opacity: 1; }
+                                61%, 63% { opacity: 0; }
+                                64%, 76% { content: "Twitter"; opacity: 1; }
+                                77%, 79% { opacity: 0; }
+                                80%, 92% { content: "Meta"; opacity: 1; }
+                                93%, 95% { opacity: 0; }
+                                96%, 100% { content: "Amazon"; opacity: 1; }
                             }
                             
                             @keyframes logoSlide3 {

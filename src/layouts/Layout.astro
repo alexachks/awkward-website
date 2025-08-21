@@ -65,11 +65,36 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     <!-- Canonical URL -->
     <link rel="canonical" href="https://awkwardmedia.ca/">
     
-    <!-- Preload Critical Resources -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" as="style">
+    <!-- DNS Prefetch & Preconnect for external resources -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//img.youtube.com">
+    <link rel="dns-prefetch" href="//logo.clearbit.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://img.youtube.com">
+    <link rel="preconnect" href="https://logo.clearbit.com">
     
-    <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/images/photo-1517935706615-2717063c2225.jpeg" imagesizes="100vw" imagesrcset="/images/photo-1517935706615-2717063c2225.jpeg 1920w">
+    <link rel="preload" as="image" href="https://img.youtube.com/vi/NBYvS_w6yMQ/maxresdefault.jpg" imagesizes="(max-width: 768px) 100vw, 50vw">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Styles with optimized font-display -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
+    
+    <!-- Critical CSS inline -->
+    <style>
+        /* Critical styles for above-the-fold content */
+        body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:#000}
+        *{box-sizing:border-box}
+        .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+        /* Font fallback for performance */
+        .font-fallback{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+    </style>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -108,13 +133,12 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
         .mobile-menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
     </style>
     
-    <!-- Mobile Menu Script -->
+    <!-- Optimized Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu functionality
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navMenu = document.querySelector('.nav-menu');
-            const mobileServicesToggle = document.querySelector('.mobile-services-toggle');
-            const mobileServicesSubmenu = document.querySelector('.mobile-services-submenu');
             
             if (mobileToggle && navMenu) {
                 mobileToggle.addEventListener('click', function() {
@@ -123,44 +147,76 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                 });
                 
                 // Close menu when clicking on links
-                const navLinks = navMenu.querySelectorAll('a');
-                navLinks.forEach(link => {
-                    link.addEventListener('click', function() {
+                navMenu.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') {
                         navMenu.classList.add('hidden');
                         mobileToggle.classList.remove('active');
-                    });
+                    }
                 });
             }
             
-            // Mobile services submenu toggle
+            // Mobile services submenu
+            const mobileServicesToggle = document.querySelector('.mobile-services-toggle');
+            const mobileServicesSubmenu = document.querySelector('.mobile-services-submenu');
+            
             if (mobileServicesToggle && mobileServicesSubmenu) {
                 mobileServicesToggle.addEventListener('click', function(e) {
                     e.preventDefault();
                     mobileServicesSubmenu.classList.toggle('hidden');
                     const arrow = mobileServicesToggle.querySelector('svg');
-                    arrow.style.transform = mobileServicesSubmenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                    if (arrow) arrow.style.transform = mobileServicesSubmenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
                 });
             }
             
-            // Header scroll behavior
+            // Optimized header scroll behavior with throttling
+            let ticking = false;
             let lastScrollY = 0;
             const header = document.getElementById('main-header');
             
             if (header) {
-                window.addEventListener('scroll', function() {
+                function updateHeader() {
                     const currentScrollY = window.scrollY;
                     
-                    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                        // Scrolling down & past 100px - hide header
-                        header.style.transform = 'translateY(-100%)';
-                    } else {
-                        // Scrolling up or at top - show header
-                        header.style.transform = 'translateY(0)';
+                    if (Math.abs(currentScrollY - lastScrollY) > 5) {
+                        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                            header.style.transform = 'translateY(-100%)';
+                        } else {
+                            header.style.transform = 'translateY(0)';
+                        }
+                        lastScrollY = currentScrollY;
                     }
-                    
-                    lastScrollY = currentScrollY;
+                    ticking = false;
+                }
+                
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        requestAnimationFrame(updateHeader);
+                        ticking = true;
+                    }
                 }, { passive: true });
             }
+            
+            // YouTube facade functionality
+            const youtubeFacades = document.querySelectorAll('.youtube-facade');
+            youtubeFacades.forEach(function(facade) {
+                facade.addEventListener('click', function() {
+                    const videoId = this.dataset.videoId;
+                    const loadingIndicator = this.querySelector('.loading-indicator');
+                    
+                    if (loadingIndicator) loadingIndicator.classList.remove('hidden');
+                    
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'w-full h-full';
+                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&showinfo=0&rel=0&modestbranding=1`;
+                    iframe.title = 'Awkward Media SEO Services - Professional SEO Agency Video';
+                    iframe.frameBorder = '0';
+                    iframe.allow = 'autoplay; encrypted-media';
+                    iframe.allowFullscreen = true;
+                    
+                    this.innerHTML = '';
+                    this.appendChild(iframe);
+                }, { once: true });
+            });
         });
     </script>
 </body>

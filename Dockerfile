@@ -46,9 +46,16 @@ RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
     echo '    add_header Content-Security-Policy "default-src '\''self'\'' https:; script-src '\''self'\'' '\''unsafe-inline'\'' https://fonts.googleapis.com; style-src '\''self'\'' '\''unsafe-inline'\'' https://fonts.googleapis.com; font-src '\''self'\'' https://fonts.gstatic.com; img-src '\''self'\'' data: https:; connect-src '\''self'\''; frame-ancestors '\''none'\'';" always;' >> /etc/nginx/conf.d/default.conf && \
     echo '' >> /etc/nginx/conf.d/default.conf && \
     echo '    # Performance optimizations' >> /etc/nginx/conf.d/default.conf && \
-    echo '    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg)$ {' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Cache static assets' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location ~* \.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)$ {' >> /etc/nginx/conf.d/default.conf && \
     echo '        expires 1y;' >> /etc/nginx/conf.d/default.conf && \
     echo '        add_header Cache-Control "public, immutable";' >> /etc/nginx/conf.d/default.conf && \
+    echo '        add_header Vary "Accept-Encoding";' >> /etc/nginx/conf.d/default.conf && \
+    echo '    }' >> /etc/nginx/conf.d/default.conf && \
+    echo '    # Cache HTML with shorter duration' >> /etc/nginx/conf.d/default.conf && \
+    echo '    location ~* \.html$ {' >> /etc/nginx/conf.d/default.conf && \
+    echo '        expires 1h;' >> /etc/nginx/conf.d/default.conf && \
+    echo '        add_header Cache-Control "public, must-revalidate";' >> /etc/nginx/conf.d/default.conf && \
     echo '    }' >> /etc/nginx/conf.d/default.conf && \
     echo '' >> /etc/nginx/conf.d/default.conf && \
     echo '    # Enable gzip compression' >> /etc/nginx/conf.d/default.conf && \
