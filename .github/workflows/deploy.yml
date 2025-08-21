@@ -28,12 +28,15 @@ jobs:
             git clone https://github.com/alexachks/awkward-website.git && cd awkward-website
           fi
           
-          # Build Docker image locally
-          docker build -t awkward-media:latest .
+          # Build Docker image locally (force rebuild without cache)
+          docker build --no-cache -t awkward-media:latest .
           
           # Stop and remove existing container
           docker stop awkward-media-staging || true
           docker rm awkward-media-staging || true
+          
+          # Remove old images to force rebuild
+          docker rmi awkward-media:latest || true
           
           # Run new container in same network as Caddy
           docker run -d \
