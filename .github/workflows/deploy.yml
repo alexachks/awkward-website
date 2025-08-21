@@ -35,9 +35,6 @@ jobs:
           docker stop awkward-media-staging || true
           docker rm awkward-media-staging || true
           
-          # Remove old images to force rebuild
-          docker rmi awkward-media:latest || true
-          
           # Run new container in same network as Caddy
           docker run -d \
             --name awkward-media-staging \
@@ -46,7 +43,7 @@ jobs:
             -p 3001:8080 \
             awkward-media:latest
           
-          # Clean up old images
-          docker image prune -f
+          # Clean up old images (keep current one)
+          docker image prune -f --filter "label!=latest"
           
           echo "✅ Staging deployment successful!"
