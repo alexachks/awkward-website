@@ -196,27 +196,42 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                 }, { passive: true });
             }
             
-            // YouTube facade functionality
-            const youtubeFacades = document.querySelectorAll('.youtube-facade');
-            youtubeFacades.forEach(function(facade) {
-                facade.addEventListener('click', function() {
-                    const videoId = this.dataset.videoId;
-                    const loadingIndicator = this.querySelector('.loading-indicator');
-                    
-                    if (loadingIndicator) loadingIndicator.classList.remove('hidden');
-                    
-                    const iframe = document.createElement('iframe');
-                    iframe.className = 'w-full h-full';
-                    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&controls=1&showinfo=0&rel=0&modestbranding=1`;
-                    iframe.title = 'Awkward Media SEO Services - Professional SEO Agency Video';
-                    iframe.frameBorder = '0';
-                    iframe.allow = 'autoplay; encrypted-media';
-                    iframe.allowFullscreen = true;
-                    
-                    this.innerHTML = '';
-                    this.appendChild(iframe);
-                }, { once: true });
-            });
+            // Simplified YouTube autoplay
+            const facade = document.querySelector('.youtube-facade');
+            if (facade && facade.dataset.autoplay === 'true') {
+                // Skip on slow/data saver connections
+                const conn = navigator.connection;
+                if (conn && (conn.saveData || conn.effectiveType === '2g')) return;
+                
+                window.addEventListener('load', function() {
+                    setTimeout(function() {
+                        const countdown = facade.querySelector('.autoplay-countdown');
+                        const number = facade.querySelector('.countdown-number');
+                        
+                        if (countdown) countdown.classList.remove('hidden');
+                        
+                        let time = 3;
+                        const timer = setInterval(function() {
+                            if (number) number.textContent = --time;
+                            
+                            if (time <= 0) {
+                                clearInterval(timer);
+                                
+                                // Load video
+                                const iframe = document.createElement('iframe');
+                                iframe.className = 'w-full h-full';
+                                iframe.src = `https://www.youtube.com/embed/${facade.dataset.videoId}?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=${facade.dataset.videoId}`;
+                                iframe.title = 'SEO Agency Video';
+                                iframe.allow = 'autoplay';
+                                iframe.allowFullscreen = true;
+                                
+                                facade.innerHTML = '';
+                                facade.appendChild(iframe);
+                            }
+                        }, 1000);
+                    }, 2000); // 2s after page load
+                });
+            }
         });
     </script>
 </body>
