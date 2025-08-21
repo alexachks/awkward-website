@@ -141,6 +141,26 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                     arrow.style.transform = mobileServicesSubmenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
                 });
             }
+            
+            // Header scroll behavior
+            let lastScrollY = 0;
+            const header = document.getElementById('main-header');
+            
+            if (header) {
+                window.addEventListener('scroll', function() {
+                    const currentScrollY = window.scrollY;
+                    
+                    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                        // Scrolling down & past 100px - hide header
+                        header.style.transform = 'translateY(-100%)';
+                    } else {
+                        // Scrolling up or at top - show header
+                        header.style.transform = 'translateY(0)';
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                }, { passive: true });
+            }
         });
     </script>
 </body>
