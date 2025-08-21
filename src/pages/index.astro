@@ -4,87 +4,144 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout>
     <!-- Header -->
-    <header class="header">
-        <nav class="nav container">
-            <div class="nav-brand">
-                <a href="/" class="logo">
-                    <!-- cms:text key="header.logo.text" label="Logo Text" -->
-                    <span class="logo-text">Awkward Media</span>
-                    <!-- /cms:text -->
-                </a>
+    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center space-x-2">
+                        <!-- cms:text key="header.logo.text" label="Logo Text" -->
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Awkward Media</span>
+                        <!-- /cms:text -->
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a>
+                    <a href="#cases" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Case Studies</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                    
+                    <!-- cms:link key="header.cta" text="Header CTA Button" -->
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg">
+                        Get Free Consultation
+                    </button>
+                    <!-- /cms:link -->
+                </div>
+                
+                <button class="md:hidden mobile-menu-toggle flex flex-col space-y-1 w-6 h-6" aria-label="Toggle menu">
+                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
+                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
+                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
+                </button>
             </div>
-            <ul class="nav-menu">
-                <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#cases" class="nav-link">Case Studies</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <!-- cms:link key="header.cta" text="Header CTA Button" -->
-            <button type="button" class="btn btn-primary">Get Free Consultation</button>
-            <!-- /cms:link -->
-            <button type="button" class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            
+            <div class="md:hidden nav-menu bg-white border-t border-gray-200 absolute left-0 right-0 top-16 shadow-lg hidden">
+                <div class="px-4 py-4 space-y-3">
+                    <a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium">Services</a>
+                    <a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
+                    <a href="#cases" class="block text-gray-700 hover:text-blue-600 font-medium">Case Studies</a>
+                    <a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+                    <button class="w-full bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors">
+                        Get Free Consultation
+                    </button>
+                </div>
+            </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <main>
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
-                    <h1 class="hero-title">
-                        Increase Your Website Traffic
-                        <span class="highlight">by 3-5x</span>
-                        in 6 Months
-                    </h1>
-                    <!-- /cms:text -->
-                    
-                    <!-- cms:textarea key="hero.description" label="Hero Description" maxlength="300" -->
-                    <p class="hero-description">
-                        Awkward Media is Canada's premier SEO agency. We help businesses attract more customers through comprehensive search engine optimization and proven digital marketing strategies.
-                    </p>
-                    <!-- /cms:textarea -->
-                    
-                    <div class="hero-actions">
-                        <!-- cms:link key="hero.primaryCta" text="Primary CTA" -->
-                        <button type="button" class="btn btn-primary btn-large">Get Free SEO Audit</button>
-                        <!-- /cms:link -->
+    <main class="pt-16">
+        <section class="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
+            <!-- Background Elements -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%236366f1" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+            
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+                            Increase Your Website Traffic
+                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">by 3-5x</span>
+                            in 6 Months
+                        </h1>
+                        <!-- /cms:text -->
                         
-                        <!-- cms:link key="hero.secondaryCta" text="Secondary CTA" -->
-                        <button type="button" class="btn btn-outline btn-large">View Case Studies</button>
-                        <!-- /cms:link -->
+                        <!-- cms:textarea key="hero.description" label="Hero Description" maxlength="300" -->
+                        <p class="text-xl text-gray-600 leading-relaxed">
+                            Awkward Media is Canada's premier SEO agency. We help businesses attract more customers through comprehensive search engine optimization and proven digital marketing strategies.
+                        </p>
+                        <!-- /cms:textarea -->
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <!-- cms:link key="hero.primaryCta" text="Primary CTA" -->
+                            <button class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                                Get Free SEO Audit
+                            </button>
+                            <!-- /cms:link -->
+                            
+                            <!-- cms:link key="hero.secondaryCta" text="Secondary CTA" -->
+                            <button class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-200">
+                                View Case Studies
+                            </button>
+                            <!-- /cms:link -->
+                        </div>
+                        
+                        <div class="flex flex-wrap gap-8 pt-4">
+                            <!-- cms:repeater key="hero.stats" max="4" label="Hero Statistics" -->
+                            <div class="text-center">
+                                <!-- cms:text key="number" placeholder="150+" -->
+                                <div class="text-3xl font-bold text-gray-900">150+</div>
+                                <!-- /cms:text -->
+                                <!-- cms:text key="label" placeholder="Projects" -->
+                                <div class="text-sm text-gray-600 mt-1">Projects</div>
+                                <!-- /cms:text -->
+                            </div>
+                            <!-- /cms:repeater -->
+                        </div>
                     </div>
                     
-                    <div class="hero-stats">
-                        <!-- cms:repeater key="hero.stats" max="4" label="Hero Statistics" -->
-                        <div class="stat">
-                            <!-- cms:text key="number" placeholder="150+" -->
-                            <span class="stat-number">150+</span>
-                            <!-- /cms:text -->
-                            <!-- cms:text key="label" placeholder="Projects" -->
-                            <span class="stat-label">Projects</span>
-                            <!-- /cms:text -->
-                        </div>
-                        <!-- /cms:repeater -->
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="hero-chart">
-                        <div class="chart-placeholder">
-                            <div class="chart-bars">
-                                <div class="bar chart-bar-1"></div>
-                                <div class="bar chart-bar-2"></div>
-                                <div class="bar chart-bar-3"></div>
-                                <div class="bar chart-bar-4"></div>
-                                <div class="bar chart-bar-5"></div>
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+                            <div class="space-y-6">
+                                <!-- Traffic Growth Chart -->
+                                <div class="flex items-end justify-between h-48 space-x-2">
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 60%"></div>
+                                        <span class="text-xs text-gray-500">Jan</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 75%"></div>
+                                        <span class="text-xs text-gray-500">Feb</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 85%"></div>
+                                        <span class="text-xs text-gray-500">Mar</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="w-12 bg-gradient-to-t from-purple-400 to-purple-600 rounded-t-lg" style="height: 95%"></div>
+                                        <span class="text-xs text-gray-500">Apr</span>
+                                    </div>
+                                    <div class="flex flex-col items-center space-y-2">
+                                        <div class="w-12 bg-gradient-to-t from-purple-400 to-purple-600 rounded-t-lg" style="height: 100%"></div>
+                                        <span class="text-xs text-gray-500">May</span>
+                                    </div>
+                                </div>
+                                
+                                <!-- cms:text key="hero.chart.label" -->
+                                <div class="text-center">
+                                    <h3 class="font-semibold text-gray-900 mb-1">Organic Traffic Growth</h3>
+                                    <p class="text-sm text-gray-600">Average client results in 6 months</p>
+                                </div>
+                                <!-- /cms:text -->
                             </div>
-                            <!-- cms:text key="hero.chart.label" -->
-                            <p class="chart-label">Organic Traffic Growth</p>
-                            <!-- /cms:text -->
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            +340% Growth
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                            #1 in Canada
                         </div>
                     </div>
                 </div>
@@ -92,187 +149,231 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="services">
-            <div class="container">
-                <div class="section-header">
+        <section id="services" class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
                     <!-- cms:text key="services.title" label="Services Section Title" -->
-                    <h2 class="section-title">Our Services</h2>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
                     <!-- /cms:text -->
                     
                     <!-- cms:textarea key="services.description" label="Services Description" -->
-                    <p class="section-description">Comprehensive SEO solutions for maximum results</p>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive SEO solutions designed to drive measurable results and sustainable growth for your business</p>
                     <!-- /cms:textarea -->
                 </div>
                 
-                <div class="services-grid">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- cms:repeater key="services.items" max="6" label="Service Items" -->
-                    <article class="service-card">
+                    <div class="group bg-gray-50 rounded-2xl p-8 hover:bg-white hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-200">
                         <!-- cms:text key="icon" placeholder="🔍" -->
-                        <div class="service-icon">🔍</div>
+                        <div class="text-4xl mb-6">🔍</div>
                         <!-- /cms:text -->
                         
                         <!-- cms:text key="title" required="true" -->
-                        <h3 class="service-title">SEO Audit</h3>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">SEO Audit</h3>
                         <!-- /cms:text -->
                         
                         <!-- cms:textarea key="description" maxlength="200" -->
-                        <p class="service-description">In-depth analysis of your website identifying all technical and content optimization opportunities</p>
+                        <p class="text-gray-600 mb-6 leading-relaxed">In-depth analysis of your website identifying all technical and content optimization opportunities to maximize your search performance.</p>
                         <!-- /cms:textarea -->
                         
                         <!-- cms:richtext key="features" label="Service Features" -->
-                        <ul class="service-features">
-                            <li>Technical audit</li>
-                            <li>Content analysis</li>
-                            <li>Competitor research</li>
-                            <li>Optimization roadmap</li>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Technical audit</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Content analysis</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Competitor research</li>
+                            <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-600 rounded-full mr-3"></span>Optimization roadmap</li>
                         </ul>
                         <!-- /cms:richtext -->
-                    </article>
+                    </div>
                     <!-- /cms:repeater -->
                 </div>
             </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="about">
-            <div class="container">
-                <div class="about-content">
-                    <div class="about-text">
+        <section id="about" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-8">
                         <!-- cms:text key="about.title" label="About Section Title" -->
-                        <h2 class="section-title">Why Choose Awkward Media</h2>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-gray-900">Why Choose Awkward Media</h2>
                         <!-- /cms:text -->
                         
                         <!-- cms:richtext key="about.description" label="About Description" -->
-                        <p class="about-description">
+                        <p class="text-lg text-gray-600 leading-relaxed">
                             We don't just do SEO — we grow businesses. Over 5 years, we've helped hundreds of Canadian companies increase their organic traffic and sales through proven strategies.
                         </p>
                         <!-- /cms:richtext -->
                         
-                        <div class="benefits-list">
+                        <div class="space-y-6">
                             <!-- cms:repeater key="about.benefits" max="4" label="Benefits List" -->
-                            <div class="benefit">
+                            <div class="flex items-start space-x-4">
                                 <!-- cms:text key="icon" placeholder="✅" -->
-                                <div class="benefit-icon">✅</div>
+                                <div class="flex-shrink-0 w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-lg">✅</div>
                                 <!-- /cms:text -->
                                 
-                                <div class="benefit-content">
+                                <div class="flex-1">
                                     <!-- cms:text key="title" required="true" -->
-                                    <h3 class="benefit-title">Guaranteed Results</h3>
+                                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Guaranteed Results</h3>
                                     <!-- /cms:text -->
                                     
                                     <!-- cms:textarea key="description" maxlength="100" -->
-                                    <p class="benefit-description">We fix KPIs in our contract and guarantee measurable outcomes</p>
+                                    <p class="text-gray-600">We fix KPIs in our contract and guarantee measurable outcomes</p>
                                     <!-- /cms:textarea -->
                                 </div>
                             </div>
                             <!-- /cms:repeater -->
                         </div>
                     </div>
-                    <div class="about-visual">
-                        <div class="metrics-dashboard">
-                            <!-- cms:repeater key="about.metrics" max="3" label="Metrics Dashboard" -->
-                            <div class="metric-card">
-                                <!-- cms:text key="value" placeholder="+340%" -->
-                                <span class="metric-value">+340%</span>
-                                <!-- /cms:text -->
-                                
-                                <!-- cms:text key="label" placeholder="Traffic Growth" -->
-                                <span class="metric-label">Traffic Growth</span>
-                                <!-- /cms:text -->
+                    
+                    <div class="relative">
+                        <div class="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
+                            <div class="grid grid-cols-1 gap-6">
+                                <!-- cms:repeater key="about.metrics" max="3" label="Metrics Dashboard" -->
+                                <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-100">
+                                    <!-- cms:text key="value" placeholder="+340%" -->
+                                    <div class="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">+340%</div>
+                                    <!-- /cms:text -->
+                                    
+                                    <!-- cms:text key="label" placeholder="Traffic Growth" -->
+                                    <div class="text-sm font-medium text-gray-600">Traffic Growth</div>
+                                    <!-- /cms:text -->
+                                </div>
+                                <!-- /cms:repeater -->
                             </div>
-                            <!-- /cms:repeater -->
+                            
+                            <div class="mt-6 pt-6 border-t border-gray-100 text-center">
+                                <p class="text-sm text-gray-500">Average client results</p>
+                            </div>
                         </div>
+                        
+                        <!-- Decorative Elements -->
+                        <div class="absolute -top-4 -left-4 w-16 h-16 bg-blue-600 rounded-full opacity-10"></div>
+                        <div class="absolute -bottom-4 -right-4 w-12 h-12 bg-purple-600 rounded-full opacity-10"></div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="cta">
-            <div class="container">
-                <div class="cta-content">
-                    <!-- cms:text key="cta.title" label="CTA Title" -->
-                    <h2 class="cta-title">Ready to Increase Your Website Traffic?</h2>
-                    <!-- /cms:text -->
-                    
-                    <!-- cms:textarea key="cta.description" label="CTA Description" -->
-                    <p class="cta-description">Get a free SEO audit and optimization plan for your website</p>
-                    <!-- /cms:textarea -->
-                    
-                    <div class="cta-form">
-                        <input type="url" placeholder="Enter your website URL" class="cta-input" required>
+        <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
+            <!-- Background Pattern -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="m0 40l40-40h-40v40z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+            
+            <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- cms:text key="cta.title" label="CTA Title" -->
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Increase Your Website Traffic?</h2>
+                <!-- /cms:text -->
+                
+                <!-- cms:textarea key="cta.description" label="CTA Description" -->
+                <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">Get a free SEO audit and optimization plan for your website. Discover exactly what's holding back your rankings.</p>
+                <!-- /cms:textarea -->
+                
+                <div class="bg-white rounded-2xl p-8 shadow-2xl max-w-lg mx-auto">
+                    <form class="space-y-4">
+                        <input 
+                            type="url" 
+                            placeholder="Enter your website URL (e.g., https://yoursite.com)" 
+                            class="w-full px-6 py-4 border border-gray-200 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            required
+                        >
                         
                         <!-- cms:text key="cta.buttonText" -->
-                        <button type="submit" class="btn btn-primary">Get Free Audit</button>
+                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-8 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                            Get Free SEO Audit
+                        </button>
                         <!-- /cms:text -->
-                    </div>
+                    </form>
                     
                     <!-- cms:text key="cta.note" -->
-                    <p class="cta-note">🔒 Confidential. Results for your eyes only</p>
+                    <p class="text-sm text-gray-600 mt-4 flex items-center justify-center">
+                        <span class="mr-2">🔒</span> Confidential. Results for your eyes only
+                    </p>
                     <!-- /cms:text -->
+                </div>
+                
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-8 text-center">
+                    <div class="text-white">
+                        <div class="text-2xl font-bold mb-1">24 Hours</div>
+                        <div class="text-blue-200 text-sm">Audit Delivery</div>
+                    </div>
+                    <div class="text-white">
+                        <div class="text-2xl font-bold mb-1">100% Free</div>
+                        <div class="text-blue-200 text-sm">No Strings Attached</div>
+                    </div>
+                    <div class="text-white">
+                        <div class="text-2xl font-bold mb-1">50+ Points</div>
+                        <div class="text-blue-200 text-sm">Detailed Analysis</div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <div class="logo">
+    <footer id="contact" class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="mb-6">
                         <!-- cms:text key="footer.logo.text" -->
-                        <span class="logo-text">Awkward Media</span>
+                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Awkward Media</span>
                         <!-- /cms:text -->
                     </div>
                     
                     <!-- cms:textarea key="footer.description" -->
-                    <p class="footer-description">Canadian SEO agency that increases traffic and sales</p>
+                    <p class="text-gray-300 mb-6 max-w-md">Canadian SEO agency that increases traffic and sales through data-driven strategies and proven results.</p>
                     <!-- /cms:textarea -->
+                    
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                        </a>
+                    </div>
                 </div>
                 
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <!-- cms:text key="footer.services.title" -->
-                        <h4 class="footer-title">Services</h4>
-                        <!-- /cms:text -->
-                        
-                        <!-- cms:repeater key="footer.services.links" max="6" -->
-                        <ul class="footer-menu">
-                            <li>
-                                <!-- cms:link key="url" text="Service Link" -->
-                                <a href="#" class="footer-link">SEO Optimization</a>
-                                <!-- /cms:link -->
-                            </li>
-                        </ul>
-                        <!-- /cms:repeater -->
-                    </div>
+                <div>
+                    <!-- cms:text key="footer.services.title" -->
+                    <h4 class="font-semibold text-lg mb-4">Services</h4>
+                    <!-- /cms:text -->
                     
-                    <div class="footer-column">
-                        <!-- cms:text key="footer.contact.title" -->
-                        <h4 class="footer-title">Contact</h4>
+                    <ul class="space-y-3">
+                        <!-- cms:repeater key="footer.services.links" max="6" -->
+                        <li>
+                            <!-- cms:link key="url" text="Service Link" -->
+                            <a href="#" class="text-gray-300 hover:text-white transition-colors">SEO Optimization</a>
+                            <!-- /cms:link -->
+                        </li>
+                        <!-- /cms:repeater -->
+                    </ul>
+                </div>
+                
+                <div>
+                    <!-- cms:text key="footer.contact.title" -->
+                    <h4 class="font-semibold text-lg mb-4">Contact</h4>
+                    <!-- /cms:text -->
+                    
+                    <ul class="space-y-3">
+                        <!-- cms:text key="footer.contact.phone" -->
+                        <li><a href="tel:+1XXXXXXXXX" class="text-gray-300 hover:text-white transition-colors">+1 (XXX) XXX-XXXX</a></li>
                         <!-- /cms:text -->
                         
-                        <ul class="footer-menu">
-                            <!-- cms:text key="footer.contact.phone" -->
-                            <li><a href="tel:+1XXXXXXXXX" class="footer-link">+1&nbsp;(XXX)&nbsp;XXX&#8209;XXXX</a></li>
-                            <!-- /cms:text -->
-                            
-                            <!-- cms:text key="footer.contact.email" -->
-                            <li><a href="mailto:hello@awkwardmedia.ca" class="footer-link">hello@awkwardmedia.ca</a></li>
-                            <!-- /cms:text -->
-                            
-                            <!-- cms:link key="footer.contact.linkedin" text="LinkedIn Link" -->
-                            <li><a href="#" class="footer-link">LinkedIn</a></li>
-                            <!-- /cms:link -->
-                        </ul>
-                    </div>
+                        <!-- cms:text key="footer.contact.email" -->
+                        <li><a href="mailto:hello@awkwardmedia.ca" class="text-gray-300 hover:text-white transition-colors">hello@awkwardmedia.ca</a></li>
+                        <!-- /cms:text -->
+                        
+                        <li class="text-gray-300">Toronto, ON</li>
+                        <li class="text-gray-300">Vancouver, BC</li>
+                    </ul>
                 </div>
             </div>
             
-            <div class="footer-bottom">
+            <div class="border-t border-gray-800 pt-8 mt-8 text-center">
                 <!-- cms:text key="footer.copyright" -->
-                <p class="copyright">&copy; 2024 Awkward Media. All rights reserved.</p>
+                <p class="text-gray-400">&copy; 2024 Awkward Media. All rights reserved.</p>
                 <!-- /cms:text -->
             </div>
         </div>
