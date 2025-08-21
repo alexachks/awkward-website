@@ -113,6 +113,8 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
         document.addEventListener('DOMContentLoaded', function() {
             const mobileToggle = document.querySelector('.mobile-menu-toggle');
             const navMenu = document.querySelector('.nav-menu');
+            const mobileServicesToggle = document.querySelector('.mobile-services-toggle');
+            const mobileServicesSubmenu = document.querySelector('.mobile-services-submenu');
             
             if (mobileToggle && navMenu) {
                 mobileToggle.addEventListener('click', function() {
@@ -127,6 +129,16 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                         navMenu.classList.add('hidden');
                         mobileToggle.classList.remove('active');
                     });
+                });
+            }
+            
+            // Mobile services submenu toggle
+            if (mobileServicesToggle && mobileServicesSubmenu) {
+                mobileServicesToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    mobileServicesSubmenu.classList.toggle('hidden');
+                    const arrow = mobileServicesToggle.querySelector('svg');
+                    arrow.style.transform = mobileServicesSubmenu.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
                 });
             }
         });

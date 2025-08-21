@@ -10,20 +10,40 @@ import Layout from '../layouts/Layout.astro';
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2">
                         <!-- cms:text key="header.logo.text" label="Logo Text" -->
-                        <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Awkward Media</span>
+                        <span class="text-2xl font-black text-black uppercase tracking-wide">Awkward Media</span>
                         <!-- /cms:text -->
                     </a>
                 </div>
                 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#services" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Services</a>
+                    <!-- Services Dropdown -->
+                    <div class="relative group">
+                        <button class="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center space-x-1">
+                            <span>Services</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div class="absolute left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                            <div class="py-2">
+                                <a href="/services/local-seo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Local SEO</a>
+                                <a href="/services/technical-seo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Technical SEO</a>
+                                <a href="/services/link-building" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Link Building</a>
+                                <a href="/services/ai-optimization" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">AI Optimization</a>
+                                <a href="/services/content-creation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Content Creation</a>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a>
-                    <a href="#cases" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Case Studies</a>
+                    <a href="#case-studies" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Case Studies</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
                     
                     <!-- cms:link key="header.cta" text="Header CTA Button" -->
-                    <button class="bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg">
-                        Get Free Consultation
+                    <button class="bg-red-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Book a Call
                     </button>
                     <!-- /cms:link -->
                 </div>
@@ -37,12 +57,28 @@ import Layout from '../layouts/Layout.astro';
             
             <div class="md:hidden nav-menu bg-white border-t border-gray-200 absolute left-0 right-0 top-16 shadow-lg hidden">
                 <div class="px-4 py-4 space-y-3">
-                    <a href="#services" class="block text-gray-700 hover:text-blue-600 font-medium">Services</a>
+                    <!-- Mobile Services Menu -->
+                    <div class="mobile-services-menu">
+                        <button class="mobile-services-toggle w-full text-left text-gray-700 hover:text-blue-600 font-medium flex items-center justify-between">
+                            <span>Services</span>
+                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </button>
+                        <div class="mobile-services-submenu hidden ml-4 mt-2 space-y-2">
+                            <a href="/services/local-seo" class="block text-sm text-gray-600 hover:text-blue-600">Local SEO</a>
+                            <a href="/services/technical-seo" class="block text-sm text-gray-600 hover:text-blue-600">Technical SEO</a>
+                            <a href="/services/link-building" class="block text-sm text-gray-600 hover:text-blue-600">Link Building</a>
+                            <a href="/services/ai-optimization" class="block text-sm text-gray-600 hover:text-blue-600">AI Optimization</a>
+                            <a href="/services/content-creation" class="block text-sm text-gray-600 hover:text-blue-600">Content Creation</a>
+                        </div>
+                    </div>
+                    
                     <a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
-                    <a href="#cases" class="block text-gray-700 hover:text-blue-600 font-medium">Case Studies</a>
+                    <a href="#case-studies" class="block text-gray-700 hover:text-blue-600 font-medium">Case Studies</a>
                     <a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                    <button class="w-full bg-blue-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-blue-700 transition-colors">
-                        Get Free Consultation
+                    <button class="w-full bg-red-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-600 transition-all duration-200">
+                        Book a Call
                     </button>
                 </div>
             </div>
@@ -74,13 +110,13 @@ import Layout from '../layouts/Layout.astro';
                         
                         <div class="flex flex-col sm:flex-row gap-4">
                             <!-- cms:link key="hero.primaryCta" text="Primary CTA" -->
-                            <button class="bg-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-700 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
+                            <button class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-red-600 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
                                 Get Free SEO Audit
                             </button>
                             <!-- /cms:link -->
                             
                             <!-- cms:link key="hero.secondaryCta" text="Secondary CTA" -->
-                            <button class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:bg-blue-600 hover:text-white transition-all duration-200">
+                            <button class="border-2 border-red-500 text-red-500 px-8 py-4 rounded-full font-semibold text-lg hover:bg-red-500 hover:text-white transition-all duration-200">
                                 View Case Studies
                             </button>
                             <!-- /cms:link -->
@@ -274,12 +310,12 @@ import Layout from '../layouts/Layout.astro';
                         <input 
                             type="url" 
                             placeholder="Enter your website URL (e.g., https://yoursite.com)" 
-                            class="w-full px-6 py-4 border border-gray-200 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                            class="w-full px-6 py-4 border border-gray-200 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
                             required
                         >
                         
                         <!-- cms:text key="cta.buttonText" -->
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-4 px-8 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <button type="submit" class="w-full bg-red-500 text-white font-semibold py-4 px-8 rounded-full hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                             Get Free SEO Audit
                         </button>
                         <!-- /cms:text -->
