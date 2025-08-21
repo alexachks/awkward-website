@@ -21,9 +21,9 @@ jobs:
         username: ${{ secrets.STAGING_USERNAME }}
         key: ${{ secrets.STAGING_SSH_KEY }}
         script: |
-          # Clone/update repository
+          # Clone/update repository (force clean update)
           if [ -d "awkward-website" ]; then
-            cd awkward-website && git pull
+            cd awkward-website && git fetch --all && git reset --hard origin/main
           else
             git clone https://github.com/alexachks/awkward-website.git && cd awkward-website
           fi
