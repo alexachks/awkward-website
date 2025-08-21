@@ -3,181 +3,644 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-    <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md border-b border-gray-200 z-50">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+    <style>
+        html {
+            overscroll-behavior-y: none;
+            scroll-behavior: auto;
+        }
+        
+        body {
+            overscroll-behavior-y: none;
+            background-color: #000000;
+        }
+        
+        html, body {
+            scroll-snap-type: none;
+            -webkit-overflow-scrolling: auto;
+            overscroll-behavior: none;
+        }
+        
+        * {
+            scroll-behavior: auto;
+        }
+    </style>
+    <!-- Header with Expandable Menu -->
+    <div class="fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out" id="main-header">
+        <!-- Expandable Header -->
+        <header class="header-container bg-black/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-none xl:px-16">
+            <div class="flex justify-between items-center h-16 xl:justify-start xl:space-x-16">
                 <div class="flex items-center">
-                    <a href="/" class="flex items-center space-x-2">
+                    <a href="/" class="flex items-center space-x-2 text-white hover:text-gray-300 transition-colors">
                         <!-- cms:text key="header.logo.text" label="Logo Text" -->
-                        <span class="text-2xl font-black text-black uppercase tracking-wide">Awkward Media</span>
+                        <span class="text-2xl font-black lowercase tracking-wide">awkward media</span>
                         <!-- /cms:text -->
                     </a>
                 </div>
                 
-                <div class="hidden md:flex items-center space-x-8">
-                    <!-- Services Dropdown -->
-                    <div class="relative group">
-                        <button class="text-gray-700 hover:text-blue-600 font-medium transition-colors flex items-center space-x-1">
+                <!-- Navigation Menu Container -->
+                <div class="hidden md:flex items-center space-x-8 xl:flex-1 xl:justify-center xl:space-x-12 relative">
+                    <!-- Services Menu Trigger -->
+                    <div class="services-trigger cursor-pointer relative">
+                        <span class="text-white hover:text-gray-300 font-medium transition-colors flex items-center space-x-1">
                             <span>Services</span>
-                            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-4 h-4 transition-transform services-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
-                        </button>
-                        
-                        <!-- Dropdown Menu -->
-                        <div class="absolute left-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                            <div class="py-2">
-                                <a href="/services/local-seo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Local SEO</a>
-                                <a href="/services/technical-seo" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Technical SEO</a>
-                                <a href="/services/link-building" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Link Building</a>
-                                <a href="/services/ai-optimization" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">AI Optimization</a>
-                                <a href="/services/content-creation" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-blue-600 transition-colors">Content Creation</a>
-                            </div>
-                        </div>
+                        </span>
                     </div>
                     
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">About</a>
-                    <a href="#case-studies" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Case Studies</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 font-medium transition-colors">Contact</a>
+                    <a href="#pricing" class="text-white hover:text-gray-300 font-medium transition-colors">Pricing</a>
                     
+                    <!-- Explore Menu Trigger -->
+                    <div class="explore-trigger cursor-pointer relative">
+                        <span class="text-white hover:text-gray-300 font-medium transition-colors flex items-center space-x-1">
+                            <span>Explore</span>
+                            <svg class="w-4 h-4 transition-transform explore-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                            </svg>
+                        </span>
+                    </div>
+                    
+                    <a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About</a>
+                    <a href="#contact" class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a>
+                </div>
+                
+                <!-- Login and CTA Buttons -->
+                <div class="hidden md:flex items-center">
+                    <a href="/login" class="text-white hover:text-gray-300 font-medium mr-6">Login</a>
                     <!-- cms:link key="header.cta" text="Header CTA Button" -->
-                    <button class="bg-red-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                    <button class="bg-red-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-red-800 border border-red-600/20">
                         Book a Call
                     </button>
                     <!-- /cms:link -->
                 </div>
                 
                 <button class="md:hidden mobile-menu-toggle flex flex-col space-y-1 w-6 h-6" aria-label="Toggle menu">
-                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
-                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
-                    <span class="w-full h-0.5 bg-gray-600 transition-all"></span>
+                    <span class="w-full h-0.5 bg-white transition-all"></span>
+                    <span class="w-full h-0.5 bg-white transition-all"></span>
+                    <span class="w-full h-0.5 bg-white transition-all"></span>
                 </button>
             </div>
             
-            <div class="md:hidden nav-menu bg-white border-t border-gray-200 absolute left-0 right-0 top-16 shadow-lg hidden">
+            <!-- Expandable Mega Menu Section -->
+            <div class="mega-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
+                <div class="mega-menu-content py-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                        <!-- Left Column - Core Services -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Core SEO Services</h3>
+                                <div class="space-y-4">
+                                    <a href="/services/local-seo" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🎯</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Local SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Dominate local search results and attract nearby customers.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/services/organic-seo" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🌱</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Organic SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Improve natural search rankings and organic traffic.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/services/technical-seo" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">⚡</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Technical SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Fix technical issues and improve site performance.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/services/link-building" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🔗</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Link Building</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Build high-quality backlinks to boost authority.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/services/ai-optimization" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🤖</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">AI Optimization</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Leverage AI for advanced SEO strategies.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Middle Column - SEO Canada -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Canada</h3>
+                                <div class="space-y-4">
+                                    <a href="/seo/toronto" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏙️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Toronto</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Canada's largest city and financial hub.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/calgary" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏔️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Calgary</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Alberta's energy capital and business center.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/mississauga" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏢</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Mississauga</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Major suburban business hub in the GTA.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/edmonton" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🛢️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Edmonton</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Alberta's capital and government center.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/vancouver" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🌊</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Vancouver</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">West Coast tech and trade gateway.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column - SEO United States -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO United States</h3>
+                                <div class="space-y-4">
+                                    <a href="/seo/new-york" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🗽</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO New York</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">The world's financial and media capital.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/los-angeles" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🌴</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Los Angeles</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Entertainment capital and creative hub.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/san-diego" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">☀️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO San Diego</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Biotech innovation and coastal business.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/san-francisco" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🌉</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO San Francisco</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Silicon Valley's tech epicenter.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/chicago" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏢</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Chicago</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Midwest business hub and trading center.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Fourth Column - SEO Worldwide -->
+                        <div class="space-y-6">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Worldwide</h3>
+                                <div class="space-y-4">
+                                    <a href="/seo/london" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏰</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO London</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Global financial capital and business hub.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/dubai" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏗️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Dubai</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Middle East's luxury and trade center.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/zurich" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏔️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Zurich</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Swiss banking and wealth management hub.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/monaco" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🏎️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Monaco</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Ultra-luxury and high-end business haven.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/seo/singapore" class="block group/item">
+                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-2xl">🌆</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Singapore</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed">Asia-Pacific's premier business gateway.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Expandable Explore Menu Section -->
+            <div class="explore-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
+                <div class="explore-menu-content py-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                        <!-- Left Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Resources</h3>
+                                <div class="space-y-6">
+                                    <a href="/case-studies" class="block group/item">
+                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-3xl">📊</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Case Studies</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Real success stories and results from our SEO campaigns and client projects.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/media-mentions" class="block group/item">
+                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-3xl">📰</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Media Mentions</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Press coverage, interviews, and industry recognition of our work and expertise.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/blog" class="block group/item">
+                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-3xl">✍️</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Blog</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Latest SEO insights, industry trends, and actionable marketing strategies.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column -->
+                        <div class="space-y-8">
+                            <div>
+                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Legal</h3>
+                                <div class="space-y-6">
+                                    <a href="/privacy-policy" class="block group/item">
+                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-3xl">🔒</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Privacy Policy</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">How we collect, use, and protect your personal information and data.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    
+                                    <a href="/terms-of-service" class="block group/item">
+                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-3xl">📋</div>
+                                            <div class="flex-1">
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Terms of Service</div>
+                                                <div class="text-gray-400 text-sm leading-relaxed">Terms and conditions governing the use of our services and website.</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        </header>
+        
+        <!-- Mobile Menu -->
+        <div class="md:hidden nav-menu bg-black/90 backdrop-blur-lg border-t border-white/20 absolute left-0 right-0 top-16 shadow-xl hidden">
                 <div class="px-4 py-4 space-y-3">
                     <!-- Mobile Services Menu -->
                     <div class="mobile-services-menu">
-                        <button class="mobile-services-toggle w-full text-left text-gray-700 hover:text-blue-600 font-medium flex items-center justify-between">
+                        <button class="mobile-services-toggle w-full text-left text-white hover:text-gray-300 font-medium flex items-center justify-between">
                             <span>Services</span>
                             <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                         <div class="mobile-services-submenu hidden ml-4 mt-2 space-y-2">
-                            <a href="/services/local-seo" class="block text-sm text-gray-600 hover:text-blue-600">Local SEO</a>
-                            <a href="/services/technical-seo" class="block text-sm text-gray-600 hover:text-blue-600">Technical SEO</a>
-                            <a href="/services/link-building" class="block text-sm text-gray-600 hover:text-blue-600">Link Building</a>
-                            <a href="/services/ai-optimization" class="block text-sm text-gray-600 hover:text-blue-600">AI Optimization</a>
-                            <a href="/services/content-creation" class="block text-sm text-gray-600 hover:text-blue-600">Content Creation</a>
+                            <a href="/services/local-seo" class="block text-sm text-gray-300 hover:text-gray-100">Local SEO</a>
+                            <a href="/services/technical-seo" class="block text-sm text-gray-300 hover:text-gray-100">Technical SEO</a>
+                            <a href="/services/link-building" class="block text-sm text-gray-300 hover:text-gray-100">Link Building</a>
+                            <a href="/services/ai-optimization" class="block text-sm text-gray-300 hover:text-gray-100">AI Optimization</a>
+                            <a href="/services/content-creation" class="block text-sm text-gray-300 hover:text-gray-100">Content Creation</a>
                         </div>
                     </div>
                     
-                    <a href="#about" class="block text-gray-700 hover:text-blue-600 font-medium">About</a>
-                    <a href="#case-studies" class="block text-gray-700 hover:text-blue-600 font-medium">Case Studies</a>
-                    <a href="#contact" class="block text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-                    <button class="w-full bg-red-500 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-600 transition-all duration-200">
-                        Book a Call
-                    </button>
+                    <a href="#pricing" class="block text-white hover:text-gray-300 font-medium">Pricing</a>
+                    <a href="#explore" class="block text-white hover:text-gray-300 font-medium">Explore</a>
+                    <a href="#about" class="block text-white hover:text-gray-300 font-medium">About</a>
+                    <a href="#contact" class="block text-white hover:text-gray-300 font-medium">Contact</a>
+                    
+                    <div class="pt-2 border-t border-white/20 space-y-3">
+                        <a href="/login" class="block text-white hover:text-gray-300 font-medium">Login</a>
+                        <button class="w-full bg-red-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-red-800 border border-red-600/20">
+                            Book a Call
+                        </button>
+                    </div>
                 </div>
             </div>
         </nav>
-    </header>
+        </header>
+        
+        <!-- CSS for Expandable Menu -->
+        <style>
+            /* Show Services mega menu on hover - use nav parent to reach container */
+            nav:has(.services-trigger:hover) .mega-menu-container,
+            .mega-menu-container:hover {
+                max-height: 700px !important;
+            }
+            
+            /* Show Explore mega menu on hover - use nav parent to reach container */
+            nav:has(.explore-trigger:hover) .explore-menu-container,
+            .explore-menu-container:hover {
+                max-height: 700px !important;
+            }
+            
+            /* Rotate arrows on hover */
+            .services-trigger:hover .services-arrow {
+                transform: rotate(180deg);
+            }
+            
+            .explore-trigger:hover .explore-arrow {
+                transform: rotate(180deg);
+            }
+            
+            /* Hero Grid Pattern */
+            .hero-grid-pattern {
+                position: absolute;
+                top: -80px;
+                left: 0;
+                width: 100%;
+                height: calc(100% + 160px);
+                background-image: 
+                    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+                background-size: 120px 120px;
+                animation: gridMoveDown 15s linear infinite;
+            }
+            
+            .hero-grid-glow {
+                position: absolute;
+                top: -80px;
+                left: 0;
+                width: 100%;
+                height: calc(100% + 160px);
+                background-image:
+                    radial-gradient(circle at 160px 240px, rgba(255, 255, 255, 0.15) 2px, transparent 2px),
+                    radial-gradient(circle at 480px 160px, rgba(255, 255, 255, 0.12) 2px, transparent 2px),
+                    radial-gradient(circle at 320px 400px, rgba(255, 255, 255, 0.18) 2px, transparent 2px),
+                    radial-gradient(circle at 640px 320px, rgba(255, 255, 255, 0.10) 2px, transparent 2px),
+                    radial-gradient(circle at 800px 240px, rgba(255, 255, 255, 0.14) 2px, transparent 2px);
+                background-size: 120px 120px;
+                animation: gridMoveDown 15s linear infinite;
+            }
+            
+            @keyframes gridMoveDown {
+                0% {
+                    transform: translateY(0);
+                }
+                100% {
+                    transform: translateY(120px);
+                }
+            }
+        </style>
+    </div>
 
     <!-- Hero Section -->
-    <main class="pt-16">
-        <section class="relative bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden">
+    <main>
+        <section class="relative bg-black overflow-hidden" style="contain: layout style;">
             <!-- Background Elements -->
-            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%236366f1" fill-opacity="0.03"%3E%3Ccircle cx="30" cy="30" r="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-40"></div>
+            <!-- Toronto Night Skyline Background - fixed z-index and transform3d -->
+            <div class="absolute inset-0 bg-[url('/images/photo-1517935706615-2717063c2225.jpeg')] bg-cover bg-center bg-no-repeat opacity-40 z-0" style="transform: translate3d(0,0,0); will-change: transform; contain: strict;"></div>
+            <!-- Dark Overlay - reduced for visibility -->
+            <div class="absolute inset-0 bg-black/70 z-10" style="transform: translate3d(0,0,0); contain: strict;"></div>
+            <!-- Gradient Overlay - lighter -->
+            <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-gray-900/50 to-black/65 z-20" style="transform: translate3d(0,0,0); contain: strict;"></div>
             
-            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div class="space-y-8">
-                        <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
-                            Increase Your Website Traffic
-                            <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">by 3-5x</span>
-                            in 6 Months
-                        </h1>
-                        <!-- /cms:text -->
-                        
-                        <!-- cms:textarea key="hero.description" label="Hero Description" maxlength="300" -->
-                        <p class="text-xl text-gray-600 leading-relaxed">
-                            Awkward Media is Canada's premier SEO agency. We help businesses attract more customers through comprehensive search engine optimization and proven digital marketing strategies.
-                        </p>
-                        <!-- /cms:textarea -->
-                        
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <!-- cms:link key="hero.primaryCta" text="Primary CTA" -->
-                            <button class="bg-red-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-red-600 transition-all duration-200 shadow-xl hover:shadow-2xl transform hover:-translate-y-1">
-                                Get Free SEO Audit
-                            </button>
-                            <!-- /cms:link -->
-                            
-                            <!-- cms:link key="hero.secondaryCta" text="Secondary CTA" -->
-                            <button class="border-2 border-red-500 text-red-500 px-8 py-4 rounded-full font-semibold text-lg hover:bg-red-500 hover:text-white transition-all duration-200">
-                                View Case Studies
-                            </button>
-                            <!-- /cms:link -->
-                        </div>
-                        
-                        <div class="flex flex-wrap gap-8 pt-4">
-                            <!-- cms:repeater key="hero.stats" max="4" label="Hero Statistics" -->
-                            <div class="text-center">
-                                <!-- cms:text key="number" placeholder="150+" -->
-                                <div class="text-3xl font-bold text-gray-900">150+</div>
-                                <!-- /cms:text -->
-                                <!-- cms:text key="label" placeholder="Projects" -->
-                                <div class="text-sm text-gray-600 mt-1">Projects</div>
-                                <!-- /cms:text -->
-                            </div>
-                            <!-- /cms:repeater -->
-                        </div>
+            <!-- Animated Grid Pattern -->
+            <div class="absolute inset-0 overflow-hidden z-30" style="transform: translate3d(0,0,0); contain: strict;">
+                <div class="hero-grid-pattern"></div>
+                <div class="hero-grid-glow"></div>
+            </div>
+            
+            <!-- Subtle Pattern Overlay -->
+            <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.01"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30 z-40" style="transform: translate3d(0,0,0); contain: strict;"></div>
+            
+            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-20 lg:pt-32 lg:pb-32">
+                <div class="text-center space-y-10">
+                    <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
+                    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-tight">
+                        We are Canada's<br>
+                        <span class="bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">#1 SEO Agency</span>
+                    </h1>
+                    <!-- /cms:text -->
+                    
+                    <!-- cms:text key="hero.subtitle" label="Hero Subtitle" required="true" -->
+                    <p class="text-lg sm:text-xl lg:text-2xl text-white">
+                        Dominate Google Search Results with Canada's Most Trusted <span class="bg-gradient-to-r from-red-700 via-red-600 to-red-500 bg-clip-text text-transparent">SEO Canada</span> Experts.<br>
+                        Get Guaranteed 1st Page Rankings in 60 Days or Your Money Back - From Coast to Coast
+                    </p>
+                    <!-- /cms:text -->
+                    
+                    <!-- CTA Button -->
+                    <div class="mt-8 text-center">
+                        <!-- cms:link key="hero.cta" text="Hero CTA Button" -->
+                        <button class="bg-red-700 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-red-800 transition-all duration-300 group inline-flex items-center space-x-2 border border-red-600/20">
+                            <span>Get Started Now</span>
+                            <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </button>
+                        <!-- /cms:link -->
                     </div>
                     
-                    <div class="relative">
-                        <div class="bg-white rounded-2xl shadow-2xl p-8 border border-gray-100">
-                            <div class="space-y-6">
-                                <!-- Traffic Growth Chart -->
-                                <div class="flex items-end justify-between h-48 space-x-2">
-                                    <div class="flex flex-col items-center space-y-2">
-                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 60%"></div>
-                                        <span class="text-xs text-gray-500">Jan</span>
+                    <!-- Social Proof Block -->
+                    <div class="mt-16 mb-8">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                            <!-- Google Reviews -->
+                            <div class="flex items-center space-x-4">
+                                <!-- Google Logo -->
+                                <div class="flex items-center space-x-2">
+                                    <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24">
+                                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                                    </svg>
+                                </div>
+                                
+                                <!-- Stars and Rating -->
+                                <div class="flex items-center space-x-2">
+                                    <div class="flex items-center">
+                                        <!-- 4.9 Stars -->
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                        </svg>
                                     </div>
-                                    <div class="flex flex-col items-center space-y-2">
-                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 75%"></div>
-                                        <span class="text-xs text-gray-500">Feb</span>
+                                    <span class="text-white font-semibold">4.9</span>
+                                    <span class="text-gray-400 font-light">200+ reviews</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Client Avatars -->
+                            <div class="flex items-center space-x-4">
+                                <!-- Avatar Stack -->
+                                <div class="flex -space-x-2">
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-xs border-2 border-white">
+                                        JD
                                     </div>
-                                    <div class="flex flex-col items-center space-y-2">
-                                        <div class="w-12 bg-gradient-to-t from-blue-400 to-blue-600 rounded-t-lg" style="height: 85%"></div>
-                                        <span class="text-xs text-gray-500">Mar</span>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center text-white font-semibold text-xs border-2 border-white">
+                                        SM
                                     </div>
-                                    <div class="flex flex-col items-center space-y-2">
-                                        <div class="w-12 bg-gradient-to-t from-purple-400 to-purple-600 rounded-t-lg" style="height: 95%"></div>
-                                        <span class="text-xs text-gray-500">Apr</span>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white font-semibold text-xs border-2 border-white">
+                                        AL
                                     </div>
-                                    <div class="flex flex-col items-center space-y-2">
-                                        <div class="w-12 bg-gradient-to-t from-purple-400 to-purple-600 rounded-t-lg" style="height: 100%"></div>
-                                        <span class="text-xs text-gray-500">May</span>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-semibold text-xs border-2 border-white">
+                                        MK
+                                    </div>
+                                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-white font-semibold text-xs border-2 border-white">
+                                        TR
                                     </div>
                                 </div>
                                 
-                                <!-- cms:text key="hero.chart.label" -->
-                                <div class="text-center">
-                                    <h3 class="font-semibold text-gray-900 mb-1">Organic Traffic Growth</h3>
-                                    <p class="text-sm text-gray-600">Average client results in 6 months</p>
+                                <!-- Client Text -->
+                                <div class="text-left max-w-xs">
+                                    <p class="leading-relaxed text-sm font-light text-gray-300">
+                                        <span class="font-bold text-white">300+</span> businesses choose Awkward Media to dominate search results and grow their revenue
+                                    </p>
                                 </div>
-                                <!-- /cms:text -->
                             </div>
                         </div>
-                        
-                        <!-- Floating Elements -->
-                        <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                            +340% Growth
+                    </div>
+                    
+                    <!-- Safari Browser Video Block -->
+                    <div class="max-w-6xl mx-auto mt-12">
+                        <div class="bg-gray-800 rounded-t-xl p-3 flex items-center space-x-2">
+                            <!-- Traffic Light Buttons -->
+                            <div class="flex space-x-2">
+                                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                                <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            </div>
+                            <!-- Address Bar -->
+                            <div class="flex-1 bg-gray-700 rounded-md px-4 py-1 mx-4">
+                                <div class="text-sm text-gray-300">https://awkward-media.com</div>
+                            </div>
                         </div>
-                        <div class="absolute -bottom-4 -left-4 bg-yellow-400 text-gray-900 px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                            #1 in Canada
+                        <!-- Video Container -->
+                        <div class="bg-black rounded-b-xl overflow-hidden shadow-2xl">
+                            <!-- cms:text key="hero.video" label="Hero Video URL" -->
+                            <iframe 
+                                class="w-full aspect-video" 
+                                src="https://www.youtube.com/embed/NBYvS_w6yMQ?autoplay=1&mute=1&loop=1&playlist=NBYvS_w6yMQ&controls=0&showinfo=0&rel=0&modestbranding=1"
+                                frameborder="0"
+                                allow="autoplay; encrypted-media"
+                                allowfullscreen
+                            ></iframe>
+                            <!-- /cms:text -->
                         </div>
                     </div>
                 </div>
@@ -310,12 +773,12 @@ import Layout from '../layouts/Layout.astro';
                         <input 
                             type="url" 
                             placeholder="Enter your website URL (e.g., https://yoursite.com)" 
-                            class="w-full px-6 py-4 border border-gray-200 rounded-full text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                            class="w-full px-6 py-4 border border-gray-200 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-red-700 focus:border-transparent"
                             required
                         >
                         
                         <!-- cms:text key="cta.buttonText" -->
-                        <button type="submit" class="w-full bg-red-500 text-white font-semibold py-4 px-8 rounded-full hover:bg-red-600 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                        <button type="submit" class="w-full bg-red-700 text-white font-semibold py-5 px-10 rounded-xl hover:bg-red-800 border border-red-600/20">
                             Get Free SEO Audit
                         </button>
                         <!-- /cms:text -->

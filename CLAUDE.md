@@ -112,3 +112,4 @@ Lighthouse CI configuration requires:
 - Service Worker registration present but sw.js file not included
 - Brand colors and content can be customized via CSS custom properties
 - Contact information needs to be updated from placeholder values
+- Мы должны использовать как можно меньше JS для этого сайта. Максимальный минимум. Только если задачу никак нельзя решить без JS с помощью CSS. И при каждом использовании JS ты должен переспрашивать меня.
