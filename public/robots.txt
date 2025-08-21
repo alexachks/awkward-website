@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://awkwardmedia.ca/sitemap.xml
+
+# Block crawlers from admin paths (if any in future)
+Disallow: /admin/
+Disallow: /*.json$
+
+# Allow all crawlers to access CSS, JS, and images
+Allow: /assets/
+Allow: /images/
+Allow: /_astro/
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

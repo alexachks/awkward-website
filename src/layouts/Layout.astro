@@ -86,15 +86,84 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"></noscript>
     
-    <!-- Critical CSS inline -->
+    <!-- Critical CSS inline for above-the-fold content -->
     <style>
-        /* Critical styles for above-the-fold content */
-        body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:#000}
-        *{box-sizing:border-box}
+        /* Reset and base styles */
+        *,*::before,*::after{box-sizing:border-box}
+        body{margin:0;font-family:Inter,system-ui,-apple-system,sans-serif;background:#000;color:#fff}
+        
+        /* Header styles */
+        .fixed{position:fixed}
+        .top-0{top:0}
+        .left-0{left:0}
+        .right-0{right:0}
+        .z-\\[100\\]{z-index:100}
+        
+        /* Hero section critical styles */
+        .relative{position:relative}
+        .absolute{position:absolute}
+        .inset-0{top:0;right:0;bottom:0;left:0}
+        .bg-black{background-color:#000}
+        .text-white{color:#fff}
+        .text-center{text-align:center}
+        .overflow-hidden{overflow:hidden}
+        
+        /* Typography */
+        .text-5xl{font-size:3rem;line-height:1}
+        .font-black{font-weight:900}
+        .leading-tight{line-height:1.25}
+        
+        /* Layout utilities */
+        .max-w-7xl{max-width:80rem}
+        .mx-auto{margin-left:auto;margin-right:auto}
+        .px-4{padding-left:1rem;padding-right:1rem}
+        .py-20{padding-top:5rem;padding-bottom:5rem}
+        .space-y-10>:not([hidden])~:not([hidden]){margin-top:2.5rem}
+        
+        /* Responsive */
+        @media (min-width: 640px) {
+            .sm\\:text-6xl{font-size:3.75rem;line-height:1}
+            .sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}
+        }
+        @media (min-width: 1024px) {
+            .lg\\:text-8xl{font-size:6rem;line-height:1}
+            .lg\\:px-8{padding-left:2rem;padding-right:2rem}
+            .lg\\:pt-32{padding-top:8rem}
+            .lg\\:pb-32{padding-bottom:8rem}
+        }
+        
+        /* Utility classes */
         .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
-        /* Font fallback for performance */
-        .font-fallback{font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif}
+        .hidden{display:none}
+        .w-full{width:100%}
+        .h-full{height:100%}
+        .object-cover{object-fit:cover}
+        .opacity-40{opacity:0.4}
+        
+        /* Defer non-critical components */
+        .services-section,.about-section,.cta-section,.footer{opacity:0;transform:translateY(20px);transition:all 0.3s ease}
+        .services-section.loaded,.about-section.loaded,.cta-section.loaded,.footer.loaded{opacity:1;transform:translateY(0)}
     </style>
+    
+    <!-- Defer non-critical CSS -->
+    <script>
+        // Load below-the-fold sections when visible
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('loaded');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '50px' });
+            
+            const sections = document.querySelectorAll('.services-section, .about-section, .cta-section, .footer');
+            sections.forEach(function(section) {
+                observer.observe(section);
+            });
+        });
+    </script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">

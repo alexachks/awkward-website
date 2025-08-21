@@ -501,8 +501,20 @@ import Layout from '../layouts/Layout.astro';
     <main>
         <section class="relative bg-black overflow-hidden" style="contain: layout style;">
             <!-- Background Elements -->
-            <!-- Toronto Night Skyline Background - fixed z-index and transform3d -->
-            <div class="absolute inset-0 bg-[url('/images/photo-1517935706615-2717063c2225.jpeg')] bg-cover bg-center bg-no-repeat opacity-40 z-0" style="transform: translate3d(0,0,0); will-change: transform; contain: strict;"></div>
+            <!-- Toronto Night Skyline Background - optimized with modern formats -->
+            <picture class="absolute inset-0 z-0">
+                <source srcset="/images/photo-1517935706615-2717063c2225.webp" type="image/webp">
+                <img 
+                    class="w-full h-full object-cover opacity-40" 
+                    src="/images/photo-1517935706615-2717063c2225.jpeg"
+                    alt="Toronto skyline at sunset"
+                    fetchpriority="high"
+                    loading="eager"
+                    width="1920"
+                    height="1080"
+                    style="transform: translate3d(0,0,0); will-change: transform; contain: strict;"
+                >
+            </picture>
             <!-- Dark Overlay - reduced for visibility -->
             <div class="absolute inset-0 bg-black/70 z-10" style="transform: translate3d(0,0,0); contain: strict;"></div>
             <!-- Gradient Overlay - lighter -->
@@ -932,7 +944,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-20 bg-white">
+        <section id="services" class="services-section py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <!-- cms:text key="services.title" label="Services Section Title" -->
@@ -944,9 +956,6 @@ import Layout from '../layouts/Layout.astro';
                     <!-- /cms:textarea -->
                 </div>
                 
-                <!-- cms:text key="services.subtitle" label="Services Subtitle" -->
-                <h3 class="sr-only">Our Service Offerings</h3>
-                <!-- /cms:text -->
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- cms:repeater key="services.items" max="6" label="Service Items" -->
@@ -956,7 +965,7 @@ import Layout from '../layouts/Layout.astro';
                         <!-- /cms:text -->
                         
                         <!-- cms:text key="title" required="true" -->
-                        <h4 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">SEO Audit</h4>
+                        <h3 class="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors">SEO Audit</h3>
                         <!-- /cms:text -->
                         
                         <!-- cms:textarea key="description" maxlength="200" -->
@@ -978,7 +987,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 bg-gray-50">
+        <section id="about" class="about-section py-20 bg-gray-50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div class="space-y-8">
@@ -1043,7 +1052,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- CTA Section -->
-        <section class="py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
+        <section class="cta-section py-20 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 relative overflow-hidden">
             <!-- Background Pattern -->
             <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="m0 40l40-40h-40v40z"/%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
             
@@ -1098,7 +1107,7 @@ import Layout from '../layouts/Layout.astro';
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-gray-900 text-white">
+    <footer id="contact" class="footer bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div class="md:col-span-2">
