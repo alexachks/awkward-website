@@ -982,15 +982,23 @@ import Layout from '../layouts/Layout.astro';
                                     </div>
                                 </div>
 
-                                <!-- Chart.js Scripts -->
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+                                <!-- Chart.js Scripts - Deferred Loading -->
                                 <script>
+                                    function loadChartJS() {
+                                        return new Promise((resolve) => {
+                                            if (typeof Chart !== 'undefined') {
+                                                resolve();
+                                                return;
+                                            }
+                                            const script = document.createElement('script');
+                                            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js';
+                                            script.onload = resolve;
+                                            document.head.appendChild(script);
+                                        });
+                                    }
+                                    
                                     function initChart() {
-                                        if (typeof Chart === 'undefined') {
-                                            console.log('Chart.js not loaded, retrying in 100ms...');
-                                            setTimeout(initChart, 100);
-                                            return;
-                                        }
+                                        loadChartJS().then(() => {
                                         
                                         const canvas = document.getElementById('trafficChart');
                                         if (!canvas) {
@@ -1122,13 +1130,33 @@ import Layout from '../layouts/Layout.astro';
                                                 }
                                             }
                                         });
+                                        }); // End of loadChartJS().then()
+                                    }
+                                    
+                                    // Initialize with Intersection Observer for better performance
+                                    function observeChart() {
+                                        const chartContainer = document.getElementById('trafficChart');
+                                        if (!chartContainer) return;
+                                        
+                                        const observer = new IntersectionObserver((entries) => {
+                                            entries.forEach(entry => {
+                                                if (entry.isIntersecting) {
+                                                    initChart();
+                                                    observer.unobserve(entry.target);
+                                                }
+                                            });
+                                        }, { 
+                                            rootMargin: '100px' // Load when chart is 100px away from viewport
+                                        });
+                                        
+                                        observer.observe(chartContainer);
                                     }
                                     
                                     // Initialize when DOM is ready
                                     if (document.readyState === 'loading') {
-                                        document.addEventListener('DOMContentLoaded', initChart);
+                                        document.addEventListener('DOMContentLoaded', observeChart);
                                     } else {
-                                        initChart();
+                                        observeChart();
                                     }
                                 </script>
                                 
@@ -1424,7 +1452,7 @@ import Layout from '../layouts/Layout.astro';
                                                         <div class="text-xs text-gray-400 mt-0.5">Page speed optimization</div>
                                                     </div>
                                                     <div class="col-span-3 flex items-center space-x-2 text-left">
-                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Mike">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Mike" loading="lazy">
                                                         <div>
                                                             <div class="text-xs font-medium text-gray-300">Mike Chen</div>
                                                             <div class="text-xs text-gray-500">Developer</div>
@@ -1447,7 +1475,7 @@ import Layout from '../layouts/Layout.astro';
                                                         <div class="text-xs text-gray-400 mt-0.5">Blog post planning</div>
                                                     </div>
                                                     <div class="col-span-3 flex items-center space-x-2 text-left">
-                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b631?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Sarah">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b631?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Sarah" loading="lazy">
                                                         <div>
                                                             <div class="text-xs font-medium text-gray-300">Sarah Kim</div>
                                                             <div class="text-xs text-gray-500">Content Lead</div>
@@ -1470,7 +1498,7 @@ import Layout from '../layouts/Layout.astro';
                                                         <div class="text-xs text-gray-400 mt-0.5">Quality backlinks campaign</div>
                                                     </div>
                                                     <div class="col-span-3 flex items-center space-x-2 text-left">
-                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Alex">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Alex" loading="lazy">
                                                         <div>
                                                             <div class="text-xs font-medium text-gray-300">Alex Rodriguez</div>
                                                             <div class="text-xs text-gray-500">SEO Specialist</div>
