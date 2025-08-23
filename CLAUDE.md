@@ -15,8 +15,9 @@ This is a modern, SEO-optimized Astro website for Awkward Media (a Canadian SEO 
 
 ### Build & Deployment
 - `npm run build` - Build Astro site to dist/ directory
-- `npm run cms:analyze` - Analyze CMS tags in the project
+- `npm run cms:analyze` - Analyze CMS tags in the project (placeholder command)
 - `npm run format` - Format Astro/JS files with Prettier
+- `npm test` or `npm run test:html` - Run HTML validation tests (placeholder command)
 
 ### Docker Development
 - `npm run docker:dev` - Start development with Docker Compose
@@ -106,10 +107,10 @@ Lighthouse CI configuration requires:
 
 ## Development Notes
 
-- Website uses vanilla technologies - no build frameworks like React/Vue
+- Built with Astro for static site generation, no client-side frameworks
 - All animations use CSS transitions and Intersection Observer
 - Form submissions are currently simulated (alerts) - integrate with backend as needed
 - Service Worker registration present but sw.js file not included
 - Brand colors and content can be customized via CSS custom properties
 - Contact information needs to be updated from placeholder values
-- Мы должны использовать как можно меньше JS для этого сайта. Максимальный минимум. Только если задачу никак нельзя решить без JS с помощью CSS. И при каждом использовании JS ты должен переспрашивать меня.
+- **Critical**: Minimize JavaScript usage - only add JS when CSS cannot solve the task. Always ask before adding JavaScript functionality.
