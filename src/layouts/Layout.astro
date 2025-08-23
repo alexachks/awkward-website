@@ -14,8 +14,20 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
-    <!-- Cache Control -->
+    <!-- Performance & Cache Control -->
     <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+    <meta http-equiv="Expires" content="Thu, 31 Dec 2025 23:59:59 GMT">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//img.youtube.com">
+    
+    <!-- Service Worker for advanced caching -->
+    <script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+    }
+    </script>
     
     <!-- SEO Meta Tags -->
     <!-- cms:text key="meta.title" label="Page Title" maxlength="70" required="true" -->
@@ -92,8 +104,26 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     
     <!-- Resource Hints for better loading -->
-    <link rel="prefetch" href="/assets/index.OLe7ZxXC.css">
-    <link rel="preload" href="/assets/hoisted.D5rA3QQP.js" as="script">
+    <link rel="preload" href="/assets/index.OLe7ZxXC.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/assets/hoisted.BnrCQLU7.js" as="script">
+    
+    <!-- Non-blocking CSS loading -->
+    <script>
+    (function() {
+        const loadCSS = function(href) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            document.head.appendChild(link);
+        };
+        
+        if (window.requestIdleCallback) {
+            requestIdleCallback(() => loadCSS('/assets/index.OLe7ZxXC.css'));
+        } else {
+            setTimeout(() => loadCSS('/assets/index.OLe7ZxXC.css'), 100);
+        }
+    })();
+    </script>
     
     <!-- Styles with optimized font-display -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -278,15 +308,16 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                 }, { passive: true });
             }
             
-            // Simplified YouTube autoplay
+            // Simplified YouTube autoplay - Only on user interaction or scroll
             const facade = document.querySelector('.youtube-facade');
             if (facade && facade.dataset.autoplay === 'true') {
                 // Skip on slow/data saver connections
                 const conn = navigator.connection;
                 if (conn && (conn.saveData || conn.effectiveType === '2g')) return;
                 
-                window.addEventListener('load', function() {
-                    setTimeout(function() {
+                // Load only when user interacts or scrolls near video
+                const loadVideoOnInteraction = function() {
+                    if (window.pageYOffset > 200 || document.documentElement.scrollTop > 200) {
                         const countdown = facade.querySelector('.autoplay-countdown');
                         const number = facade.querySelector('.countdown-number');
                         
@@ -311,8 +342,21 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                                 facade.appendChild(iframe);
                             }
                         }, 1000);
-                    }, 2000); // 2s after page load
-                });
+                        
+                        // Remove listeners after loading
+                        window.removeEventListener('scroll', loadVideoOnInteraction);
+                        document.removeEventListener('click', loadVideoOnInteraction);
+                        document.removeEventListener('touchstart', loadVideoOnInteraction);
+                    }
+                };
+                
+                // Add interaction listeners
+                window.addEventListener('scroll', loadVideoOnInteraction, { passive: true });
+                document.addEventListener('click', loadVideoOnInteraction);
+                document.addEventListener('touchstart', loadVideoOnInteraction, { passive: true });
+                
+                // Fallback: Load after 5 seconds if no interaction
+                setTimeout(loadVideoOnInteraction, 5000);
             }
         });
     </script>
