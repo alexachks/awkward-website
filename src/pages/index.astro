@@ -971,7 +971,7 @@ import Layout from '../layouts/Layout.astro';
                                 <!-- /cms:text -->
                                 
                                 <!-- Traffic Growth Chart -->
-                                <div class="flex-1 min-h-0 mb-2.5">                                    
+                                <div class="flex-1 min-h-0" style="margin-bottom: 15px;">                                    
                                     <!-- Chart Container -->
                                     <div class="bg-gradient-to-br from-gray-900/50 to-black/60 rounded-xl p-4 border border-gray-600/40 relative backdrop-blur-sm h-full">
                                         
@@ -1053,18 +1053,30 @@ import Layout from '../layouts/Layout.astro';
                                                         display: false
                                                     },
                                                     tooltip: {
-                                                        backgroundColor: 'rgba(0, 0, 0, 0.9)',
-                                                        titleColor: '#F9FAFB',
-                                                        bodyColor: '#F9FAFB',
-                                                        borderColor: '#6B7280',
+                                                        backgroundColor: 'rgba(23, 23, 23, 0.95)',
+                                                        titleColor: '#FFFFFF',
+                                                        bodyColor: '#D1D5DB',
+                                                        borderColor: 'rgba(168, 85, 247, 0.3)',
                                                         borderWidth: 1,
-                                                        cornerRadius: 8,
-                                                        padding: 12,
-                                                        displayColors: true,
+                                                        cornerRadius: 12,
+                                                        padding: 8,
+                                                        displayColors: false,
+                                                        titleFont: {
+                                                            size: 12,
+                                                            weight: '600'
+                                                        },
+                                                        bodyFont: {
+                                                            size: 11,
+                                                            weight: '500'
+                                                        },
                                                         callbacks: {
+                                                            title: function(context) {
+                                                                return context[0].label;
+                                                            },
                                                             label: function(context) {
                                                                 const growth = ((context.parsed.y - 100)).toFixed(0);
-                                                                return context.dataset.label + ': +' + growth + '%';
+                                                                const label = context.dataset.label === 'Traditional SEO' ? 'Traditional' : 'Awkward Media';
+                                                                return label + ': +' + growth + '%';
                                                             }
                                                         }
                                                     }
@@ -1073,14 +1085,20 @@ import Layout from '../layouts/Layout.astro';
                                                     x: {
                                                         display: true,
                                                         grid: {
-                                                            display: false
+                                                            display: true,
+                                                            drawOnChartArea: false,
+                                                            drawTicks: true,
+                                                            color: '#374151',
+                                                            lineWidth: 1,
+                                                            tickLength: 8
                                                         },
                                                         ticks: {
                                                             color: '#9CA3AF',
                                                             font: {
                                                                 size: 11,
                                                                 weight: '500'
-                                                            }
+                                                            },
+                                                            padding: 8
                                                         }
                                                     },
                                                     y: {
@@ -1165,21 +1183,313 @@ import Layout from '../layouts/Layout.astro';
                         
                         <!-- Row 2: 35% - 65% -->
                         <div class="flex gap-8 h-[400px]">
-                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-center">
+                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col group/block">
                                 <!-- cms:text key="method_features.block3_title" label="Block 3 Title" -->
-                                <h3 class="text-xl font-bold text-white mb-4">Feature Block 3</h3>
+                                <h3 class="text-2xl font-bold text-white mb-4">Clear Communication</h3>
                                 <!-- /cms:text -->
                                 <!-- cms:textarea key="method_features.block3_content" label="Block 3 Content" -->
-                                <p class="text-gray-300">Content for the third feature block goes here.</p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">Fast and transparent. We're always in touch and keep you informed of every step of your progress.</p>
                                 <!-- /cms:textarea -->
+                                
+                                <!-- Gmail Interface Mock (Dark Theme) -->
+                                <div class="flex-1 bg-gray-900 rounded-xl border border-gray-700 overflow-hidden shadow-sm">
+                                    <!-- Gmail Header -->
+                                    <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center space-x-3">
+                                                <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.908 1.528-1.147C21.69 2.28 24 3.434 24 5.457z"/>
+                                                </svg>
+                                                <span class="text-sm font-medium text-gray-200">Gmail</span>
+                                            </div>
+                                            <div class="text-xs text-gray-400 relative">
+                                                <span class="group-hover/block:opacity-0 transition-opacity duration-500 absolute">inbox (2)</span>
+                                                <span class="opacity-0 group-hover/block:opacity-100 transition-opacity duration-500">inbox (3)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Gmail Email List -->
+                                    <div class="bg-gray-900">
+                                        <!-- New Email (appears on hover) -->
+                                        <div class="h-0 group-hover/block:h-auto opacity-0 group-hover/block:opacity-100 transition-all duration-700 ease-out overflow-hidden">
+                                            <div class="border-b border-gray-700 hover:bg-gray-800/50">
+                                                <div class="px-4 py-3 bg-purple-500/5 border-l-2 border-purple-400">
+                                                    <div class="flex items-start space-x-3">
+                                                        <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1 animate-pulse">
+                                                            <span class="text-xs text-white font-bold">AM</span>
+                                                        </div>
+                                                        <div class="flex-1 min-w-0">
+                                                            <div class="flex items-center justify-between mb-1">
+                                                                <span class="text-sm font-semibold text-gray-100 truncate">Awkward Media Team</span>
+                                                                <div class="flex items-center space-x-1">
+                                                                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                                    <span class="text-xs text-gray-400 flex-shrink-0 ml-2">just now</span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="text-xs font-medium text-gray-300 mb-1 text-left">
+                                                                📈 NEW: 5 More Keywords Hit Page 1!
+                                                            </div>
+                                                            <p class="text-xs text-gray-400 line-clamp-2 text-left">
+                                                                Amazing progress! "best SEO Toronto", "digital marketing agency", "website optimization" and 2 more keywords just reached top 10 positions...
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- First Email -->
+                                        <div class="border-b border-gray-700 hover:bg-gray-800/50 transition-all duration-700 ease-out group-hover/block:translate-y-0">
+                                            <div class="px-4 py-3">
+                                                <div class="flex items-start space-x-3">
+                                                    <div class="w-8 h-8 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                                        <span class="text-xs text-white font-bold">AM</span>
+                                                    </div>
+                                                    <div class="flex-1 min-w-0">
+                                                        <div class="flex items-center justify-between mb-1">
+                                                            <span class="text-sm font-semibold text-gray-100 truncate">Awkward Media Team</span>
+                                                            <span class="text-xs text-gray-400 flex-shrink-0 ml-2">2:34 PM</span>
+                                                        </div>
+                                                        <div class="text-xs font-medium text-gray-300 mb-1 text-left">
+                                                            🚀 SEO Progress Update - Your Rankings Improved!
+                                                        </div>
+                                                        <p class="text-xs text-gray-400 line-clamp-2 text-left">
+                                                            Great news! Your site moved from position 15 to 3 for the keyword "Toronto real estate". We've also seen improvements in 12 other key terms...
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Second Email (Reply) -->
+                                        <div class="border-b border-gray-700 hover:bg-gray-800/50 transition-all duration-700 ease-out group-hover/block:translate-y-0">
+                                            <div class="px-4 py-3">
+                                                <div class="flex items-start space-x-3">
+                                                    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                                                        <span class="text-xs text-white font-bold">JD</span>
+                                                    </div>
+                                                    <div class="flex-1 min-w-0">
+                                                        <div class="flex items-center justify-between mb-1">
+                                                            <span class="text-sm font-semibold text-gray-100 truncate">John Davis</span>
+                                                            <span class="text-xs text-gray-400 flex-shrink-0 ml-2">2:28 PM</span>
+                                                        </div>
+                                                        <div class="text-xs font-medium text-gray-300 mb-1 text-left">
+                                                            Re: SEO Progress Update - Your Rankings Improved!
+                                                        </div>
+                                                        <p class="text-xs text-gray-400 line-clamp-2 text-left">
+                                                            Amazing! Thank you for the quick results 👏 The traffic increase is already noticeable. Looking forward to seeing more progress...
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-center">
+                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col">
                                 <!-- cms:text key="method_features.block4_title" label="Block 4 Title" -->
-                                <h3 class="text-2xl font-bold text-white mb-4">Feature Block 4</h3>
+                                <h3 class="text-2xl font-bold text-white mb-4">Transparent Client Portal</h3>
                                 <!-- /cms:text -->
                                 <!-- cms:textarea key="method_features.block4_content" label="Block 4 Content" -->
-                                <p class="text-gray-300">Content for the fourth feature block goes here.</p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">Live ranking results, task progress, and complete transparency. Access your dedicated dashboard 24/7.</p>
                                 <!-- /cms:textarea -->
+                                
+                                <!-- Awkward CRM Dashboard Mock -->
+                                <div class="flex-1 bg-gray-900 rounded-xl border border-gray-700 overflow-hidden shadow-lg flex group/crm">
+                                    <!-- Sidebar Menu -->
+                                    <div class="w-16 group-hover/crm:w-40 transition-all duration-300 bg-gray-800 border-r border-gray-700 flex flex-col">
+                                        <!-- Logo -->
+                                        <div class="p-4">
+                                            <div class="flex items-center overflow-hidden">
+                                                <div class="w-8 h-8 bg-red-500 rounded-lg flex items-center justify-center flex-shrink-0">
+                                                    <span class="text-sm font-bold text-white">AM</span>
+                                                </div>
+                                                <span class="text-sm font-semibold text-gray-200 whitespace-nowrap ml-3 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Awkward</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Menu Items -->
+                                        <nav class="flex-1 py-4">
+                                            <!-- Dashboard -->
+                                            <div class="h-10 px-4 hover:bg-gray-700/50 transition-colors cursor-pointer bg-gray-700/30 flex items-center overflow-hidden">
+                                                <div class="flex items-center w-full">
+                                                    <div class="w-5 h-5 flex justify-center ml-1">
+                                                        <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm text-gray-200 whitespace-nowrap ml-3 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Dashboard</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Tickets -->
+                                            <div class="h-10 px-4 hover:bg-gray-700/50 transition-colors cursor-pointer flex items-center overflow-hidden">
+                                                <div class="flex items-center w-full">
+                                                    <div class="w-5 h-5 flex justify-center ml-1">
+                                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm text-gray-400 whitespace-nowrap ml-3 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Tickets</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Billing -->
+                                            <div class="h-10 px-4 hover:bg-gray-700/50 transition-colors cursor-pointer flex items-center overflow-hidden">
+                                                <div class="flex items-center w-full">
+                                                    <div class="w-5 h-5 flex justify-center ml-1">
+                                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm text-gray-400 whitespace-nowrap ml-3 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Billing</span>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Settings -->
+                                            <div class="h-10 px-4 hover:bg-gray-700/50 transition-colors cursor-pointer flex items-center overflow-hidden">
+                                                <div class="flex items-center w-full">
+                                                    <div class="w-5 h-5 flex justify-center ml-1">
+                                                        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm text-gray-400 whitespace-nowrap ml-3 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Settings</span>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                        
+                                        <!-- Live Data Indicator -->
+                                        <div class="p-4 border-t border-gray-700">
+                                            <div class="flex items-center justify-center group-hover/crm:justify-start">
+                                                <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                                                <span class="text-xs text-gray-300 whitespace-nowrap ml-2 opacity-0 group-hover/crm:opacity-100 transition-opacity duration-300">Live</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Dashboard Content -->
+                                    <div class="flex-1 p-6 space-y-4 overflow-y-auto">
+                                        <!-- Dashboard Title -->
+                                        <h4 class="text-lg font-semibold text-gray-100 mb-4 text-left">Dashboard</h4>
+                                        
+                                        <!-- Stats Cards -->
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50">
+                                                <div class="text-xs text-gray-400 uppercase tracking-wider mb-1">Avg Position</div>
+                                                <div class="text-lg font-bold text-white">3.2</div>
+                                                <div class="text-xs text-green-400">↑ 12 spots</div>
+                                            </div>
+                                            <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50">
+                                                <div class="text-xs text-gray-400 uppercase tracking-wider mb-1">Keywords Top 10</div>
+                                                <div class="text-lg font-bold text-white">47</div>
+                                                <div class="text-xs text-green-400">↑ +8 this week</div>
+                                            </div>
+                                            <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-700/50">
+                                                <div class="text-xs text-gray-400 uppercase tracking-wider mb-1">Organic Traffic</div>
+                                                <div class="text-lg font-bold text-white">+127%</div>
+                                                <div class="text-xs text-green-400">vs last month</div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Current Tasks -->
+                                        <div class="bg-gray-800/30 rounded-lg p-4">
+                                            <div class="flex items-center justify-between mb-3">
+                                                <h5 class="text-sm font-semibold text-gray-200">Current Tasks</h5>
+                                                <span class="text-xs text-gray-400">3 active</span>
+                                            </div>
+                                            <!-- Table Header -->
+                                            <div class="grid grid-cols-11 gap-3 py-2 border-b border-gray-700/30 mb-3">
+                                                <div class="col-span-4 text-left">
+                                                    <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Task</span>
+                                                </div>
+                                                <div class="col-span-3 text-left">
+                                                    <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Assignee</span>
+                                                </div>
+                                                <div class="col-span-2 text-left">
+                                                    <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Due Date</span>
+                                                </div>
+                                                <div class="col-span-2 text-left">
+                                                    <span class="text-xs text-gray-500 uppercase tracking-wider font-medium">Status</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Table Rows -->
+                                            <div class="space-y-1">
+                                                <div class="grid grid-cols-11 gap-3 items-center py-3 hover:bg-gray-700/20 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-600/30">
+                                                    <div class="col-span-4 text-left">
+                                                        <div class="text-xs font-medium text-gray-200">Technical SEO Audit</div>
+                                                        <div class="text-xs text-gray-400 mt-0.5">Page speed optimization</div>
+                                                    </div>
+                                                    <div class="col-span-3 flex items-center space-x-2 text-left">
+                                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Mike">
+                                                        <div>
+                                                            <div class="text-xs font-medium text-gray-300">Mike Chen</div>
+                                                            <div class="text-xs text-gray-500">Developer</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <div class="text-xs text-gray-300 font-medium">Dec 15</div>
+                                                        <div class="text-xs text-gray-500">2 days left</div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <span class="inline-flex items-center px-1 py-0.5 rounded-full text-xs font-medium bg-yellow-400/10 text-yellow-400 border border-yellow-400/20">
+                                                            Active
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="grid grid-cols-11 gap-3 items-center py-3 hover:bg-gray-700/20 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-600/30">
+                                                    <div class="col-span-4 text-left">
+                                                        <div class="text-xs font-medium text-gray-200">Content Strategy</div>
+                                                        <div class="text-xs text-gray-400 mt-0.5">Blog post planning</div>
+                                                    </div>
+                                                    <div class="col-span-3 flex items-center space-x-2 text-left">
+                                                        <img src="https://images.unsplash.com/photo-1494790108755-2616b612b631?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Sarah">
+                                                        <div>
+                                                            <div class="text-xs font-medium text-gray-300">Sarah Kim</div>
+                                                            <div class="text-xs text-gray-500">Content Lead</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <div class="text-xs text-gray-300 font-medium">Dec 20</div>
+                                                        <div class="text-xs text-gray-500">7 days left</div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-blue-400/10 text-blue-400 border border-blue-400/20">
+                                                            Plan
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="grid grid-cols-11 gap-3 items-center py-3 hover:bg-gray-700/20 rounded-lg transition-colors cursor-pointer border border-transparent hover:border-gray-600/30">
+                                                    <div class="col-span-4 text-left">
+                                                        <div class="text-xs font-medium text-gray-200">Link Building</div>
+                                                        <div class="text-xs text-gray-400 mt-0.5">Quality backlinks campaign</div>
+                                                    </div>
+                                                    <div class="col-span-3 flex items-center space-x-2 text-left">
+                                                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face&auto=format" class="w-6 h-6 rounded-full object-cover border border-gray-600" alt="Alex">
+                                                        <div>
+                                                            <div class="text-xs font-medium text-gray-300">Alex Rodriguez</div>
+                                                            <div class="text-xs text-gray-500">SEO Specialist</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <div class="text-xs text-gray-300 font-medium">Dec 12</div>
+                                                        <div class="text-xs text-green-400">Completed</div>
+                                                    </div>
+                                                    <div class="col-span-2 text-left">
+                                                        <span class="inline-flex items-center px-1.5 py-0.5 rounded-full text-xs font-medium bg-green-400/10 text-green-400 border border-green-400/20">
+                                                            Done
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
