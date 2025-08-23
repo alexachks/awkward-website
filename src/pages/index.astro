@@ -1771,4 +1771,70 @@ import Layout from '../layouts/Layout.astro';
             }
         }
     </style>
+
+    <!-- Lazy Load Clearbit Images Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Lazy load Clearbit logo images
+            const clearbitImages = document.querySelectorAll('img[src*="logo.clearbit.com"]');
+            const clearbitBgImages = document.querySelectorAll('[style*="logo.clearbit.com"]');
+            
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            
+                            // For img tags
+                            if (img.tagName === 'IMG' && img.dataset.src) {
+                                img.src = img.dataset.src;
+                                img.removeAttribute('data-src');
+                            }
+                            
+                            // For background images
+                            if (img.dataset.bgSrc) {
+                                img.style.backgroundImage = `url('${img.dataset.bgSrc}')`;
+                                img.removeAttribute('data-bg-src');
+                            }
+                            
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px'
+                });
+                
+                // Convert img src to data-src for lazy loading
+                clearbitImages.forEach(img => {
+                    if (img.src.includes('logo.clearbit.com')) {
+                        img.dataset.src = img.src;
+                        img.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iMTYiIGZpbGw9IiM2QjcyODAiLz4KPC9zdmc+'; // Gray placeholder
+                        imageObserver.observe(img);
+                    }
+                });
+                
+                // Convert background images to data-bg-src for lazy loading
+                clearbitBgImages.forEach(div => {
+                    const bgImageMatch = div.style.backgroundImage.match(/url\(['"]?([^'"]*?)['"]?\)/);
+                    if (bgImageMatch && bgImageMatch[1].includes('logo.clearbit.com')) {
+                        div.dataset.bgSrc = bgImageMatch[1];
+                        div.style.backgroundImage = 'url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiByeD0iMjAiIGZpbGw9IiM2QjcyODAiLz4KPC9zdmc+")'; // Gray placeholder
+                        imageObserver.observe(div);
+                    }
+                });
+            } else {
+                // Fallback for browsers without Intersection Observer
+                clearbitImages.forEach(img => {
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                    }
+                });
+                clearbitBgImages.forEach(div => {
+                    if (div.dataset.bgSrc) {
+                        div.style.backgroundImage = `url('${div.dataset.bgSrc}')`;
+                    }
+                });
+            }
+        });
+    </script>
 </Layout>

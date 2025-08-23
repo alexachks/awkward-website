@@ -72,12 +72,14 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link rel="dns-prefetch" href="//img.youtube.com">
+    <link rel="dns-prefetch" href="//www.youtube-nocookie.com">
     <link rel="dns-prefetch" href="//logo.clearbit.com">
     <link rel="dns-prefetch" href="//images.unsplash.com">
     <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://img.youtube.com">
+    <link rel="preconnect" href="https://www.youtube-nocookie.com">
     <link rel="preconnect" href="https://logo.clearbit.com">
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -88,6 +90,10 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
     
     <!-- Preload Critical Resources -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Resource Hints for better loading -->
+    <link rel="prefetch" href="/assets/index.OLe7ZxXC.css">
+    <link rel="preload" href="/assets/hoisted.D5rA3QQP.js" as="script">
     
     <!-- Styles with optimized font-display -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -296,7 +302,7 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                                 // Load video
                                 const iframe = document.createElement('iframe');
                                 iframe.className = 'w-full h-full';
-                                iframe.src = `https://www.youtube-nocookie.com/embed/${facade.dataset.videoId}?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=${facade.dataset.videoId}&modestbranding=1&iv_load_policy=3&cc_load_policy=0&disablekb=1`;
+                                iframe.src = `https://www.youtube-nocookie.com/embed/${facade.dataset.videoId}?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=${facade.dataset.videoId}&modestbranding=1&iv_load_policy=3&cc_load_policy=0&disablekb=1&fs=0&color=white&theme=dark`;
                                 iframe.title = 'SEO Agency Video';
                                 iframe.allow = 'autoplay';
                                 iframe.allowFullscreen = true;
