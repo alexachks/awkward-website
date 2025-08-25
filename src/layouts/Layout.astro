@@ -358,6 +358,26 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                 // Fallback: Load after 5 seconds if no interaction
                 setTimeout(loadVideoOnInteraction, 5000);
             }
+            
+            // Handle click-to-play for manual video facades
+            const manualFacades = document.querySelectorAll('.youtube-facade[data-autoplay="false"]');
+            manualFacades.forEach(facade => {
+                facade.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Create and load YouTube iframe immediately
+                    const iframe = document.createElement('iframe');
+                    iframe.className = 'w-full h-full rounded-xl';
+                    iframe.src = `https://www.youtube-nocookie.com/embed/${facade.dataset.videoId}?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1&iv_load_policy=3&cc_load_policy=0&color=white&theme=dark`;
+                    iframe.title = 'How Our SEO Service Works - Video Tutorial';
+                    iframe.allow = 'autoplay; encrypted-media';
+                    iframe.allowFullscreen = true;
+                    
+                    // Replace facade with iframe
+                    facade.innerHTML = '';
+                    facade.appendChild(iframe);
+                });
+            });
         });
     </script>
 </body>

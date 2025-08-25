@@ -1166,9 +1166,9 @@ import Layout from '../layouts/Layout.astro';
                                 </p>
                                 <!-- /cms:textarea -->
                             </div>
-                            <div class="flex-[35] group relative bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-between overflow-hidden hover:border-purple-500/50 transition-all duration-300">
+                            <div class="flex-[35] group relative bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-between overflow-hidden transition-all duration-300">
                                 <!-- Background Pattern -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                <div class="absolute inset-0 opacity-0"></div>
                                 
                                 <!-- Top Section -->
                                 <div class="relative z-10">
@@ -1523,21 +1523,184 @@ import Layout from '../layouts/Layout.astro';
                         
                         <!-- Row 3: 65% - 35% -->
                         <div class="flex gap-8 h-[400px]">
-                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-center">
-                                <!-- cms:text key="method_features.block5_title" label="Block 5 Title" -->
-                                <h3 class="text-2xl font-bold text-white mb-4">Feature Block 5</h3>
-                                <!-- /cms:text -->
-                                <!-- cms:textarea key="method_features.block5_content" label="Block 5 Content" -->
-                                <p class="text-gray-300">Content for the fifth feature block goes here.</p>
-                                <!-- /cms:textarea -->
+                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 relative overflow-hidden ai-domination-block">
+                                <div class="relative z-10 h-full flex">
+                                    <!-- Left Content -->
+                                    <div class="flex-1 flex flex-col justify-center pr-8">
+                                        <!-- cms:text key="method_features.block5_title" label="Block 5 Title" -->
+                                        <h3 class="text-2xl font-bold text-white mb-4">AI-Powered Market Domination</h3>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="method_features.block5_content" label="Block 5 Content" -->
+                                        <p class="text-gray-400 text-sm leading-relaxed mb-6">Our AI analyzes thousands of signals, predicts trends, and adjusts your strategy in real time — keeping you ahead, ranking faster, and dominating your market.</p>
+                                        <!-- /cms:textarea -->
+                                        
+                                        <!-- Supporting Stats -->
+                                        <div class="flex space-x-8 text-sm justify-center">
+                                            <div class="text-purple-400 font-medium text-center">
+                                                <div class="text-white text-xl font-bold mb-1">10,000+</div>
+                                                <div class="text-purple-300">Signals Analyzed</div>
+                                            </div>
+                                            <div class="text-purple-400 font-medium text-center">
+                                                <div class="text-white text-xl font-bold mb-1">Real-time</div>
+                                                <div class="text-purple-300">Strategy Updates</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- AI Neural Network Animation -->
+                                    <div class="flex-1 flex items-center justify-center relative">
+                                        <div class="ai-brain-container relative w-80 h-80">
+                                            <!-- Central AI Brain/Neural Network -->
+                                            <div class="ai-brain absolute inset-0 flex items-center justify-center">
+                                                <!-- Core Neural Sphere -->
+                                                <div class="neural-sphere w-32 h-32 rounded-full relative">
+                                                    <!-- Inner Core -->
+                                                    <div class="absolute inset-4 bg-gradient-to-br from-purple-500 to-blue-600 rounded-full neural-core flex items-center justify-center">
+                                                        <span class="text-white font-bold text-2xl tracking-wider">AI</span>
+                                                    </div>
+                                                    
+                                                    <!-- Neural Network Nodes -->
+                                                    <div class="neural-node node-1 absolute w-3 h-3 bg-purple-400 rounded-full"></div>
+                                                    <div class="neural-node node-2 absolute w-3 h-3 bg-blue-400 rounded-full"></div>
+                                                    <div class="neural-node node-3 absolute w-3 h-3 bg-purple-300 rounded-full"></div>
+                                                    <div class="neural-node node-4 absolute w-3 h-3 bg-blue-300 rounded-full"></div>
+                                                    <div class="neural-node node-5 absolute w-2 h-2 bg-purple-500 rounded-full"></div>
+                                                    <div class="neural-node node-6 absolute w-2 h-2 bg-blue-500 rounded-full"></div>
+                                                    
+                                                    <!-- Connection Lines -->
+                                                    <svg class="absolute inset-0 w-full h-full neural-connections" viewBox="0 0 128 128">
+                                                        <defs>
+                                                            <linearGradient id="connectionGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                                <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+                                                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:1" />
+                                                            </linearGradient>
+                                                        </defs>
+                                                        <path class="connection-line line-1" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L32,32" />
+                                                        <path class="connection-line line-2" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L96,32" />
+                                                        <path class="connection-line line-3" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L32,96" />
+                                                        <path class="connection-line line-4" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L96,96" />
+                                                        <path class="connection-line line-5" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L20,64" />
+                                                        <path class="connection-line line-6" stroke="url(#connectionGradient)" stroke-width="1" fill="none" d="M64,64 L108,64" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- Supporting Elements - Positioned around the brain without overlap -->
+                                            <div class="supporting-element traffic-growth absolute top-2 right-2">
+                                                <div class="bg-neutral-900/90 border border-purple-500/30 rounded-lg px-3 py-2 backdrop-blur-sm">
+                                                    <div class="flex items-center space-x-2">
+                                                        <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                                                        </svg>
+                                                        <span class="text-white text-xs font-semibold">Traffic Growth +150%</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Connection line to brain -->
+                                                <svg class="absolute -bottom-2 left-1/2 transform -translate-x-1/2" width="2" height="40">
+                                                    <line class="supporting-line" x1="1" y1="0" x2="1" y2="40" stroke="url(#connectionGradient)" stroke-width="1" opacity="0.6"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <div class="supporting-element competitor-insights absolute bottom-2 left-2">
+                                                <div class="bg-neutral-900/90 border border-blue-500/30 rounded-lg px-3 py-2 backdrop-blur-sm">
+                                                    <div class="flex items-center space-x-2">
+                                                        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                                                        </svg>
+                                                        <span class="text-white text-xs font-semibold">Competitor Insights</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Connection line to brain -->
+                                                <svg class="absolute -top-2 left-1/2 transform -translate-x-1/2" width="2" height="40">
+                                                    <line class="supporting-line" x1="1" y1="0" x2="1" y2="40" stroke="url(#connectionGradient)" stroke-width="1" opacity="0.6"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <div class="supporting-element predictive-keywords absolute top-16 left-2">
+                                                <div class="bg-neutral-900/90 border border-purple-500/30 rounded-lg px-3 py-2 backdrop-blur-sm">
+                                                    <div class="flex items-center space-x-2">
+                                                        <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                                        </svg>
+                                                        <span class="text-white text-xs font-semibold">Predictive Keywords</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Connection line to brain -->
+                                                <svg class="absolute top-1/2 -right-2 transform -translate-y-1/2" width="45" height="2">
+                                                    <line class="supporting-line" x1="0" y1="1" x2="45" y2="1" stroke="url(#connectionGradient)" stroke-width="1" opacity="0.6"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            <div class="supporting-element market-trends absolute bottom-16 right-2">
+                                                <div class="bg-neutral-900/90 border border-blue-500/30 rounded-lg px-3 py-2 backdrop-blur-sm">
+                                                    <div class="flex items-center space-x-2">
+                                                        <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                                                        </svg>
+                                                        <span class="text-white text-xs font-semibold">Market Trends Analysis</span>
+                                                    </div>
+                                                </div>
+                                                <!-- Connection line to brain -->
+                                                <svg class="absolute top-1/2 -left-2 transform -translate-y-1/2" width="45" height="2">
+                                                    <line class="supporting-line" x1="0" y1="1" x2="45" y2="1" stroke="url(#connectionGradient)" stroke-width="1" opacity="0.6"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-center">
+                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col relative overflow-hidden testimonials-block">
                                 <!-- cms:text key="method_features.block6_title" label="Block 6 Title" -->
-                                <h3 class="text-xl font-bold text-white mb-4">Feature Block 6</h3>
+                                <h3 class="text-2xl font-bold text-white mb-4">Trusted by 300+ Businesses</h3>
                                 <!-- /cms:text -->
                                 <!-- cms:textarea key="method_features.block6_content" label="Block 6 Content" -->
-                                <p class="text-gray-300">Content for the sixth feature block goes here.</p>
+                                <p class="text-gray-400 text-sm leading-relaxed mb-6">With a 98% five-star rating and 10+ years of proven results, businesses trust us to deliver lasting growth.</p>
                                 <!-- /cms:textarea -->
+                                
+                                <!-- Testimonial Carousel - Full Width -->
+                                <div class="flex-1 flex flex-col justify-center">
+                                    <div class="testimonial-carousel relative w-full h-full">
+                                        <!-- Testimonial 1 -->
+                                        <div class="testimonial-card testimonial-active bg-neutral-900/30 border border-gray-600/20 rounded-lg p-5 h-full flex flex-col justify-start">
+                                            <div class="text-center mb-3">
+                                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=48&h=48&fit=crop&crop=face&auto=format" 
+                                                     alt="Mike R." class="w-10 h-10 rounded-full object-cover mx-auto mb-1">
+                                                <div class="text-white font-semibold text-xs">Mike Rodriguez</div>
+                                                <div class="text-purple-400 text-xs">Restaurant Owner</div>
+                                            </div>
+                                            <p class="text-gray-300 text-sm leading-relaxed text-center">"They got us to the top 3 in less than 45 days — our calls tripled. The ROI has been incredible."</p>
+                                        </div>
+                                        
+                                        <!-- Testimonial 2 -->
+                                        <div class="testimonial-card absolute top-0 left-0 w-full h-full bg-neutral-900/30 border border-gray-600/20 rounded-lg p-5 opacity-0 flex flex-col justify-start">
+                                            <div class="text-center mb-3">
+                                                <img src="https://images.unsplash.com/photo-1494790108755-2616b612b27c?w=48&h=48&fit=crop&crop=face&auto=format" 
+                                                     alt="Sarah L." class="w-10 h-10 rounded-full object-cover mx-auto mb-1">
+                                                <div class="text-white font-semibold text-xs">Sarah Liu</div>
+                                                <div class="text-purple-400 text-xs">Tech Startup CEO</div>
+                                            </div>
+                                            <p class="text-gray-300 text-sm leading-relaxed text-center">"Transparent, fast, and results-driven. Worth every dollar. Our organic traffic grew 300% in 6 months."</p>
+                                        </div>
+                                        
+                                        <!-- Testimonial 3 -->
+                                        <div class="testimonial-card absolute top-0 left-0 w-full h-full bg-neutral-900/30 border border-gray-600/20 rounded-lg p-5 opacity-0 flex flex-col justify-start">
+                                            <div class="text-center mb-3">
+                                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=48&h=48&fit=crop&crop=face&auto=format" 
+                                                     alt="James B." class="w-10 h-10 rounded-full object-cover mx-auto mb-1">
+                                                <div class="text-white font-semibold text-xs">James Brooks</div>
+                                                <div class="text-purple-400 text-xs">E-commerce Director</div>
+                                            </div>
+                                            <p class="text-gray-300 text-sm leading-relaxed text-center">"Finally delivered what they promised. Revenue up 240% and ranking #1 for our main keywords."</p>
+                                        </div>
+                                        
+                                        <!-- Navigation Dots -->
+                                        <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                            <div class="testimonial-dot w-2 h-2 rounded-full bg-purple-500 dot-active"></div>
+                                            <div class="testimonial-dot w-2 h-2 rounded-full bg-gray-600"></div>
+                                            <div class="testimonial-dot w-2 h-2 rounded-full bg-gray-600"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1546,11 +1709,685 @@ import Layout from '../layouts/Layout.astro';
             
             
         </section>
+
+        <!-- SEO Guarantee Section -->
+        <section class="py-24">
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center">
+                    <!-- Main Title -->
+                    <!-- cms:text key="guarantee.title" label="Guarantee Title" -->
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        The World's Boldest<br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO Guarantee</span>
+                    </h2>
+                    <!-- /cms:text -->
+
+                    <!-- Subtitle -->
+                    <!-- cms:text key="guarantee.subtitle" label="Guarantee Subtitle" -->
+                    <div class="text-2xl md:text-3xl text-gray-300 font-semibold mb-8">
+                        Zero risk. All reward.
+                    </div>
+                    <!-- /cms:text -->
+
+                    <!-- Main Content -->
+                    <div class="max-w-4xl mx-auto">
+                        <!-- cms:textarea key="guarantee.content" label="Guarantee Content" -->
+                        <p class="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed mb-12">
+                            First page in 60 days or we <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">work for free</span>. No ranking movement in 20 days? we'll <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">pay you $200</span>. While others make empty promises, we back ours with cash — because we know <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">our system delivers</span>.
+                        </p>
+                        <!-- /cms:textarea -->
+
+                        <!-- Guarantee Boxes -->
+                        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                            <!-- Guarantee 1 -->
+                            <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 text-center relative">
+                                <div class="text-xs uppercase tracking-widest text-purple-300 font-bold mb-1 opacity-80">✦ Official Guarantee ✦</div>
+                                <div class="text-7xl font-black bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent mb-3 leading-none">60</div>
+                                <div class="text-xl font-black text-white mb-3 tracking-wide">DAYS GUARANTEE</div>
+                                <div class="text-sm text-gray-200 font-medium mb-4">First page results or we work for FREE</div>
+                                <div class="pt-3 mt-4">
+                                    <div class="text-xs text-purple-300/80 uppercase tracking-wider font-semibold">Valid for new clients only</div>
+                                    <div class="text-xs text-gray-400 mt-1">*Terms and conditions apply</div>
+                                </div>
+                            </div>
+
+                            <!-- Guarantee 2 -->
+                            <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 text-center relative">
+                                <div class="text-xs uppercase tracking-widest text-blue-300 font-bold mb-1 opacity-80">✦ Cash Back Guarantee ✦</div>
+                                <div class="text-7xl font-black bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent mb-3 leading-none">$200</div>
+                                <div class="text-xl font-black text-white mb-3 tracking-wide">CASH PROMISE</div>
+                                <div class="text-sm text-gray-200 font-medium mb-4">No movement in 20 days? We PAY YOU</div>
+                                <div class="pt-3 mt-4">
+                                    <div class="text-xs text-blue-300/80 uppercase tracking-wider font-semibold">Money back guarantee</div>
+                                    <div class="text-xs text-gray-400 mt-1">*Terms and conditions apply</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- CTA Button -->
+                        <div class="mt-12">
+                            <!-- cms:link key="guarantee.cta" text="Guarantee CTA Button" -->
+                            <button class="bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20">
+                                Claim Your Risk-Free SEO Audit
+                            </button>
+                            <!-- /cms:link -->
+                        </div>
+
+                        <!-- Small Print -->
+                        <div class="mt-8 text-sm text-gray-500 max-w-2xl mx-auto">
+                            *Terms and conditions apply. Guarantee valid for new clients only. Results may vary based on competition and market conditions.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How Our Service Works Section -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Title & Intro -->
+                <div class="text-center max-w-5xl mx-auto mb-20 relative">
+                    <!-- Floating Curious Emoji -->
+                    <div class="absolute -top-8 -left-8 text-8xl pointer-events-none select-none transform -rotate-12">🤔</div>
+                    
+                    <!-- Main Headline -->
+                    <!-- cms:text key="how_it_works.headline" label="Main Headline" -->
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        How Does Our<br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Guaranteed SEO Service</span> Work?
+                    </h2>
+                    <!-- /cms:text -->
+
+
+                    <!-- Subheadline -->
+                    <!-- cms:text key="how_it_works.subheadline" label="Subheadline" -->
+                    <p class="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed">
+                        How We Use The "Search Engine Mastery" Method To Rank Your Website In 20 Days Or You Get Paid $200 For Wasting Your Time…. Guaranteed
+                    </p>
+                    <!-- /cms:text -->
+                </div>
+
+                <!-- 5 Steps To Guaranteed SEO - Ranking Timeline -->
+                <div class="mb-20">
+                    <!-- cms:text key="how_it_works.steps_title" label="Steps Title" -->
+                    <!-- /cms:text -->
+
+                    <!-- Timeline Container -->
+                    <div class="max-w-6xl mx-auto relative" id="timeline-container" style="overflow: visible;">
+                        <!-- Central Rocket Flight Path -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-600/30"></div>
+                        
+                        <!-- Rocket Trail -->
+                        <svg class="absolute left-1/2 transform -translate-x-1/2 h-full w-full pointer-events-none" style="max-width: 200px; z-index: 0;">
+                            <path id="rocket-trail" fill="none" stroke="url(#trailGradient)" stroke-width="12" stroke-linecap="round" opacity="0.5" d="" filter="url(#fluffy)"/>
+                            <defs>
+                                <!-- Enhanced fluffy filter -->
+                                <filter id="fluffy" x="-80%" y="-80%" width="260%" height="260%">
+                                    <feGaussianBlur stdDeviation="6" result="blur1"/>
+                                    <feGaussianBlur stdDeviation="3" result="blur2"/>
+                                    <feGaussianBlur stdDeviation="1.5" result="blur3"/>
+                                    <feMerge> 
+                                        <feMergeNode in="blur1"/>
+                                        <feMergeNode in="blur2"/>
+                                        <feMergeNode in="blur3"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                                <!-- Animated gradient for flame effect with better fading -->
+                                <linearGradient id="trailGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:0.1"/>
+                                    <stop offset="20%" style="stop-color:#FF6B35;stop-opacity:0.3">
+                                        <animate attributeName="stop-color" 
+                                                 values="#FF6B35;#FF8E53;#FF6B35" 
+                                                 dur="2s" 
+                                                 repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="50%" style="stop-color:#FFA726;stop-opacity:0.8">
+                                        <animate attributeName="stop-color" 
+                                                 values="#FFA726;#FFB74D;#FFA726" 
+                                                 dur="2.2s" 
+                                                 repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="80%" style="stop-color:#FFD54F;stop-opacity:0.9">
+                                        <animate attributeName="stop-color" 
+                                                 values="#FFD54F;#FFECB3;#FFD54F" 
+                                                 dur="1.8s" 
+                                                 repeatCount="indefinite"/>
+                                    </stop>
+                                    <stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0.95"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        
+                        <!-- Rocket (positioned at trail start) -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50" id="timeline-rocket" style="top: 0;">
+                            <div class="text-5xl">🚀</div>
+                        </div>
+                        
+                        <!-- Timeline Steps -->
+                        <div class="relative" style="overflow: visible; z-index: 10;">
+                            <!-- Step 1: Start (Left) -->
+                            <div class="flex items-center mb-16 relative">
+                                <!-- Left Content -->
+                                <div class="w-5/12 pr-8">
+                                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left relative z-20">
+                                        <!-- cms:text key="how_it_works.step1_title" label="Step 1 Title" -->
+                                        <h4 class="text-lg font-bold text-white mb-3">Free SEO Audit & Custom Plan</h4>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="how_it_works.step1_desc" label="Step 1 Description" -->
+                                        <div class="space-y-2">
+                                            <p class="text-sm text-gray-300 leading-relaxed">Every successful SEO journey starts with <span class="text-white font-semibold">clarity</span>. That's why our process begins with a comprehensive SEO audit and competitor analysis.</p>
+                                            <p class="text-sm text-gray-300 leading-relaxed">We dive deep into your website's structure, content, backlinks, and technical health to uncover <span class="text-purple-400 font-medium">hidden problems</span> that are silently killing your rankings.</p>
+                                            <p class="text-sm text-gray-300 leading-relaxed">From there, we deliver a <span class="text-white font-semibold">custom SEO roadmap</span> tailored to your business, industry, and revenue goals.</p>
+                                        </div>
+                                        <!-- /cms:textarea -->
+                                    </div>
+                                </div>
+
+                                <!-- Center Timeline -->
+                                <div class="w-2/12 flex flex-col items-center relative">
+                                    <!-- Step Number (rotated) -->
+                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">01</div>
+                                    
+                                    <!-- Timeline Point -->
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="0"></div>
+                                    
+                                    <div class="absolute top-6 text-center">
+                                        <div class="text-xs font-light text-gray-500 mb-1">START</div>
+                                        <div class="text-xs font-light text-gray-600">Day 1</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content -->
+                                <div class="w-5/12 pl-8">
+                                </div>
+                            </div>
+
+                            <!-- Step 2: 2 Weeks (Right) -->
+                            <div class="flex items-center mb-16 relative">
+                                <!-- Left Content -->
+                                <div class="w-5/12 pr-8">
+                                </div>
+
+                                <!-- Center Timeline -->
+                                <div class="w-2/12 flex flex-col items-center relative">
+                                    <!-- Step Number (rotated) -->
+                                    <div class="absolute -right-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">02</div>
+                                    
+                                    <!-- Timeline Point -->
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="1"></div>
+                                    
+                                    <div class="absolute top-6 text-center">
+                                        <div class="text-xs font-light text-gray-500 mb-1">2 WEEKS</div>
+                                        <div class="text-xs font-light text-gray-600">Day 14</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content -->
+                                <div class="w-5/12 pl-8">
+                                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6">
+                                        <!-- cms:text key="how_it_works.step2_title" label="Step 2 Title" -->
+                                        <h4 class="text-lg font-bold text-white mb-3">AI-Powered Market Domination</h4>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="how_it_works.step2_desc" label="Step 2 Description" -->
+                                        <p class="text-sm text-gray-300 leading-relaxed mb-3">Traditional SEO relies on guesswork and outdated checklists. We don't. Our proprietary Search Engine Mastery™ Method is fueled by artificial intelligence that scans 10,000+ ranking signals in real time.</p>
+                                        <p class="text-sm text-gray-300 leading-relaxed">Instead of wasting months experimenting, we immediately know which keywords, content angles, and link strategies will generate the fastest impact. In other words: we don't "hope" Google rewards you — we engineer it.</p>
+                                        <!-- /cms:textarea -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3: 1 Month (Left) -->
+                            <div class="flex items-center mb-16 relative">
+                                <!-- Left Content -->
+                                <div class="w-5/12 pr-8">
+                                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left">
+                                        <!-- cms:text key="how_it_works.step3_title" label="Step 3 Title" -->
+                                        <h4 class="text-lg font-bold text-white mb-3">Execution at Scale</h4>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="how_it_works.step3_desc" label="Step 3 Description" -->
+                                        <p class="text-sm text-gray-300 leading-relaxed mb-3">Strategy without execution is worthless. Once your custom plan is finalized, our team moves fast to implement high-impact SEO actions at scale. This includes fixing technical SEO errors, optimizing on-page content for both users and algorithms, and deploying a powerful link-building campaign with high-authority sources.</p>
+                                        <p class="text-sm text-gray-300 leading-relaxed">Unlike most agencies that drip-feed changes over 12 months, we <span class="text-purple-400 font-medium">front-load the work</span> so you see momentum right away. The goal here is simple: get your website moving up the rankings before your competitors even realize what's happening.</p>
+                                        <!-- /cms:textarea -->
+                                    </div>
+                                </div>
+
+                                <!-- Center Timeline -->
+                                <div class="w-2/12 flex flex-col items-center relative">
+                                    <!-- Step Number (rotated) -->
+                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">03</div>
+                                    
+                                    <!-- Timeline Point -->
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="2"></div>
+                                    <div class="absolute top-6 text-center">
+                                        <div class="text-xs font-light text-gray-500 mb-1">1 MONTH</div>
+                                        <div class="text-xs font-light text-gray-600">Day 30</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content -->
+                                <div class="w-5/12 pl-8">
+                                </div>
+                            </div>
+
+                            <!-- Step 4: 2 Months (Right) -->
+                            <div class="flex items-center mb-16 relative">
+                                <!-- Left Content -->
+                                <div class="w-5/12 pr-8">
+                                </div>
+
+                                <!-- Center Timeline -->
+                                <div class="w-2/12 flex flex-col items-center relative">
+                                    <!-- Step Number (rotated) -->
+                                    <div class="absolute -right-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">04</div>
+                                    
+                                    <!-- Timeline Point -->
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="3"></div>
+                                    <div class="absolute top-6 text-center">
+                                        <div class="text-xs font-light text-gray-500 mb-1">2 MONTHS</div>
+                                        <div class="text-xs font-light text-gray-600">Day 60</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content -->
+                                <div class="w-5/12 pl-8">
+                                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6">
+                                        <!-- cms:text key="how_it_works.step4_title" label="Step 4 Title" -->
+                                        <h4 class="text-lg font-bold text-white mb-3">Fast Results Tracking</h4>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="how_it_works.step4_desc" label="Step 4 Description" -->
+                                        <p class="text-sm text-gray-300 leading-relaxed mb-3">We believe in complete transparency and accountability. That's why every client gets access to a dedicated <span class="text-purple-400 font-medium">24/7 dashboard</span> that shows your live keyword rankings, organic traffic, and completed tasks.</p>
+                                        <p class="text-sm text-gray-300 leading-relaxed">No more waiting months for vague reports or endless "trust us" calls. You'll see exactly what's happening, when it's happening, and how it impacts your business. And with weekly progress updates from our team, you'll never be left wondering if SEO is actually working — you'll have the proof in front of your eyes.</p>
+                                        <!-- /cms:textarea -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 5: 90 Days (Left) -->
+                            <div class="flex items-center mb-16 relative">
+                                <!-- Left Content -->
+                                <div class="w-5/12 pr-8">
+                                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left">
+                                        <!-- cms:text key="how_it_works.step5_title" label="Step 5 Title" -->
+                                        <h4 class="text-lg font-bold text-white mb-3">The Bold Guarantee</h4>
+                                        <!-- /cms:text -->
+                                        <!-- cms:textarea key="how_it_works.step5_desc" label="Step 5 Description" -->
+                                        <p class="text-sm text-gray-300 leading-relaxed mb-3">This is where we separate ourselves from every other SEO agency in Canada. While most companies hide behind contracts and excuses, we <span class="text-purple-400 font-medium">put our money where our mouth is</span>.</p>
+                                        <p class="text-sm text-gray-300 leading-relaxed">If your rankings don't move within 20 days, we'll pay you $200 in cash for wasting your time. And if we can't get you to the first page in 60 days, we'll keep working for free until we do. Zero risk. Zero excuses. 100% accountability. That's why over <span class="text-purple-400 font-medium">300 businesses</span> across Canada trust us with their growth — and why we proudly call this the boldest SEO guarantee in the world.</p>
+                                        <!-- /cms:textarea -->
+                                    </div>
+                                </div>
+
+                                <!-- Center Timeline -->
+                                <div class="w-2/12 flex flex-col items-center relative">
+                                    <!-- Step Number (rotated) -->
+                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">05</div>
+                                    
+                                    <!-- Timeline Point -->
+                                    <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="4"></div>
+                                    <div class="absolute top-6 text-center">
+                                        <div class="text-xs font-light text-gray-500 mb-1">90 DAYS</div>
+                                        <div class="text-xs font-light text-gray-600">Success!</div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Content -->
+                                <div class="w-5/12 pl-8">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Block -->
+                <div class="mb-20 text-center">
+                    <!-- cms:text key="how_it_works.video_intro" label="Video Intro Text" -->
+                    <p class="text-[30px] text-white mb-8">Watch Entire Video To Learn How We Do It</p>
+                    <!-- /cms:text -->
+
+                    <!-- Video Container -->
+                    <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 max-w-4xl mx-auto mb-8">
+                        <!-- YouTube Facade for Performance -->
+                        <!-- cms:text key="how_it_works.video" label="How It Works Video URL" -->
+                        <div class="youtube-facade relative w-full aspect-video bg-neutral-950 rounded-xl overflow-hidden cursor-pointer" data-video-id="NBYvS_w6yMQ" data-autoplay="false">
+                            <!-- Video Thumbnail -->
+                            <img 
+                                class="w-full h-full object-cover" 
+                                src="https://img.youtube.com/vi/NBYvS_w6yMQ/maxresdefault.jpg"
+                                alt="How Our Guaranteed SEO Service Works - Video Tutorial"
+                                loading="lazy"
+                                width="1280"
+                                height="720"
+                            />
+                            
+                            <!-- Play Button Overlay -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-black/20 hover:bg-black/30 transition-colors duration-300">
+                                <div class="w-20 h-20 bg-white/90 hover:bg-white rounded-full flex items-center justify-center shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                                    <div class="w-0 h-0 border-l-[24px] border-l-red-600 border-y-[12px] border-y-transparent ml-1"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Click to Play Text -->
+                            <div class="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-md text-sm">
+                                Click to play
+                            </div>
+                        </div>
+                        <!-- /cms:text -->
+                    </div>
+
+                    <!-- Video CTA -->
+                    <!-- cms:link key="how_it_works.video_cta" text="Video CTA Button" -->
+                    <button class="bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20">
+                        👉 Claim Your Risk-Free SEO Audit
+                    </button>
+                    <!-- /cms:link -->
+                </div>
+
+                <!-- Social Proof & Case Study Teaser -->
+                <div class="mb-20">
+                    <div class="text-center max-w-4xl mx-auto mb-12">
+                        <!-- cms:text key="how_it_works.proof_headline" label="Social Proof Headline" -->
+                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-4">We're REALLY… REALLY Good At This</h3>
+                        <!-- /cms:text -->
+                        <!-- cms:text key="how_it_works.proof_subheadline" label="Social Proof Subheadline" -->
+                        <p class="text-xl text-white">101+ Businesses Got ROI From SEO Faster Than Ever.</p>
+                        <!-- /cms:text -->
+                    </div>
+
+                    <!-- Case Study Cards -->
+                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        <!-- Case Study 1 -->
+                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <div class="text-2xl mb-3">🦷</div>
+                            <!-- cms:text key="how_it_works.case1_result" label="Case 1 Result" -->
+                            <div class="text-lg font-bold text-white mb-2">+240% Organic Traffic in 60 Days</div>
+                            <!-- /cms:text -->
+                            <!-- cms:textarea key="how_it_works.case1_quote" label="Case 1 Quote" -->
+                            <p class="text-sm text-gray-300 italic">"Awkward Media transformed our dental practice with incredible SEO results."</p>
+                            <!-- /cms:textarea -->
+                        </div>
+
+                        <!-- Case Study 2 -->
+                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <div class="text-2xl mb-3">⚖️</div>
+                            <!-- cms:text key="how_it_works.case2_result" label="Case 2 Result" -->
+                            <div class="text-lg font-bold text-white mb-2">+180% Lead Generation</div>
+                            <!-- /cms:text -->
+                            <!-- cms:textarea key="how_it_works.case2_quote" label="Case 2 Quote" -->
+                            <p class="text-sm text-gray-300 italic">"Our law firm doubled clients thanks to their guaranteed SEO system."</p>
+                            <!-- /cms:textarea -->
+                        </div>
+
+                        <!-- Case Study 3 -->
+                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <div class="text-2xl mb-3">🛒</div>
+                            <!-- cms:text key="how_it_works.case3_result" label="Case 3 Result" -->
+                            <div class="text-lg font-bold text-white mb-2">+320% Revenue Growth</div>
+                            <!-- /cms:text -->
+                            <!-- cms:textarea key="how_it_works.case3_quote" label="Case 3 Quote" -->
+                            <p class="text-sm text-gray-300 italic">"E-commerce sales skyrocketed within weeks of starting with them."</p>
+                            <!-- /cms:textarea -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Call-to-Action Banner -->
+                <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-3xl p-12 text-center relative overflow-hidden">
+                    <!-- Background Pattern -->
+                    <div class="absolute inset-0 opacity-10">
+                        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <!-- cms:text key="how_it_works.cta_headline" label="Final CTA Headline" -->
+                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-4">⚡ Limited Spots Left For August</h3>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:text key="how_it_works.cta_subheadline" label="Final CTA Subheadline" -->
+                        <p class="text-xl text-white/90 mb-8">Act now — secure your guaranteed SEO slot before we close onboarding.</p>
+                        <!-- /cms:text -->
+
+                        <!-- Animated Counter -->
+                        <div class="mb-8">
+                            <div class="inline-block bg-white/20 rounded-xl px-6 py-3 backdrop-blur-sm">
+                                <span class="text-2xl font-bold text-white">3 Spots Left</span>
+                            </div>
+                        </div>
+
+                        <!-- Final CTA Button -->
+                        <!-- cms:link key="how_it_works.final_cta" text="Final CTA Button" -->
+                        <button class="bg-white text-purple-700 px-12 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-colors duration-300 shadow-2xl">
+                            Get Started Now — Risk-Free
+                        </button>
+                        <!-- /cms:link -->
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
+    <!-- Timeline Rocket Animation Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineContainer = document.getElementById('timeline-container');
+            const timelineRocket = document.getElementById('timeline-rocket');
+            const timelinePoints = document.querySelectorAll('.timeline-point');
+            const rocketTrail = document.getElementById('rocket-trail');
+            
+            let trailPoints = [];
+            let lastProgress = 0;
+            let lastScrollDirection = 1; // 1 for down, -1 for up
+            let currentAngle = 90; // Start pointing down
+            
+            if (!timelineContainer || !timelineRocket || !rocketTrail) return;
+            
+            function updateRocketPosition() {
+                const containerRect = timelineContainer.getBoundingClientRect();
+                const containerTop = containerRect.top + window.scrollY;
+                const containerHeight = containerRect.height;
+                const windowHeight = window.innerHeight;
+                const scrollY = window.scrollY;
+                
+                // Calculate how much of the timeline is visible/scrolled
+                const timelineStart = containerTop - windowHeight * 0.8;
+                const timelineEnd = containerTop + containerHeight - windowHeight * 0.2;
+                
+                if (scrollY >= timelineStart && scrollY <= timelineEnd) {
+                    // Calculate progress through timeline (0 to 1)
+                    const progress = (scrollY - timelineStart) / (timelineEnd - timelineStart);
+                    const clampedProgress = Math.max(0, Math.min(1, progress));
+                    
+                    // Move rocket along timeline with serpentine path
+                    const rocketPosition = clampedProgress * (containerHeight - 32); // 32px is rocket height
+                    
+                    // Serpentine horizontal movement (sine wave)
+                    const amplitude = 80; // How far left/right the rocket moves
+                    const frequency = 3; // How many curves in the path
+                    const horizontalOffset = Math.sin(clampedProgress * Math.PI * frequency) * amplitude;
+                    
+                    // Calculate rotation based on movement direction with smoothing
+                    const step = 0.001; // Smaller step for smoother calculation
+                    const currentHorizontal = Math.sin(clampedProgress * Math.PI * frequency) * amplitude;
+                    const nextHorizontal = Math.sin((clampedProgress + step) * Math.PI * frequency) * amplitude;
+                    
+                    const horizontalVelocity = nextHorizontal - currentHorizontal;
+                    const verticalVelocity = step * containerHeight; // Always positive (moving down)
+                    
+                    // Простая логика поворота ракеты в зависимости от направления движения
+                    let targetAngle = 190; // Базовый угол - поворачиваем на 100 градусов (90 + 100)
+                    
+                    if (horizontalVelocity < -0.001) { // Летит влево
+                        targetAngle = 170; // Поворот влево-вниз (70 + 100)
+                    } else if (horizontalVelocity > 0.001) { // Летит вправо  
+                        targetAngle = 105; // Еще на 5 градусов слабее (110 - 5)
+                    }
+                    
+                    // Дополнительные корректировки для проблемных зон
+                    if (clampedProgress >= 0.25 && clampedProgress <= 0.55) {
+                        if (horizontalVelocity < 0) {
+                            targetAngle = 160; // Левее в проблемной зоне (60 + 100)
+                        }
+                    }
+                    
+                    // Специальная коррекция для этапа "1 MONTH Day 30" (80-90% прогресса)
+                    if (clampedProgress >= 0.8 && clampedProgress <= 0.95) {
+                        if (horizontalVelocity > 0.001) { // Летит вправо
+                            targetAngle = 120; // Более умеренный поворот вправо (вместо 210°)
+                        }
+                    }
+                    
+                    // Smooth angle interpolation for fluid rotation
+                    const angleDiff = targetAngle - currentAngle;
+                    const maxAngleChange = 3; // Maximum degrees change per frame
+                    
+                    if (Math.abs(angleDiff) > maxAngleChange) {
+                        currentAngle += Math.sign(angleDiff) * maxAngleChange;
+                    } else {
+                        currentAngle = targetAngle;
+                    }
+                    
+                    const adjustedAngle = currentAngle;
+                    
+                    // Position rocket at current location
+                    timelineRocket.style.top = rocketPosition + 'px';
+                    timelineRocket.style.left = '50%';
+                    timelineRocket.style.transform = `translateX(calc(-50% + ${horizontalOffset}px)) translateY(-50%)`;
+                    timelineRocket.style.opacity = '1';
+                    
+                    // Update rocket rotation
+                    const rocketEmoji = timelineRocket.querySelector('div');
+                    rocketEmoji.style.transform = `rotate(${adjustedAngle}deg)`;
+                    
+                    // Detect scroll direction
+                    const currentScrollDirection = clampedProgress >= lastProgress ? 1 : -1;
+                    
+                    // Check if direction changed from up to down
+                    if (lastScrollDirection === -1 && currentScrollDirection === 1) {
+                        // Clear trail and start fresh - trail starts FROM the rocket position
+                        trailPoints = [];
+                    }
+                    
+                    // Only add trail when moving forward (down), not when scrolling back up
+                    if (currentScrollDirection === 1) {
+                        // Add trail point - rocket leaves trail BEHIND it
+                        // So we add the point where rocket WAS (previous position)
+                        if (trailPoints.length === 0) {
+                            // First point - start from rocket
+                            trailPoints.unshift({
+                                x: 100 + horizontalOffset, // Center at 100px (half of 200px width)
+                                y: rocketPosition // Current rocket position
+                            });
+                        } else {
+                            // Add trail from the front (rocket leaves trail behind)
+                            trailPoints.unshift({
+                                x: 100 + horizontalOffset,
+                                y: rocketPosition
+                            });
+                        }
+                        
+                        // Limit trail length for fading effect
+                        if (trailPoints.length > 40) { // Shorter trail for better performance
+                            trailPoints.pop(); // Remove from the end (oldest trail)
+                        }
+                        
+                        // Update trail path
+                        updateRocketTrail();
+                    }
+                    
+                    // Update direction tracking
+                    lastScrollDirection = currentScrollDirection;
+                    
+                    lastProgress = clampedProgress;
+                    
+                    // Activate timeline points based on progress
+                    const currentStep = Math.floor(clampedProgress * 5); // 5 steps total
+                    timelinePoints.forEach((point, index) => {
+                        if (index <= currentStep) {
+                            point.classList.add('active');
+                        } else {
+                            point.classList.remove('active');
+                        }
+                    });
+                    
+                } else if (scrollY < timelineStart) {
+                    // Before timeline starts
+                    timelineRocket.style.top = '0px';
+                    timelineRocket.style.left = '50%';
+                    timelineRocket.style.transform = 'translateX(-50%) translateY(-50%)';
+                    timelineRocket.style.opacity = '0.5';
+                    const rocketEmoji = timelineRocket.querySelector('div');
+                    rocketEmoji.style.transform = 'rotate(90deg)'; // Point straight down at start
+                    // Clear trail
+                    trailPoints = [];
+                    rocketTrail.setAttribute('d', '');
+                    lastProgress = 0;
+                    lastScrollDirection = 1;
+                    currentAngle = 90; // Reset angle to pointing down
+                    // Deactivate all points
+                    timelinePoints.forEach(point => point.classList.remove('active'));
+                } else {
+                    // After timeline ends
+                    timelineRocket.style.top = (containerHeight - 32) + 'px';
+                    timelineRocket.style.left = '50%';
+                    timelineRocket.style.transform = 'translateX(-50%) translateY(-50%)';
+                    timelineRocket.style.opacity = '0.5';
+                    const rocketEmoji = timelineRocket.querySelector('div');
+                    rocketEmoji.style.transform = 'rotate(90deg)'; // Point straight down at end
+                    // Activate all points
+                    timelinePoints.forEach(point => point.classList.add('active'));
+                }
+            }
+            
+            function updateRocketTrail() {
+                if (trailPoints.length < 2) {
+                    rocketTrail.setAttribute('d', '');
+                    return;
+                }
+                
+                let pathData = `M ${trailPoints[0].x} ${trailPoints[0].y}`;
+                
+                for (let i = 1; i < trailPoints.length; i++) {
+                    if (i === 1) {
+                        pathData += ` L ${trailPoints[i].x} ${trailPoints[i].y}`;
+                    } else {
+                        // Use quadratic curves for smoother trail
+                        const prevPoint = trailPoints[i - 1];
+                        const currentPoint = trailPoints[i];
+                        const controlX = (prevPoint.x + currentPoint.x) / 2;
+                        const controlY = (prevPoint.y + currentPoint.y) / 2;
+                        pathData += ` Q ${controlX} ${controlY} ${currentPoint.x} ${currentPoint.y}`;
+                    }
+                }
+                
+                rocketTrail.setAttribute('d', pathData);
+                
+                // Add fading effect - make the trail gradually transparent from tail to head
+                const totalLength = trailPoints.length;
+                const fadeStart = Math.max(0, totalLength - 30); // Start fading from the last 30 points
+                
+                // Update stroke-opacity for fading effect
+                const baseOpacity = 0.7;
+                const fadeOpacity = Math.min(baseOpacity, totalLength / 50); // Fade based on trail length
+                rocketTrail.style.strokeOpacity = fadeOpacity;
+            }
+            
+            // Update rocket position on scroll
+            window.addEventListener('scroll', updateRocketPosition);
+            // Initial positioning
+            updateRocketPosition();
+        });
+    </script>
 
-    <!-- CSS for Light Header Mode -->
+    <!-- CSS for Timeline and Light Header Mode -->
     <style>
+        /* Timeline Point Styles */
+        .timeline-point.active {
+            background-color: white !important;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            transform: scale(1.2);
+        }
+        
         .header-light-mode .header-container {
             background-color: rgba(255, 255, 255, 0.9) !important;
             backdrop-filter: blur(16px);
@@ -1772,6 +2609,315 @@ import Layout from '../layouts/Layout.astro';
         }
     </style>
 
+    <!-- AI Domination Block Animation Styles -->
+    <style>
+        /* AI Brain Neural Network Animations */
+        .ai-domination-block {
+            /* Removed custom background to match other blocks */
+        }
+
+        .ai-brain-container {
+            perspective: 1000px;
+        }
+
+        .neural-sphere {
+            /* Removed rotation animation - sphere stays in place */
+            transform-style: preserve-3d;
+        }
+
+        .neural-core {
+            /* Base glow - always visible */
+            animation: baseGlow 6s infinite ease-in-out;
+            box-shadow: 
+                0 0 15px rgba(168, 85, 247, 0.4),
+                0 0 30px rgba(124, 58, 237, 0.3),
+                inset 0 0 15px rgba(59, 130, 246, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        /* Position Neural Nodes */
+        .node-1 { top: 15%; left: 20%; }
+        .node-2 { top: 20%; right: 15%; }
+        .node-3 { bottom: 15%; left: 25%; }
+        .node-4 { bottom: 20%; right: 20%; }
+        .node-5 { top: 50%; left: 10%; }
+        .node-6 { top: 50%; right: 10%; }
+
+        /* Neural Node Animations */
+        .neural-node {
+            /* Base glow - always visible */
+            animation: nodeBaseGlow 4s infinite ease-in-out;
+            box-shadow: 0 0 8px currentColor;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        /* Connection Line Animations */
+        .connection-line {
+            opacity: 0.4;
+            stroke-dasharray: 10, 5;
+            stroke-dashoffset: 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Supporting Elements Animation */
+        .supporting-element {
+            /* Static state - no animation by default */
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+
+        .supporting-line {
+            /* Static state - no animation by default */
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover Effects - Animations start on block hover */
+        .ai-domination-block:hover .neural-core {
+            animation: neuralPulse 2s infinite ease-in-out alternate,
+                       coreGlow 4s infinite ease-in-out;
+            box-shadow: 
+                0 0 30px rgba(168, 85, 247, 0.8),
+                0 0 60px rgba(124, 58, 237, 0.6),
+                inset 0 0 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .ai-domination-block:hover .neural-node {
+            animation: nodePulse 2s infinite ease-in-out;
+            opacity: 1;
+        }
+
+        .ai-domination-block:hover .neural-node.node-1 { animation-delay: 0s; }
+        .ai-domination-block:hover .neural-node.node-2 { animation-delay: 0.3s; }
+        .ai-domination-block:hover .neural-node.node-3 { animation-delay: 0.6s; }
+        .ai-domination-block:hover .neural-node.node-4 { animation-delay: 0.9s; }
+        .ai-domination-block:hover .neural-node.node-5 { animation-delay: 1.2s; }
+        .ai-domination-block:hover .neural-node.node-6 { animation-delay: 1.5s; }
+
+        .ai-domination-block:hover .connection-line {
+            animation: dataFlow 3s infinite ease-in-out;
+            opacity: 1;
+        }
+
+        .ai-domination-block:hover .connection-line.line-1 { animation-delay: 0s; }
+        .ai-domination-block:hover .connection-line.line-2 { animation-delay: 0.5s; }
+        .ai-domination-block:hover .connection-line.line-3 { animation-delay: 1s; }
+        .ai-domination-block:hover .connection-line.line-4 { animation-delay: 1.5s; }
+        .ai-domination-block:hover .connection-line.line-5 { animation-delay: 2s; }
+        .ai-domination-block:hover .connection-line.line-6 { animation-delay: 2.5s; }
+
+        .ai-domination-block:hover .supporting-element {
+            animation: floatElement 4s infinite ease-in-out;
+            opacity: 1;
+        }
+
+        .ai-domination-block:hover .supporting-element.traffic-growth { animation-delay: 0s; }
+        .ai-domination-block:hover .supporting-element.competitor-insights { animation-delay: 1.3s; }
+        .ai-domination-block:hover .supporting-element.predictive-keywords { animation-delay: 2.6s; }
+        .ai-domination-block:hover .supporting-element.market-trends { animation-delay: 3.9s; }
+
+        .ai-domination-block:hover .supporting-line {
+            animation: linePulse 2s infinite ease-in-out;
+            opacity: 1;
+        }
+
+        .supporting-element:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease;
+        }
+
+        .supporting-element:hover .supporting-line {
+            opacity: 1;
+            stroke-width: 2;
+        }
+
+        /* Keyframe Animations */
+        
+        @keyframes baseGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 15px rgba(168, 85, 247, 0.4),
+                    0 0 30px rgba(124, 58, 237, 0.3),
+                    inset 0 0 15px rgba(59, 130, 246, 0.25);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 20px rgba(168, 85, 247, 0.6),
+                    0 0 35px rgba(124, 58, 237, 0.4),
+                    inset 0 0 20px rgba(59, 130, 246, 0.35);
+            }
+        }
+        
+        @keyframes nodeBaseGlow {
+            0%, 100% { 
+                opacity: 0.7;
+                box-shadow: 0 0 8px currentColor;
+            }
+            50% { 
+                opacity: 0.9;
+                box-shadow: 0 0 12px currentColor;
+            }
+        }
+
+        @keyframes neuralPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+
+        @keyframes coreGlow {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(168, 85, 247, 0.6),
+                    0 0 40px rgba(124, 58, 237, 0.4),
+                    inset 0 0 20px rgba(59, 130, 246, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(168, 85, 247, 0.8),
+                    0 0 60px rgba(124, 58, 237, 0.6),
+                    inset 0 0 30px rgba(59, 130, 246, 0.4);
+            }
+        }
+
+        @keyframes nodePulse {
+            0%, 100% { 
+                transform: scale(1); 
+                opacity: 0.7;
+                box-shadow: 0 0 10px currentColor;
+            }
+            50% { 
+                transform: scale(1.3); 
+                opacity: 1;
+                box-shadow: 0 0 15px currentColor, 0 0 25px currentColor;
+            }
+        }
+
+        @keyframes dataFlow {
+            0% { 
+                stroke-dashoffset: 0;
+                opacity: 0.7;
+            }
+            50% { 
+                stroke-dashoffset: -15;
+                opacity: 1;
+            }
+            100% { 
+                stroke-dashoffset: -30;
+                opacity: 0.7;
+            }
+        }
+
+        @keyframes floatElement {
+            0%, 100% { 
+                transform: translateY(0px);
+                opacity: 0.8;
+            }
+            50% { 
+                transform: translateY(-5px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes linePulse {
+            0%, 100% { 
+                opacity: 0.6;
+                stroke-width: 1;
+            }
+            50% { 
+                opacity: 1;
+                stroke-width: 2;
+            }
+        }
+
+        /* Testimonials Block Styles */
+        .testimonials-block {
+            /* Same background as other blocks */
+        }
+
+        .testimonial-carousel {
+            min-height: 200px;
+        }
+
+        .testimonial-card {
+            transition: opacity 0.6s ease-in-out;
+        }
+
+        .testimonial-dot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .testimonial-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .testimonial-dot.dot-active {
+            background-color: rgb(168 85 247);
+            box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+        }
+
+        /* Rating animation */
+        .testimonials-block .text-5xl {
+            animation: ratingPulse 3s infinite ease-in-out;
+        }
+
+        @keyframes ratingPulse {
+            0%, 100% { 
+                transform: scale(1);
+                color: white;
+            }
+            50% { 
+                transform: scale(1.05);
+                color: rgb(168 85 247);
+            }
+        }
+
+        /* Simple fade animation for testimonials */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .ai-brain-container {
+                width: 16rem;
+                height: 16rem;
+            }
+            
+            .neural-sphere {
+                width: 6rem;
+                height: 6rem;
+            }
+            
+            .supporting-element {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .ai-brain-container {
+                width: 12rem;
+                height: 12rem;
+            }
+            
+            .neural-sphere {
+                width: 4rem;
+                height: 4rem;
+            }
+            
+            .testimonials-block .text-5xl {
+                font-size: 3rem;
+            }
+        }
+    </style>
+
     <!-- Lazy Load Clearbit Images Script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -1834,6 +2980,206 @@ import Layout from '../layouts/Layout.astro';
                         div.style.backgroundImage = `url('${div.dataset.bgSrc}')`;
                     }
                 });
+            }
+        });
+    </script>
+
+    <!-- AI Domination Block Interactive Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const aiBlock = document.querySelector('.ai-domination-block');
+            const brainContainer = document.querySelector('.ai-brain-container');
+            const supportingElements = document.querySelectorAll('.supporting-element');
+            
+            if (!aiBlock || !brainContainer) return;
+
+            // Enhanced hover interactions for supporting elements
+            supportingElements.forEach((element, index) => {
+                element.addEventListener('mouseenter', function() {
+                    // Brighten the connecting line
+                    const line = element.querySelector('.supporting-line');
+                    if (line) {
+                        line.style.opacity = '1';
+                        line.style.strokeWidth = '2';
+                        line.style.filter = 'drop-shadow(0 0 3px currentColor)';
+                    }
+                    
+                    // Add tooltip effect
+                    const tooltip = element.querySelector('.bg-neutral-900\\/90');
+                    if (tooltip) {
+                        tooltip.style.transform = 'scale(1.05)';
+                        tooltip.style.borderColor = 'rgba(168, 85, 247, 0.6)';
+                    }
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    const line = element.querySelector('.supporting-line');
+                    if (line) {
+                        line.style.opacity = '';
+                        line.style.strokeWidth = '';
+                        line.style.filter = '';
+                    }
+                    
+                    const tooltip = element.querySelector('.bg-neutral-900\\/90');
+                    if (tooltip) {
+                        tooltip.style.transform = '';
+                        tooltip.style.borderColor = '';
+                    }
+                });
+            });
+
+            // Add Intersection Observer for performance
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Start animations when visible
+                        aiBlock.classList.add('ai-visible');
+                    } else {
+                        // Pause some animations when not visible for performance
+                        aiBlock.classList.remove('ai-visible');
+                    }
+                });
+            }, {
+                threshold: 0.3,
+                rootMargin: '50px'
+            });
+
+            observer.observe(aiBlock);
+
+            // Add click interaction to neural sphere for demo purposes
+            const neuralCore = document.querySelector('.neural-core');
+            if (neuralCore) {
+                neuralCore.addEventListener('click', function() {
+                    // Create ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        width: 4px;
+                        height: 4px;
+                        border-radius: 50%;
+                        background: rgba(168, 85, 247, 0.6);
+                        transform: translate(-50%, -50%);
+                        animation: ripple 1s ease-out forwards;
+                        pointer-events: none;
+                        z-index: 10;
+                    `;
+                    
+                    // Add ripple keyframes if not already added
+                    if (!document.querySelector('#ripple-animation')) {
+                        const style = document.createElement('style');
+                        style.id = 'ripple-animation';
+                        style.textContent = `
+                            @keyframes ripple {
+                                to {
+                                    width: 100px;
+                                    height: 100px;
+                                    opacity: 0;
+                                }
+                            }
+                        `;
+                        document.head.appendChild(style);
+                    }
+                    
+                    neuralCore.appendChild(ripple);
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        if (ripple.parentNode) {
+                            ripple.parentNode.removeChild(ripple);
+                        }
+                    }, 1000);
+                });
+            }
+
+            // Parallax effect removed - animation stays in place
+            
+            // Testimonials Carousel
+            const testimonialCarousel = document.querySelector('.testimonial-carousel');
+            if (testimonialCarousel) {
+                const cards = testimonialCarousel.querySelectorAll('.testimonial-card');
+                const dots = testimonialCarousel.querySelectorAll('.testimonial-dot');
+                let currentIndex = 0;
+                let intervalId;
+
+                function showTestimonial(index) {
+                    // Ensure valid index
+                    if (index < 0 || index >= cards.length) return;
+                    
+                    // Stop any existing auto-rotation during manual transition
+                    clearInterval(intervalId);
+                    
+                    // Remove active class from all cards and dots
+                    cards.forEach((card, i) => {
+                        card.classList.remove('testimonial-active');
+                        card.style.opacity = '0';
+                    });
+                    
+                    dots.forEach((dot, i) => {
+                        dot.classList.remove('dot-active');
+                        dot.style.backgroundColor = 'rgb(75 85 99)'; // gray-600
+                        dot.style.boxShadow = 'none';
+                    });
+
+                    // Show current card with small delay for smooth transition
+                    setTimeout(() => {
+                        const currentCard = cards[index];
+                        if (currentCard) {
+                            currentCard.classList.add('testimonial-active');
+                            currentCard.style.opacity = '1';
+                        }
+                        
+                        // Update active dot
+                        const currentDot = dots[index];
+                        if (currentDot) {
+                            currentDot.classList.add('dot-active');
+                            currentDot.style.backgroundColor = 'rgb(168 85 247)';
+                            currentDot.style.boxShadow = '0 0 8px rgba(168, 85, 247, 0.6)';
+                        }
+                    }, 100);
+                }
+
+                function nextTestimonial() {
+                    currentIndex = (currentIndex + 1) % cards.length;
+                    showTestimonial(currentIndex);
+                }
+
+                function startAutoRotation() {
+                    stopAutoRotation(); // Clear any existing interval
+                    intervalId = setInterval(() => {
+                        nextTestimonial();
+                    }, 10000); // 10 seconds
+                }
+
+                function stopAutoRotation() {
+                    if (intervalId) {
+                        clearInterval(intervalId);
+                        intervalId = null;
+                    }
+                }
+
+                // Click handlers for dots
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        if (currentIndex !== index) { // Only change if different
+                            currentIndex = index;
+                            showTestimonial(currentIndex);
+                            // Restart auto-rotation after user interaction
+                            setTimeout(() => {
+                                startAutoRotation();
+                            }, 3000); // Resume after 3 seconds
+                        }
+                    });
+                });
+
+                // Pause on hover, resume on leave
+                testimonialCarousel.addEventListener('mouseenter', stopAutoRotation);
+                testimonialCarousel.addEventListener('mouseleave', startAutoRotation);
+
+                // Initialize
+                showTestimonial(0);
+                startAutoRotation();
             }
         });
     </script>

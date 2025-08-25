@@ -114,3 +114,21 @@ Lighthouse CI configuration requires:
 - Brand colors and content can be customized via CSS custom properties
 - Contact information needs to be updated from placeholder values
 - **Critical**: Minimize JavaScript usage - only add JS when CSS cannot solve the task. Always ask before adding JavaScript functionality.
+
+## Important Development Rules
+
+### JavaScript Usage Policy
+This is a performance-first project where CSS solutions are strongly preferred over JavaScript solutions. Only add JavaScript functionality when CSS cannot achieve the desired result.
+
+### File Creation Policy  
+- Do what has been asked; nothing more, nothing less.
+- NEVER create files unless they're absolutely necessary for achieving your goal.
+- ALWAYS prefer editing an existing file to creating a new one.
+- NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User.
+
+### Linting and Testing Commands
+After making code changes, always run:
+- `npm run format` - Format code with Prettier
+- `npm run build` - Verify the Astro build passes without errors
+
+There are no dedicated lint or test commands beyond the build process and formatting.
