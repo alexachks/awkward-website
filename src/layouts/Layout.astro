@@ -378,6 +378,25 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                     facade.appendChild(iframe);
                 });
             });
+            
+            // Set current month for limited spots text
+            const currentMonthElement = document.getElementById('current-month');
+            const gmbCurrentMonthElement = document.querySelector('.gmb-current-month');
+            
+            if (currentMonthElement || gmbCurrentMonthElement) {
+                const months = [
+                    'January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'
+                ];
+                const currentMonth = months[new Date().getMonth()];
+                
+                if (currentMonthElement) {
+                    currentMonthElement.textContent = currentMonth;
+                }
+                if (gmbCurrentMonthElement) {
+                    gmbCurrentMonthElement.textContent = currentMonth;
+                }
+            }
         });
     </script>
 </body>

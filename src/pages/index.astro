@@ -2050,11 +2050,11 @@ import Layout from '../layouts/Layout.astro';
                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 max-w-4xl mx-auto mb-8">
                         <!-- YouTube Facade for Performance -->
                         <!-- cms:text key="how_it_works.video" label="How It Works Video URL" -->
-                        <div class="youtube-facade relative w-full aspect-video bg-neutral-950 rounded-xl overflow-hidden cursor-pointer" data-video-id="NBYvS_w6yMQ" data-autoplay="false">
+                        <div class="youtube-facade relative w-full aspect-video bg-neutral-950 rounded-xl overflow-hidden cursor-pointer" data-video-id="69lnBi2HOYU" data-autoplay="false">
                             <!-- Video Thumbnail -->
                             <img 
                                 class="w-full h-full object-cover" 
-                                src="https://img.youtube.com/vi/NBYvS_w6yMQ/maxresdefault.jpg"
+                                src="https://img.youtube.com/vi/69lnBi2HOYU/maxresdefault.jpg"
                                 alt="How Our Guaranteed SEO Service Works - Video Tutorial"
                                 loading="lazy"
                                 width="1280"
@@ -2082,86 +2082,483 @@ import Layout from '../layouts/Layout.astro';
                         👉 Claim Your Risk-Free SEO Audit
                     </button>
                     <!-- /cms:link -->
-                </div>
-
-                <!-- Social Proof & Case Study Teaser -->
-                <div class="mb-20">
-                    <div class="text-center max-w-4xl mx-auto mb-12">
-                        <!-- cms:text key="how_it_works.proof_headline" label="Social Proof Headline" -->
-                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-4">We're REALLY… REALLY Good At This</h3>
-                        <!-- /cms:text -->
-                        <!-- cms:text key="how_it_works.proof_subheadline" label="Social Proof Subheadline" -->
-                        <p class="text-xl text-white">101+ Businesses Got ROI From SEO Faster Than Ever.</p>
-                        <!-- /cms:text -->
-                    </div>
-
-                    <!-- Case Study Cards -->
-                    <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        <!-- Case Study 1 -->
-                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                            <div class="text-2xl mb-3">🦷</div>
-                            <!-- cms:text key="how_it_works.case1_result" label="Case 1 Result" -->
-                            <div class="text-lg font-bold text-white mb-2">+240% Organic Traffic in 60 Days</div>
-                            <!-- /cms:text -->
-                            <!-- cms:textarea key="how_it_works.case1_quote" label="Case 1 Quote" -->
-                            <p class="text-sm text-gray-300 italic">"Awkward Media transformed our dental practice with incredible SEO results."</p>
-                            <!-- /cms:textarea -->
-                        </div>
-
-                        <!-- Case Study 2 -->
-                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                            <div class="text-2xl mb-3">⚖️</div>
-                            <!-- cms:text key="how_it_works.case2_result" label="Case 2 Result" -->
-                            <div class="text-lg font-bold text-white mb-2">+180% Lead Generation</div>
-                            <!-- /cms:text -->
-                            <!-- cms:textarea key="how_it_works.case2_quote" label="Case 2 Quote" -->
-                            <p class="text-sm text-gray-300 italic">"Our law firm doubled clients thanks to their guaranteed SEO system."</p>
-                            <!-- /cms:textarea -->
-                        </div>
-
-                        <!-- Case Study 3 -->
-                        <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 p-6 text-center hover:border-purple-500/50 transition-colors duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                            <div class="text-2xl mb-3">🛒</div>
-                            <!-- cms:text key="how_it_works.case3_result" label="Case 3 Result" -->
-                            <div class="text-lg font-bold text-white mb-2">+320% Revenue Growth</div>
-                            <!-- /cms:text -->
-                            <!-- cms:textarea key="how_it_works.case3_quote" label="Case 3 Quote" -->
-                            <p class="text-sm text-gray-300 italic">"E-commerce sales skyrocketed within weeks of starting with them."</p>
-                            <!-- /cms:textarea -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Final Call-to-Action Banner -->
-                <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-3xl p-12 text-center relative overflow-hidden">
-                    <!-- Background Pattern -->
-                    <div class="absolute inset-0 opacity-10">
-                        <div class="absolute inset-0" style="background-image: radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);"></div>
-                    </div>
                     
-                    <div class="relative z-10">
-                        <!-- cms:text key="how_it_works.cta_headline" label="Final CTA Headline" -->
-                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-4">⚡ Limited Spots Left For August</h3>
-                        <!-- /cms:text -->
-                        
-                        <!-- cms:text key="how_it_works.cta_subheadline" label="Final CTA Subheadline" -->
-                        <p class="text-xl text-white/90 mb-8">Act now — secure your guaranteed SEO slot before we close onboarding.</p>
-                        <!-- /cms:text -->
+                    <!-- Limited Spots Urgency Text -->
+                    <div class="mt-4">
+                        <p class="text-sm text-gray-400" id="limited-spots-text">
+                            Limited Spots Left For The Month of <span id="current-month"></span>
+                        </p>
+                    </div>
+                </div>
 
-                        <!-- Animated Counter -->
-                        <div class="mb-8">
-                            <div class="inline-block bg-white/20 rounded-xl px-6 py-3 backdrop-blur-sm">
-                                <span class="text-2xl font-bold text-white">3 Spots Left</span>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-5xl mx-auto mb-20 relative">
+                    <!-- Main Headline -->
+                    <!-- cms:text key="social_proof.headline" label="Social Proof Headline" -->
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        We're REALLY… REALLY<br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Good At This</span>
+                    </h2>
+                    <!-- /cms:text -->
+
+                    <!-- Subheadline -->
+                    <!-- cms:text key="social_proof.subheadline" label="Social Proof Subheadline" -->
+                    <p class="text-lg sm:text-xl lg:text-2xl text-white leading-relaxed">
+                        While others promise results "someday," we deliver them in weeks. Our track record speaks for itself — proven growth, guaranteed outcomes, zero excuses.
+                    </p>
+                    <!-- /cms:text -->
+                </div>
+
+                <!-- Results Gallery -->
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Result Card 1 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case1_image" label="Case 1 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&h=225&fit=crop&auto=format" 
+                                     alt="Local Restaurant SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case1_title" label="Case 1 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">Local Restaurant Chain</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case1_description" label="Case 1 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">From struggling to fill tables to becoming the #1 rated restaurant in their city. Our local SEO strategy transformed their online presence completely.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+340% Traffic</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">45 Days</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">$50k+ Revenue</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Final CTA Button -->
-                        <!-- cms:link key="how_it_works.final_cta" text="Final CTA Button" -->
-                        <button class="bg-white text-purple-700 px-12 py-4 rounded-xl font-bold text-xl hover:bg-gray-100 transition-colors duration-300 shadow-2xl">
-                            Get Started Now — Risk-Free
-                        </button>
-                        <!-- /cms:link -->
+                        <!-- Result Card 2 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case2_image" label="Case 2 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93d26?w=400&h=225&fit=crop&auto=format" 
+                                     alt="Law Firm SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case2_title" label="Case 2 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">Personal Injury Law Firm</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case2_description" label="Case 2 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">Competing against million-dollar marketing budgets, we got them ranking above established firms for high-value keywords in just 8 weeks.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+280% Leads</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">8 Weeks</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">Page #1</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result Card 3 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case3_image" label="Case 3 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=225&fit=crop&auto=format" 
+                                     alt="E-commerce SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case3_title" label="Case 3 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">E-commerce Fashion Store</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case3_description" label="Case 3 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">Transformed from page 3 invisibility to dominating fashion keywords. Their organic sales now exceed their paid ads revenue by 300%.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+520% Sales</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">12 Weeks</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">Top 3</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result Card 4 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case4_image" label="Case 4 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=225&fit=crop&auto=format" 
+                                     alt="Medical Practice SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case4_title" label="Case 4 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">Dental Practice Group</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case4_description" label="Case 4 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">Multiple locations, competitive market. We got them ranking #1 for "dentist near me" across 5 cities, doubling their patient bookings.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+240% Bookings</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">6 Weeks</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">5 Cities</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result Card 5 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case5_image" label="Case 5 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=225&fit=crop&auto=format" 
+                                     alt="SaaS Company SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case5_title" label="Case 5 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">SaaS Startup</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case5_description" label="Case 5 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">Pre-revenue to 6-figures in organic traffic value. Helped them rank for competitive tech keywords and reduced CAC by 70%.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+890% Traffic</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">16 Weeks</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">-70% CAC</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Result Card 6 -->
+                        <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+                            <!-- Image -->
+                            <!-- cms:image key="results.case6_image" label="Case 6 Image" -->
+                            <div class="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=225&fit=crop&auto=format" 
+                                     alt="Real Estate SEO Results" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                            
+                            <!-- Content -->
+                            <div class="p-6">
+                                <!-- Title -->
+                                <!-- cms:text key="results.case6_title" label="Case 6 Title" -->
+                                <h3 class="text-xl font-bold text-white mb-3">Real Estate Agency</h3>
+                                <!-- /cms:text -->
+                                
+                                <!-- Description -->
+                                <!-- cms:textarea key="results.case6_description" label="Case 6 Description" -->
+                                <p class="text-gray-300 text-sm leading-relaxed mb-4">From zero online presence to the go-to real estate source in their market. Now generating 80% of leads organically vs paid ads.</p>
+                                <!-- /cms:textarea -->
+                                
+                                <!-- Result Badges -->
+                                <div class="flex flex-wrap gap-2">
+                                    <div class="bg-green-500/20 border border-green-500/30 rounded-full px-3 py-1">
+                                        <span class="text-green-400 text-xs font-semibold">+450% Leads</span>
+                                    </div>
+                                    <div class="bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                                        <span class="text-blue-400 text-xs font-semibold">10 Weeks</span>
+                                    </div>
+                                    <div class="bg-purple-500/20 border border-purple-500/30 rounded-full px-3 py-1">
+                                        <span class="text-purple-400 text-xs font-semibold">80% Organic</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO Services Section -->
+        <section class="py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Main Hero -->
+                <div class="text-center mb-20">
+                    <!-- cms:text key="services.guarantee_headline" label="Services Guarantee Headline" -->
+                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        SEO Services That Drive<br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Real Business Results</span>
+                    </h2>
+                    <p class="text-lg sm:text-xl text-gray-300 leading-relaxed max-w-4xl mx-auto">
+                        More sales, leads, and traffic to your business — or you don't pay. Our proven SEO strategies deliver measurable ROI for Canadian businesses.
+                    </p>
+                    <!-- /cms:text -->
+                </div>
+
+
+                <!-- Organic SEO Services Section -->
+                <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Left Content -->
+                        <div>
+                            <!-- cms:text key="services.organic_title" label="Organic SEO Title" -->
+                            <h3 class="text-3xl font-bold text-white mb-6">Organic SEO Services</h3>
+                            <!-- /cms:text -->
+                            
+                            <!-- cms:textarea key="services.organic_content" label="Organic SEO Content" -->
+                            <div class="space-y-4 text-gray-300 leading-relaxed mb-8">
+                                <p>With the right Canada SEO agency to do organic SEO for you, you get non-paid traffic to your website by improving its ranking for relevant queries. For example, if you're selling puppies, you need to rank for keywords like <span class="text-purple-400">"cavachon puppies for sale."</span></p>
+                                
+                                <p>If you're not sure which keywords would work for your business, it's okay! All we'd need is some basic information about your business and we'll do the keyword research for you. Having a strong keyword strategy is the most important part of your SEO campaign.</p>
+                                
+                                <p>As the leading Toronto SEO agency, we have moved up websites from the bottom of the search results to the <span class="text-white font-semibold">VERY top</span> with our proven strategies. Not just on Google's first page but in the <span class="text-purple-400 font-semibold">TOP 3 positions!</span></p>
+                            </div>
+                            <!-- /cms:textarea -->
+                        </div>
+                        
+                        <!-- Right Image -->
+                        <div>
+                            <!-- cms:image key="services.organic_image" label="Organic SEO Image" -->
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+                                <img src="/images/organic_seo.webp" 
+                                     alt="Organic SEO Services - Analytics and Growth Charts" 
+                                     class="w-full h-full object-cover object-left">
+                            </div>
+                            <!-- /cms:image -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Make Google Love You Section -->
+                <div class="text-center max-w-5xl mx-auto mb-16">
+                    <!-- cms:text key="services.google_love_headline" label="Google Love Headline" -->
+                    <h3 class="text-3xl sm:text-4xl font-black text-white mb-6">
+                        Our Organic SEO Services Make<br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Google Love You!</span>
+                    </h3>
+                    <!-- /cms:text -->
+                    
+                    <!-- cms:textarea key="services.google_love_content" label="Google Love Content" -->
+                    <div class="text-lg text-gray-300 leading-relaxed space-y-4">
+                        <p>1st page rankings mean more people get to see you, and you get more website clicks. In only 4 months, our SEO agency Toronto pulled in <span class="text-purple-400 font-semibold">5000 new clicks</span> for our client! Again, because of our keyword strategy, all the clicks came from searches that drive real-life, actual conversions!</p>
+                        
+                        <p>At the end of the day, our goal is to help you get more business and reach new heights of success. And we're confident that with our award-winning SEO services, we can get you there. Because the highest-converting and most valuable traffic comes from Google's organic (free) listings.</p>
+                        
+                        <p class="text-white font-semibold">And if you're not showing up on Google, you might as well not exist at all.</p>
+                    </div>
+                    <!-- /cms:textarea -->
+                </div>
+
+                <!-- Local Domination Section -->
+                <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Left Image -->
+                        <div>
+                            <!-- cms:image key="services.local_domination_image" label="Local SEO Image" -->
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+                                <img src="/images/local_seo.webp" 
+                                     alt="Local SEO Services - Local Business Success" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                        </div>
+                        
+                        <!-- Right Content -->
+                        <div>
+                            <!-- cms:text key="services.local_domination_headline" label="Local Domination Headline" -->
+                            <h3 class="text-3xl font-black text-white mb-6">
+                                Dominate The Local Market With<br>
+                                <span class="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 bg-clip-text text-transparent">Expert Local SEO Services</span>
+                            </h3>
+                            <!-- /cms:text -->
+                            
+                            <!-- cms:textarea key="services.local_domination_content" label="Local Domination Content" -->
+                            <div class="text-gray-300 leading-relaxed space-y-4 mb-8">
+                                <p>This is where we unlock the full potential of local search for businesses with (and even without) physical locations. As the online world continues to evolve, it's more important than ever to ensure that your business is easily found by customers searching for your products or services in your area.</p>
+                                
+                                <p>Our team of Local SEO wizards has the expertise and experience to elevate your online presence and make sure that your business stands out in local search results. From optimizing your Google My Business listing to building local citations and managing online reviews, we've got all the bases covered.</p>
+                                
+                                <p>We take a unique approach to Local SEO, shifting from traditional practices to a comprehensive strategy that questions everything from building citations to targeting competitors. This is like having a <span class="text-blue-400 font-semibold">jet pack strapped to your keywords</span>. Destination: Top 3 of the Google Map Pack. 🚀</p>
+                            </div>
+                            <!-- /cms:textarea -->
+                            
+                            <!-- Industries Box -->
+                            <div class="bg-gradient-to-br from-blue-600/10 to-blue-800/10 border border-blue-500/30 rounded-2xl p-6">
+                                <h4 class="text-lg font-bold text-white mb-4 text-center">No Niche Too Competitive</h4>
+                                <div class="grid grid-cols-2 gap-3 text-sm">
+                                    <div class="space-y-1">
+                                        <div class="text-blue-400">• Personal Injury Law</div>
+                                        <div class="text-blue-400">• Family Law</div>
+                                        <div class="text-blue-400">• Roofing</div>
+                                        <div class="text-blue-400">• Garage Door Installs</div>
+                                        <div class="text-blue-400">• Laser Hair Removal</div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="text-blue-400">• Botox Clinics</div>
+                                        <div class="text-blue-400">• Dentistry</div>
+                                        <div class="text-blue-400">• Moving Companies</div>
+                                        <div class="text-blue-400">• And Many More...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps SEO Section -->
+                <div class="bg-gradient-to-r from-gray-900 to-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
+                    <div class="text-center mb-12">
+                        <!-- cms:text key="services.gmb_headline" label="GMB Headline" -->
+                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-6">
+                            Dominate Local Search With Our<br>
+                            <span class="bg-gradient-to-r from-green-600 via-green-500 to-green-400 bg-clip-text text-transparent">Google Maps SEO Strategy</span>
+                        </h3>
+                        <!-- /cms:text -->
+                    </div>
+                    
+                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                        <!-- Left Content -->
+                        <div>
+                            <!-- Case Study -->
+                            <div class="bg-neutral-950/50 rounded-2xl border border-green-500/30 p-8 mb-8">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-black text-green-400 mb-2">40-Mile Radius</div>
+                                    <div class="text-white font-semibold mb-2">Asheville Area Movers</div>
+                                    <div class="text-sm text-gray-400">Dominating 1st & 2nd Positions</div>
+                                </div>
+                                
+                                <!-- cms:textarea key="services.gmb_case_study" label="GMB Case Study" -->
+                                <p class="text-gray-300 text-sm leading-relaxed">
+                                    Another example of what our Canada SEO agency has been able to do for our local SEO clients. They're a moving company based in Asheville, NC, who started with us for organic SEO and then maximized their online visibility with Google Maps SEO. They're ranking in the top positions (1st and 2nd), dominating a 40-mile radius!
+                                </p>
+                                <!-- /cms:textarea -->
+                            </div>
+                            
+                            <!-- cms:textarea key="services.gmb_cta_content" label="GMB CTA Content" -->
+                            <div class="text-gray-300 leading-relaxed space-y-4 mb-8">
+                                <p>Don't let your competitors take the easy pickings of your most valuable local customers. Take control of your online presence and give your business the boost it needs with our proven Google Maps SEO strategy.</p>
+                                
+                                <p>At the end of the day, our goal is to help you achieve success online. We want to see your business thrive and reach new heights of success. And we're confident that with our Google Maps SEO services, we can help you get there.</p>
+                                
+                                <p class="text-white font-semibold">Don't underestimate the power of Google Maps. It's time to dominate local search and drive more customers to your door.</p>
+                            </div>
+                            <!-- /cms:textarea -->
+                            
+                            <!-- CTA Button -->
+                            <div class="text-center">
+                                <!-- cms:link key="services.consultation_cta" text="Consultation CTA" -->
+                                <button class="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-4 rounded-xl font-bold text-lg hover:from-green-700 hover:to-green-800 transition-all duration-300 shadow-lg hover:shadow-green-500/25 mb-4">
+                                    Claim Your Free 30-Minute Strategy Session
+                                </button>
+                                <!-- /cms:link -->
+                                
+                                <!-- Urgency Text -->
+                                <div class="text-sm text-gray-400" id="gmb-limited-spots">
+                                    Limited Spots Left For The Month of <span class="gmb-current-month"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Image -->
+                        <div>
+                            <!-- cms:image key="services.gmb_image" label="Google Maps SEO Image" -->
+                            <div class="aspect-[4/3] rounded-2xl overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=450&fit=crop&auto=format" 
+                                     alt="Google Maps SEO Strategy - Local Business Rankings" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <!-- /cms:image -->
+                        </div>
+                    </div>
+                </div>
+                    
+                    <!-- Transparency Section -->
+                    <div class="text-center max-w-4xl mx-auto">
+                        <!-- cms:text key="services.transparency_headline" label="Transparency Headline" -->
+                        <h3 class="text-2xl font-bold text-white mb-6">
+                            Ongoing Reporting & Analysis
+                        </h3>
+                        <!-- /cms:text -->
+                        
+                        <!-- cms:textarea key="services.transparency_content" label="Transparency Content" -->
+                        <div class="text-gray-300 leading-relaxed space-y-4">
+                            <p>At our Toronto SEO agency, we love and prioritize being honest and transparent with our clients from day 1. We keep you in the loop with ongoing reporting and analysis to track your progress and make adjustments as needed.</p>
+                            
+                            <p>This allows us to stay ahead of the curve and make sure that your GMB profile is always performing at its best.</p>
+                        </div>
+                        <!-- /cms:textarea -->
+                    </div>
+                    
                 </div>
             </div>
         </section>
