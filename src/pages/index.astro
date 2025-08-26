@@ -43,6 +43,32 @@ import Layout from '../layouts/Layout.astro';
         input[type="checkbox"]:checked + label svg {
             transform: rotate(180deg);
         }
+        
+        /* Mobile Touch Optimization */
+        @media (max-width: 768px) {
+            button, 
+            label[for^="faq"],
+            .mobile-menu-toggle {
+                min-height: 44px;
+                min-width: 44px;
+            }
+            
+            /* Increase touch targets for FAQ items */
+            label[for^="faq"] {
+                padding: 16px;
+            }
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+        }
+        
+        /* Ensure containers don't overflow */
+        * {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
     </style>
     <!-- Header with Expandable Menu -->
     <div class="fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ease-in-out" id="main-header">
@@ -90,7 +116,7 @@ import Layout from '../layouts/Layout.astro';
                 <div class="hidden lg:flex items-center">
                     <a href="/login" class="text-white hover:text-gray-300 font-medium mr-6">Login</a>
                     <!-- cms:link key="header.cta" text="Header CTA Button" -->
-                    <button class="bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20">
+                    <button class="bg-purple-700 text-white px-4 sm:px-6 lg:px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20 text-sm lg:text-base">
                         Book a Call
                     </button>
                     <!-- /cms:link -->
@@ -105,59 +131,59 @@ import Layout from '../layouts/Layout.astro';
             
             <!-- Expandable Mega Menu Section -->
             <div class="mega-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
-                <div class="mega-menu-content py-8 border-t border-white/10">
-                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-10">
+                <div class="mega-menu-content py-6 lg:py-8 border-t border-white/10">
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
                         <!-- Left Column - Core Services -->
-                        <div class="space-y-6">
+                        <div class="space-y-4 lg:space-y-6">
                             <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-4">Core SEO Services</h3>
-                                <div class="space-y-4">
+                                <h3 class="text-xs lg:text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 lg:mb-4">Core SEO Services</h3>
+                                <div class="space-y-2 lg:space-y-4">
                                     <a href="/services/local-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🎯</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🎯</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Local SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Dominate local search results and attract nearby customers.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Local SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Dominate local search results and attract nearby customers.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/services/organic-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🌱</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🌱</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Organic SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Improve natural search rankings and organic traffic.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Organic SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Improve natural search rankings and organic traffic.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/services/technical-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">⚡</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">⚡</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Technical SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Fix technical issues and improve site performance.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Technical SEO</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Fix technical issues and improve site performance.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/services/link-building" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🔗</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🔗</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">Link Building</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Build high-quality backlinks to boost authority.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Link Building</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Build high-quality backlinks to boost authority.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/services/ai-optimization" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🤖</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🤖</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">AI Optimization</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Leverage AI for advanced SEO strategies.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">AI Optimization</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Leverage AI for advanced SEO strategies.</div>
                                             </div>
                                         </div>
                                     </a>
@@ -166,56 +192,56 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Middle Column - SEO Canada -->
-                        <div class="space-y-6">
+                        <div class="space-y-4 lg:space-y-6">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Canada</h3>
-                                <div class="space-y-4">
+                                <div class="space-y-2 lg:space-y-4">
                                     <a href="/seo/toronto" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏙️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏙️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Toronto</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Canada's largest city and financial hub.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Toronto</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Canada's largest city and financial hub.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/calgary" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏔️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏔️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Calgary</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Alberta's energy capital and business center.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Calgary</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Alberta's energy capital and business center.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/mississauga" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏢</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏢</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Mississauga</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Major suburban business hub in the GTA.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Mississauga</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Major suburban business hub in the GTA.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/edmonton" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🛢️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🛢️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Edmonton</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Alberta's capital and government center.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Edmonton</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Alberta's capital and government center.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/vancouver" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🌊</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🌊</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Vancouver</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">West Coast tech and trade gateway.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Vancouver</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">West Coast tech and trade gateway.</div>
                                             </div>
                                         </div>
                                     </a>
@@ -224,56 +250,56 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Right Column - SEO United States -->
-                        <div class="space-y-6">
+                        <div class="space-y-4 lg:space-y-6">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO United States</h3>
-                                <div class="space-y-4">
+                                <div class="space-y-2 lg:space-y-4">
                                     <a href="/seo/new-york" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🗽</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🗽</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO New York</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">The world's financial and media capital.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO New York</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">The world's financial and media capital.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/los-angeles" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🌴</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🌴</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Los Angeles</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Entertainment capital and creative hub.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Los Angeles</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Entertainment capital and creative hub.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/san-diego" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">☀️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">☀️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO San Diego</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Biotech innovation and coastal business.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO San Diego</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Biotech innovation and coastal business.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/san-francisco" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🌉</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🌉</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO San Francisco</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Silicon Valley's tech epicenter.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO San Francisco</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Silicon Valley's tech epicenter.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/chicago" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏢</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏢</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Chicago</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Midwest business hub and trading center.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Chicago</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Midwest business hub and trading center.</div>
                                             </div>
                                         </div>
                                     </a>
@@ -282,56 +308,56 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Fourth Column - SEO Worldwide -->
-                        <div class="space-y-6">
+                        <div class="space-y-4 lg:space-y-6">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Worldwide</h3>
-                                <div class="space-y-4">
+                                <div class="space-y-2 lg:space-y-4">
                                     <a href="/seo/london" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏰</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏰</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO London</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Global financial capital and business hub.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO London</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Global financial capital and business hub.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/dubai" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏗️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏗️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Dubai</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Middle East's luxury and trade center.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Dubai</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Middle East's luxury and trade center.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/zurich" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏔️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏔️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Zurich</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Swiss banking and wealth management hub.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Zurich</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Swiss banking and wealth management hub.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/monaco" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🏎️</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🏎️</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Monaco</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Ultra-luxury and high-end business haven.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Monaco</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Ultra-luxury and high-end business haven.</div>
                                             </div>
                                         </div>
                                     </a>
                                     
                                     <a href="/seo/singapore" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-2xl">🌆</div>
+                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
+                                            <div class="text-xl lg:text-2xl">🌆</div>
                                             <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-sm">SEO Singapore</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed">Asia-Pacific's premier business gateway.</div>
+                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Singapore</div>
+                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Asia-Pacific's premier business gateway.</div>
                                             </div>
                                         </div>
                                     </a>
@@ -345,12 +371,12 @@ import Layout from '../layouts/Layout.astro';
             <!-- Expandable Explore Menu Section -->
             <div class="explore-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
                 <div class="explore-menu-content py-8 border-t border-white/10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
                         <!-- Left Column -->
                         <div class="space-y-8">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Resources</h3>
-                                <div class="space-y-6">
+                                <div class="space-y-4 lg:space-y-6">
                                     <a href="/case-studies" class="block group/item">
                                         <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
                                             <div class="text-3xl">📊</div>
@@ -388,7 +414,7 @@ import Layout from '../layouts/Layout.astro';
                         <div class="space-y-8">
                             <div>
                                 <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Legal</h3>
-                                <div class="space-y-6">
+                                <div class="space-y-4 lg:space-y-6">
                                     <a href="/privacy-policy" class="block group/item">
                                         <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
                                             <div class="text-3xl">🔒</div>
@@ -547,26 +573,26 @@ import Layout from '../layouts/Layout.astro';
             
             
             
-            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12 lg:pt-32 lg:pb-16">
-                <div class="text-center space-y-10">
+            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 lg:pt-32 lg:pb-16">
+                <div class="text-center space-y-6 lg:space-y-10">
                     <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
-                    <h1 class="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-tight">
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white leading-tight">
                         We are Canada's<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">#1 SEO Agency</span>
                     </h1>
                     <!-- /cms:text -->
                     
                     <!-- cms:text key="hero.subtitle" label="Hero Subtitle" required="true" -->
-                    <p class="text-lg sm:text-xl lg:text-2xl text-white">
-                        Dominate Google Search Results with Canada's Most Trusted <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO Canada</span> Experts.<br>
+                    <p class="text-base sm:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed">
+                        Dominate Google Search Results with Canada's Most Trusted <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO Canada</span> Experts.<br class="hidden sm:block">
                         Get Guaranteed 1st Page Rankings in 60 Days or Your Money Back - From Coast to Coast
                     </p>
                     <!-- /cms:text -->
                     
                     <!-- CTA Button -->
-                    <div class="mt-8 text-center">
+                    <div class="mt-6 lg:mt-8 text-center">
                         <!-- cms:link key="hero.cta" text="Hero CTA Button" -->
-                        <button class="bg-purple-700 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:bg-purple-800 transition-all duration-300 group inline-flex items-center space-x-2 border border-purple-600/20">
+                        <button class="bg-purple-700 text-white px-6 sm:px-8 lg:px-10 py-3 lg:py-4 rounded-xl font-semibold text-base lg:text-lg hover:bg-purple-800 transition-all duration-300 group inline-flex items-center space-x-2 border border-purple-600/20">
                             <span>Get Started Now</span>
                             <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -576,8 +602,8 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                     
                     <!-- Social Proof Block -->
-                    <div class="mt-12 mb-4">
-                        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+                    <div class="mt-8 lg:mt-12 mb-4">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 lg:gap-16">
                             <!-- Google Reviews -->
                             <div class="flex items-center space-x-4">
                                 <!-- Google Logo -->
@@ -820,9 +846,9 @@ import Layout from '../layouts/Layout.astro';
                     <div class="absolute -top-8 -right-8 text-8xl pointer-events-none select-none transform rotate-12">😠</div>
                     
                     <div class="max-w-7xl mx-auto relative z-10">
-                            <div class="text-center mb-16">
+                            <div class="text-center mb-8 lg:mb-16">
                                 <!-- cms:text key="seo_problems.main_title" label="Main Title" -->
-                                <h2 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight mb-4">
+                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white leading-tight mb-4">
                                     Let's face it.<br>
                                     <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO is broken.</span>
                                 </h2>
@@ -955,7 +981,7 @@ import Layout from '../layouts/Layout.astro';
                     <!-- /cms:text -->
                     
                     <!-- cms:text key="solution_intro.main_title" label="Main Title" -->
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 lg:mb-6">
                         Search Engine <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Mastery Method</span>
                     </h2>
                     <!-- /cms:text -->
@@ -967,9 +993,9 @@ import Layout from '../layouts/Layout.astro';
                     <!-- /cms:text -->
                     
                     <!-- Method Features Grid -->
-                    <div class="mt-16 space-y-8">
+                    <div class="mt-8 lg:mt-16 space-y-6 lg:space-y-8">
                         <!-- Row 1: 65% - 35% -->
-                        <div class="flex gap-8 h-[400px]">
+                        <div class="flex gap-4 lg:gap-8 min-h-[300px] lg:min-h-[400px]">
                             <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col">
                                 <!-- cms:text key="method_features.block1_title" label="Block 1 Title" -->
                                 <h3 class="text-2xl font-black text-white leading-tight mb-6">Our Results vs Competitors</h3>
@@ -981,7 +1007,7 @@ import Layout from '../layouts/Layout.astro';
                                     <div class="bg-gradient-to-br from-gray-900/50 to-black/60 rounded-xl p-4 border border-gray-600/40 relative backdrop-blur-sm h-full">
                                         
                                         <!-- Chart Canvas -->
-                                        <div class="relative h-full min-h-[200px]">
+                                        <div class="relative h-full min-h-[150px] lg:min-h-[200px]">
                                             <canvas id="trafficChart"></canvas>
                                         </div>
                                     </div>
@@ -1215,7 +1241,7 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Row 2: 35% - 65% -->
-                        <div class="flex gap-8 h-[400px]">
+                        <div class="flex gap-4 lg:gap-8 min-h-[300px] lg:min-h-[400px]">
                             <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col group/block">
                                 <!-- cms:text key="method_features.block3_title" label="Block 3 Title" -->
                                 <h3 class="text-2xl font-bold text-white mb-4">Clear Communication</h3>
@@ -1527,7 +1553,7 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Row 3: 65% - 35% -->
-                        <div class="flex gap-8 h-[400px]">
+                        <div class="flex gap-4 lg:gap-8 min-h-[300px] lg:min-h-[400px]">
                             <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 relative overflow-hidden ai-domination-block">
                                 <div class="relative z-10 h-full flex">
                                     <!-- Left Content -->
@@ -1716,13 +1742,13 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- SEO Guarantee Section -->
-        <section class="py-24">
+        <section class="py-12 lg:py-24">
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="text-center">
                     <!-- Main Title -->
                     <!-- cms:text key="guarantee.title" label="Guarantee Title" -->
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 lg:mb-6">
                         The World's Boldest<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO Guarantee</span>
                     </h2>
@@ -1789,7 +1815,7 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- How Our Service Works Section -->
-        <section class="py-24">
+        <section class="py-12 lg:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Section Title & Intro -->
                 <div class="text-center max-w-5xl mx-auto mb-20 relative">
@@ -1798,7 +1824,7 @@ import Layout from '../layouts/Layout.astro';
                     
                     <!-- Main Headline -->
                     <!-- cms:text key="how_it_works.headline" label="Main Headline" -->
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 lg:mb-6">
                         How Does Our<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Guaranteed SEO Service</span> Work?
                     </h2>
@@ -2100,12 +2126,12 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- Social Proof Section -->
-        <section class="py-24">
+        <section class="py-12 lg:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-5xl mx-auto mb-20 relative">
                     <!-- Main Headline -->
                     <!-- cms:text key="social_proof.headline" label="Social Proof Headline" -->
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 lg:mb-6">
                         We're REALLY… REALLY<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Good At This</span>
                     </h2>
@@ -2355,12 +2381,12 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- SEO Services Section -->
-        <section class="py-24">
+        <section class="py-12 lg:py-24">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Main Hero -->
                 <div class="text-center mb-20">
                     <!-- cms:text key="services.guarantee_headline" label="Services Guarantee Headline" -->
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-white leading-tight mb-4 lg:mb-6">
                         SEO Services That Drive<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Real Business Results</span>
                     </h2>
@@ -2373,7 +2399,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <!-- Organic SEO Services Section -->
                 <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                         <!-- Left Content -->
                         <div>
                             <!-- cms:text key="services.organic_title" label="Organic SEO Title" -->
@@ -2428,7 +2454,7 @@ import Layout from '../layouts/Layout.astro';
 
                 <!-- Local Domination Section -->
                 <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                         <!-- Left Image -->
                         <div>
                             <!-- cms:image key="services.local_domination_image" label="Local SEO Image" -->
@@ -2486,14 +2512,14 @@ import Layout from '../layouts/Layout.astro';
                 <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-12 mb-16">
                     <div class="text-center mb-12">
                         <!-- cms:text key="services.gmb_headline" label="GMB Headline" -->
-                        <h3 class="text-3xl sm:text-4xl font-black text-white mb-6">
+                        <h3 class="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black text-white mb-4 lg:mb-6">
                             Dominate Local Search With Our<br>
                             <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Google Maps SEO Strategy</span>
                         </h3>
                         <!-- /cms:text -->
                     </div>
                     
-                    <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                         <!-- Left Content -->
                         <div>
                             <!-- cms:textarea key="services.gmb_cta_content" label="GMB CTA Content" -->
@@ -2539,7 +2565,7 @@ import Layout from '../layouts/Layout.astro';
                         <!-- Right Image -->
                         <div>
                             <!-- cms:image key="services.gmb_image" label="Google Maps SEO Image" -->
-                            <div class="w-[535px] h-[650px] rounded-2xl overflow-hidden mb-8">
+                            <div class="w-full max-w-md mx-auto lg:max-w-lg xl:max-w-xl aspect-[4/5] rounded-2xl overflow-hidden mb-6 lg:mb-8">
                                 <img src="/images/asheville_gm.webp" 
                                      alt="Google Maps SEO Strategy - Local Business Rankings" 
                                      class="w-full h-full object-cover object-left">
@@ -2573,11 +2599,11 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- FAQ Section -->
-        <section class="py-20">
-            <div class="container mx-auto px-6 max-w-4xl">
-                <div class="text-center mb-16">
+        <section class="py-12 lg:py-20">
+            <div class="container mx-auto px-4 sm:px-6 max-w-4xl">
+                <div class="text-center mb-10 lg:mb-16">
                     <!-- cms:text key="faq.headline" label="FAQ Headline" -->
-                    <h2 class="text-4xl sm:text-5xl font-black text-white mb-6">
+                    <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white mb-4 lg:mb-6">
                         Some of the Most<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Frequently Asked Questions</span><br>
                         Around Our SEO Services
@@ -2589,10 +2615,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 1 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq1" class="hidden peer">
-                        <label for="faq1" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq1" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q1.question" label="FAQ Question 1" -->
-                                <h3 class="text-xl font-bold text-white pr-4">How can you guarantee results in 20 and 60 days?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">How can you guarantee results in 20 and 60 days?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2600,7 +2626,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q1.answer" label="FAQ Answer 1" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     We've been in the SEO game for 12 years now, slowly and meticulously perfecting this craft from every data point we get. As a result, we've developed a method that involves taking the opposite approach of most agencies that garners us results up to 3 times faster than traditional SEO. To learn more about this process and why it works so much better, get in touch with us by filling out the form.
@@ -2613,10 +2639,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 2 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq2" class="hidden peer">
-                        <label for="faq2" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq2" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q2.question" label="FAQ Question 2" -->
-                                <h3 class="text-xl font-bold text-white pr-4">How do your guarantees work?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">How do your guarantees work?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2624,7 +2650,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q2.answer" label="FAQ Answer 2" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     We have 2 guarantees that eliminate any, if not all the risk on your behalf. The first guarantee revolves around your initial improvements and assures momentum right out of the gates. In 20 days we promise, that your metrics such as traffic, traffic value, DR, UR, Backlinks and referring domains will show visible improvements or we refund any money you may have invested and pay you $200 on top. Many agencies take 6 months or more to show the kind of progress we make in 20 days. The second guarantee is there to make sure you're receiving real value out of what we're doing. We promise that at least 1 highly valuable keyword will be on the first page within 60 days or we will work for free until we get you there. Of course, our goal is to get many more on the first page by then, and we usually do.
@@ -2637,10 +2663,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 3 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq3" class="hidden peer">
-                        <label for="faq3" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq3" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q3.question" label="FAQ Question 3" -->
-                                <h3 class="text-xl font-bold text-white pr-4">How much does Search Engine Mastery cost?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">How much does Search Engine Mastery cost?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2648,7 +2674,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q3.answer" label="FAQ Answer 3" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     We understand, traditional SEO agencies have packages and pre-price their campaigns. However, we'd proceed with caution with anybody who gives pricing before looking at your site, since not all websites are created equal. To truly understand what it takes to dominate search engines we must first analyze your website, the competition, the industry, the keywords and a host of other variables. All of which, could affect the price to go up or down. If we could price everybody with a 'one size fits all' approach, believe us, we would. Unfortunately, this would lead to varying results for each client since we didn't do the proper homework required to get you to the very top of search engines. If you'd like to get an idea of how much it would cost for your website to rank on the first page for your dream list of keywords, please fill out the form above and get in touch with us.
@@ -2661,10 +2687,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 4 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq4" class="hidden peer">
-                        <label for="faq4" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq4" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q4.question" label="FAQ Question 4" -->
-                                <h3 class="text-xl font-bold text-white pr-4">Is there a difference between SEO and Search Engine Mastery?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">Is there a difference between SEO and Search Engine Mastery?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2672,7 +2698,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q4.answer" label="FAQ Answer 4" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     Search Engine Mastery is simply a better and faster method to SEO. Its end goals are the exact same, but the way we approach SEO garners faster and better results. This is why we call it Search Engine Mastery.
@@ -2685,10 +2711,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 5 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq5" class="hidden peer">
-                        <label for="faq5" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq5" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q5.question" label="FAQ Question 5" -->
-                                <h3 class="text-xl font-bold text-white pr-4">Do you work with businesses in all industries?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">Do you work with businesses in all industries?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2696,7 +2722,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q5.answer" label="FAQ Answer 5" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     Yes, we work with businesses across all industries. Our 12 years of experience has given us insights into various sectors including e-commerce, local services, healthcare, legal, real estate, technology, and more. Each industry has its unique challenges and opportunities, which is why we customize our approach based on your specific market and competition.
@@ -2709,10 +2735,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 6 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq6" class="hidden peer">
-                        <label for="faq6" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq6" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q6.question" label="FAQ Question 6" -->
-                                <h3 class="text-xl font-bold text-white pr-4">How long does it take to see significant results?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">How long does it take to see significant results?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2720,7 +2746,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q6.answer" label="FAQ Answer 6" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     While traditional SEO agencies might tell you to wait 6-12 months, our Search Engine Mastery approach delivers visible improvements within 20 days and significant results within 60 days. However, SEO is a long-term investment, and we continue optimizing and improving your rankings over time to ensure sustained growth and market dominance.
@@ -2733,10 +2759,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- FAQ Item 7 -->
                     <div class="bg-neutral-950 rounded-2xl border border-gray-600/30 overflow-hidden">
                         <input type="checkbox" id="faq7" class="hidden peer">
-                        <label for="faq7" class="block w-full px-8 py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
+                        <label for="faq7" class="block w-full px-4 sm:px-6 lg:px-8 py-4 lg:py-6 text-left cursor-pointer peer-checked:bg-neutral-900/30 hover:bg-neutral-900/50 peer-checked:hover:bg-neutral-900/30 transition-colors">
                             <div class="flex justify-between items-center">
                                 <!-- cms:text key="faq.q7.question" label="FAQ Question 7" -->
-                                <h3 class="text-xl font-bold text-white pr-4">What makes your approach different from other SEO agencies?</h3>
+                                <h3 class="text-lg sm:text-xl font-bold text-white pr-3 lg:pr-4">What makes your approach different from other SEO agencies?</h3>
                                 <!-- /cms:text -->
                                 <svg class="w-6 h-6 text-purple-400 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -2744,7 +2770,7 @@ import Layout from '../layouts/Layout.astro';
                             </div>
                         </label>
                         <div class="max-h-0 overflow-hidden transition-all duration-300 peer-checked:max-h-96">
-                            <div class="px-8 pb-6">
+                            <div class="px-4 sm:px-6 lg:px-8 pb-4 lg:pb-6">
                                 <!-- cms:textarea key="faq.q7.answer" label="FAQ Answer 7" -->
                                 <p class="text-gray-300 leading-relaxed">
                                     Most agencies follow outdated, slow methodologies that take months to show results. Our Search Engine Mastery approach does the opposite - we've identified what actually moves the needle fast and focus on those high-impact strategies first. Combined with our risk-free guarantees and transparent reporting, we deliver results up to 3 times faster than traditional SEO methods.
@@ -2761,7 +2787,7 @@ import Layout from '../layouts/Layout.astro';
         <section class="py-20 overflow-hidden">
             <div class="text-center mb-16">
                 <!-- cms:text key="testimonials.headline" label="Testimonials Headline" -->
-                <h2 class="text-4xl sm:text-5xl font-black text-white mb-6">
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-black text-white mb-4 lg:mb-6">
                     What Our Clients Say About Our
                     <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO Results</span>
                 </h2>
@@ -2779,7 +2805,7 @@ import Layout from '../layouts/Layout.astro';
                 <div class="testimonials-track testimonials-track-left">
                     <!-- cms:repeater key="testimonials.row1" label="First Row Testimonials" -->
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2797,7 +2823,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1494790108755-2616b612b631?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2815,7 +2841,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2833,7 +2859,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2858,7 +2884,7 @@ import Layout from '../layouts/Layout.astro';
                 <div class="testimonials-track testimonials-track-right">
                     <!-- cms:repeater key="testimonials.row2" label="Second Row Testimonials" -->
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2876,7 +2902,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2894,7 +2920,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
@@ -2912,7 +2938,7 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="testimonial-card">
-                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-8 mx-4 w-[600px] h-[280px] flex flex-col">
+                        <div class="bg-neutral-950 border border-gray-700/30 rounded-2xl p-6 lg:p-8 mx-2 lg:mx-4 w-full max-w-sm lg:max-w-lg min-h-[250px] lg:min-h-[280px] flex flex-col">
                             <div class="flex items-center mb-6">
                                 <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=60&h=60&fit=crop&crop=face&auto=format" class="w-12 h-12 rounded-full object-cover mr-4" alt="Client" loading="lazy">
                                 <div>
