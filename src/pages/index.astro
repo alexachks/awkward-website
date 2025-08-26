@@ -125,9 +125,9 @@ import Layout from '../layouts/Layout.astro';
         }
     </style>
     <!-- Floating Header -->
-    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[200] transition-all duration-300 ease-in-out w-full max-w-7xl px-4" id="main-header">
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[200] transition-all duration-300 ease-in-out w-full max-w-7xl px-4" id="main-header" style="transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
         <!-- Floating Header Container -->
-        <header class="header-container bg-neutral-950/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20 transition-all duration-300">
+        <header class="header-container bg-neutral-950/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20 transition-all duration-300" id="main-header-nav" style="transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
         <nav class="max-w-7xl mx-auto px-[15px] sm:px-[15px] lg:px-[15px] xl:max-w-none xl:px-[15px]">
             <div class="flex justify-between items-center py-[15px] xl:justify-start xl:space-x-16">
                 <div class="flex items-center">
@@ -166,21 +166,25 @@ import Layout from '../layouts/Layout.astro';
                     <a href="#contact" class="text-white hover:bg-gray-500/20 font-medium transition-colors px-4 py-2 rounded-xl">Contact</a>
                 </div>
                 
-                <!-- Login and CTA Buttons -->
-                <div class="hidden lg:flex items-center">
-                    <a href="/login" class="text-white hover:bg-gray-500/20 font-medium mr-6 px-4 py-2 rounded-xl transition-colors">Login</a>
-                    <!-- cms:link key="header.cta" text="Header CTA Button" -->
-                    <button class="bg-purple-700 text-white px-4 sm:px-6 lg:px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20 text-sm lg:text-base">
-                        Book a Call
+                <!-- Desktop: Login and CTA Buttons / Mobile: Hamburger Button -->
+                <div class="flex items-center">
+                    <!-- Desktop buttons -->
+                    <div class="hidden lg:flex items-center">
+                        <a href="/login" class="text-white hover:bg-gray-500/20 font-medium mr-6 px-4 py-2 rounded-xl transition-colors">Login</a>
+                        <!-- cms:link key="header.cta" text="Header CTA Button" -->
+                        <button class="bg-purple-700 text-white px-4 sm:px-6 lg:px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20 text-sm lg:text-base">
+                            Book a Call
+                        </button>
+                        <!-- /cms:link -->
+                    </div>
+                    
+                    <!-- Mobile hamburger button -->
+                    <button class="lg:hidden mobile-menu-toggle flex flex-col justify-center items-center space-y-1.5 w-10 h-10 hover:bg-gray-500/20 rounded-lg transition-colors" aria-label="Toggle menu">
+                        <span class="w-6 h-0.5 bg-white transition-all"></span>
+                        <span class="w-6 h-0.5 bg-white transition-all"></span>
+                        <span class="w-6 h-0.5 bg-white transition-all"></span>
                     </button>
-                    <!-- /cms:link -->
                 </div>
-                
-                <button class="lg:hidden mobile-menu-toggle flex flex-col space-y-1 w-6 h-6" aria-label="Toggle menu">
-                    <span class="w-full h-0.5 bg-white transition-all"></span>
-                    <span class="w-full h-0.5 bg-white transition-all"></span>
-                    <span class="w-full h-0.5 bg-white transition-all"></span>
-                </button>
             </div>
             
             <!-- Expandable Mega Menu Section -->
@@ -275,44 +279,355 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                 </div>
             </div>
-        </nav>
-        </header>
-        
-        <!-- Mobile Menu -->
-        <div class="lg:hidden nav-menu bg-neutral-950/90 backdrop-blur-lg border-t border-white/20 absolute left-0 right-0 top-[60px] shadow-xl hidden rounded-b-2xl">
-                <div class="px-4 py-4 space-y-3">
-                    <!-- Mobile Services Menu -->
-                    <div class="mobile-services-menu">
-                        <button class="mobile-services-toggle w-full text-left text-white hover:bg-gray-500/20 font-medium flex items-center justify-between px-4 py-2 rounded-xl transition-colors">
-                            <span>Services</span>
-                            <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                        </button>
-                        <div class="mobile-services-submenu hidden ml-4 mt-2 space-y-2">
-                            <a href="/services/local-seo" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Local SEO</a>
-                            <a href="/services/technical-seo" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Technical SEO</a>
-                            <a href="/services/link-building" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Link Building</a>
-                            <a href="/services/ai-optimization" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">AI Optimization</a>
-                            <a href="/services/content-creation" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Content Creation</a>
+            
+            <!-- Mobile Menu Content (hidden by default) -->
+            <div id="mobile-menu-content" class="mobile-menu-content">
+                <div class="mobile-menu-inner">
+                    <!-- Navigation Links -->
+                    <div class="mobile-nav-section">
+                        <!-- Services with dropdown -->
+                        <div class="mobile-dropdown">
+                            <button class="mobile-nav-toggle" data-target="services">
+                                <span>Services</span>
+                                <svg class="mobile-arrow" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                            <div class="mobile-submenu" id="mobile-services">
+                                <a href="/services/local-seo">Local SEO</a>
+                                <a href="/services/technical-seo">Technical SEO</a>
+                                <a href="/services/link-building">Link Building</a>
+                                <a href="/services/content-strategy">Content Strategy</a>
+                                <a href="/services/ai-optimization">AI Optimization</a>
+                            </div>
                         </div>
+
+                        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+
+                        <!-- Explore with dropdown -->
+                        <div class="mobile-dropdown">
+                            <button class="mobile-nav-toggle" data-target="explore">
+                                <span>Explore</span>
+                                <svg class="mobile-arrow" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                                </svg>
+                            </button>
+                            <div class="mobile-submenu" id="mobile-explore">
+                                <a href="/case-studies">Case Studies</a>
+                                <a href="/media-mentions">Media Mentions</a>
+                                <a href="/blog">Blog</a>
+                            </div>
+                        </div>
+
+                        <a href="#about" class="mobile-nav-link">About</a>
+                        <a href="#contact" class="mobile-nav-link">Contact</a>
                     </div>
-                    
-                    <a href="#pricing" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Pricing</a>
-                    <a href="#explore" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Explore</a>
-                    <a href="#about" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">About</a>
-                    <a href="#contact" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Contact</a>
-                    
-                    <div class="pt-2 border-t border-white/20 space-y-3">
-                        <a href="/login" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Login</a>
-                        <button class="w-full bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20">
-                            Book a Call
-                        </button>
+
+                    <div class="mobile-nav-footer">
+                        <a href="/login" class="mobile-nav-link secondary">Login</a>
+                        <a href="#contact" class="mobile-cta-btn">Book a Call</a>
                     </div>
                 </div>
             </div>
         </nav>
         </header>
+        
+        <!-- Mobile Menu JavaScript -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const mobileToggle = document.querySelector('.mobile-menu-toggle');
+                const headerContainer = document.getElementById('main-header');
+                const headerNav = document.getElementById('main-header-nav');
+                const mobileMenuContent = document.getElementById('mobile-menu-content');
+                const body = document.body;
+                
+                let isMenuOpen = false;
+                
+                // Toggle menu
+                function toggleMobileMenu() {
+                    isMenuOpen = !isMenuOpen;
+                    
+                    if (isMenuOpen) {
+                        // Open menu
+                        headerContainer.classList.add('mobile-expanded');
+                        headerNav.classList.add('mobile-expanded');
+                        mobileToggle.classList.add('active');
+                        body.classList.add('mobile-menu-open');
+                        mobileMenuContent.classList.add('active');
+                    } else {
+                        // Close menu
+                        headerContainer.classList.remove('mobile-expanded');
+                        headerNav.classList.remove('mobile-expanded');
+                        mobileToggle.classList.remove('active');
+                        body.classList.remove('mobile-menu-open');
+                        mobileMenuContent.classList.remove('active');
+                        
+                        // Close all submenus
+                        document.querySelectorAll('.mobile-submenu.active').forEach(sub => {
+                            sub.classList.remove('active');
+                        });
+                        document.querySelectorAll('.mobile-nav-toggle.active').forEach(toggle => {
+                            toggle.classList.remove('active');
+                        });
+                    }
+                }
+                
+                // Toggle menu on hamburger click
+                if (mobileToggle) {
+                    mobileToggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        toggleMobileMenu();
+                    });
+                }
+                
+                // Handle dropdown toggles
+                document.querySelectorAll('.mobile-nav-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = this.dataset.target;
+                        const submenu = document.getElementById('mobile-' + target);
+                        const isActive = this.classList.contains('active');
+                        
+                        // Close all other submenus
+                        document.querySelectorAll('.mobile-submenu.active').forEach(sub => {
+                            if (sub !== submenu) {
+                                sub.classList.remove('active');
+                            }
+                        });
+                        document.querySelectorAll('.mobile-nav-toggle.active').forEach(t => {
+                            if (t !== this) {
+                                t.classList.remove('active');
+                            }
+                        });
+                        
+                        // Toggle current submenu
+                        if (isActive) {
+                            this.classList.remove('active');
+                            submenu.classList.remove('active');
+                        } else {
+                            this.classList.add('active');
+                            submenu.classList.add('active');
+                        }
+                    });
+                });
+                
+                // Close menu when clicking nav links
+                document.querySelectorAll('.mobile-nav-link, .mobile-submenu a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        setTimeout(() => {
+                            isMenuOpen = false;
+                            toggleMobileMenu();
+                        }, 200);
+                    });
+                });
+            });
+        </script>
+        
+        <!-- Mobile Menu CSS -->
+        <style>
+            /* Mobile menu content hidden by default */
+            .mobile-menu-content {
+                opacity: 0;
+                max-height: 0;
+                overflow: hidden;
+                background-color: transparent;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                padding: 0 20px;
+                width: 100%;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            /* Show mobile content when header is expanded */
+            .header-container.mobile-expanded .mobile-menu-content {
+                opacity: 1;
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 20px;
+                background-color: transparent;
+            }
+            
+            /* Parent container expanded state */
+            #main-header.mobile-expanded {
+                height: 100vh !important;
+                top: 0 !important;
+                bottom: 0 !important;
+                left: 0 !important;
+                right: 0 !important;
+                transform: none !important;
+                max-width: none !important;
+                width: 100vw !important;
+                padding: 0 !important;
+            }
+            
+            /* Header expanded state */
+            .header-container.mobile-expanded {
+                height: 100% !important;
+                background-color: #000000 !important;
+                display: flex;
+                flex-direction: column;
+                border-radius: 0 !important;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+            }
+            
+            /* Remove centering and max-width constraints when expanded */
+            .header-container.mobile-expanded nav {
+                max-width: none !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            
+            .header-container.mobile-expanded .flex.justify-between.items-center {
+                padding: 15px !important;
+                max-width: none !important;
+            }
+            
+            /* Navigation section */
+            .mobile-nav-section {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .mobile-nav-link {
+                display: block;
+                color: white;
+                text-decoration: none;
+                font-size: 22px;
+                font-weight: 600;
+                padding: 20px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                transition: color 0.2s ease;
+            }
+            
+            .mobile-nav-link:hover {
+                color: #a855f7;
+            }
+            
+            .mobile-nav-link.secondary {
+                font-size: 18px;
+                font-weight: 500;
+                color: #d1d5db;
+                border-bottom: none;
+                padding: 15px 0;
+            }
+            
+            /* Dropdowns */
+            .mobile-dropdown {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            .mobile-nav-toggle {
+                width: 100%;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 22px;
+                font-weight: 600;
+                padding: 20px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                cursor: pointer;
+                text-align: left;
+                transition: color 0.2s ease;
+            }
+            
+            .mobile-nav-toggle:hover {
+                color: #a855f7;
+            }
+            
+            .mobile-arrow {
+                transition: transform 0.3s ease;
+            }
+            
+            .mobile-nav-toggle.active .mobile-arrow {
+                transform: rotate(180deg);
+            }
+            
+            .mobile-submenu {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                background-color: rgba(255, 255, 255, 0.05);
+            }
+            
+            .mobile-submenu.active {
+                max-height: 400px;
+            }
+            
+            .mobile-submenu a {
+                display: block;
+                color: #d1d5db;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 500;
+                padding: 15px 20px;
+                transition: color 0.2s ease, background-color 0.2s ease;
+            }
+            
+            .mobile-submenu a:hover {
+                color: white;
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+            
+            /* Footer */
+            .mobile-nav-footer {
+                margin-top: 40px;
+                padding-top: 30px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .mobile-cta-btn {
+                display: block;
+                background: #7c3aed;
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 600;
+                padding: 18px;
+                border-radius: 12px;
+                text-align: center;
+                transition: background-color 0.2s ease;
+                margin-top: 10px;
+            }
+            
+            .mobile-cta-btn:hover {
+                background: #6d28d9;
+            }
+            
+            /* Hamburger to X animation */
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            /* Prevent body scroll when menu open */
+            body.mobile-menu-open {
+                overflow: hidden;
+            }
+            
+            /* Hide mobile menu content on desktop */
+            @media (min-width: 1024px) {
+                .mobile-menu-content {
+                    display: none !important;
+                }
+                .header-container.mobile-expanded {
+                    position: relative !important;
+                    height: auto !important;
+                    width: auto !important;
+                }
+            }
+        </style>
         
         <!-- CSS for Expandable Menu -->
         <style>
