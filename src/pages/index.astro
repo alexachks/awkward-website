@@ -125,9 +125,9 @@ import Layout from '../layouts/Layout.astro';
         }
     </style>
     <!-- Floating Header -->
-    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[200] transition-all duration-300 ease-in-out w-full max-w-7xl px-4" id="main-header" style="transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[200] w-full max-w-7xl px-4" id="main-header">
         <!-- Floating Header Container -->
-        <header class="header-container bg-neutral-950/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20 transition-all duration-300" id="main-header-nav" style="transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+        <header class="header-container bg-neutral-950/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20" id="main-header-nav">
         <nav class="max-w-7xl mx-auto px-[15px] sm:px-[15px] lg:px-[15px] xl:max-w-none xl:px-[15px]">
             <div class="flex justify-between items-center py-[15px] xl:justify-start xl:space-x-16">
                 <div class="flex items-center">
@@ -294,11 +294,40 @@ import Layout from '../layouts/Layout.astro';
                                 </svg>
                             </button>
                             <div class="mobile-submenu" id="mobile-services">
-                                <a href="/services/local-seo">Local SEO</a>
-                                <a href="/services/technical-seo">Technical SEO</a>
-                                <a href="/services/link-building">Link Building</a>
-                                <a href="/services/content-strategy">Content Strategy</a>
-                                <a href="/services/ai-optimization">AI Optimization</a>
+                                <!-- Core Services -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Core Services</h4>
+                                    <a href="/services/local-seo">Local SEO</a>
+                                    <a href="/services/technical-seo">Technical SEO</a>
+                                    <a href="/services/link-building">Link Building</a>
+                                    <a href="/services/content-strategy">Content Strategy</a>
+                                    <a href="/services/ai-optimization">AI Optimization</a>
+                                </div>
+                                <!-- Canada -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Canada</h4>
+                                    <a href="/seo/toronto">Toronto</a>
+                                    <a href="/seo/calgary">Calgary</a>
+                                    <a href="/seo/vancouver">Vancouver</a>
+                                    <a href="/seo/montreal">Montreal</a>
+                                    <a href="/seo/ottawa">Ottawa</a>
+                                </div>
+                                <!-- United States -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">United States</h4>
+                                    <a href="/seo/new-york">New York</a>
+                                    <a href="/seo/los-angeles">Los Angeles</a>
+                                    <a href="/seo/chicago">Chicago</a>
+                                    <a href="/seo/miami">Miami</a>
+                                    <a href="/seo/austin">Austin</a>
+                                </div>
+                                <!-- Resources -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Resources</h4>
+                                    <a href="/free-audit">Free Audit</a>
+                                    <a href="/case-studies">Case Studies</a>
+                                    <a href="/blog">Blog</a>
+                                </div>
                             </div>
                         </div>
 
@@ -313,9 +342,28 @@ import Layout from '../layouts/Layout.astro';
                                 </svg>
                             </button>
                             <div class="mobile-submenu" id="mobile-explore">
-                                <a href="/case-studies">Case Studies</a>
-                                <a href="/media-mentions">Media Mentions</a>
-                                <a href="/blog">Blog</a>
+                                <!-- Resources -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Resources</h4>
+                                    <a href="/case-studies">Case Studies</a>
+                                    <a href="/media-mentions">Media Mentions</a>
+                                    <a href="/blog">Blog</a>
+                                </div>
+                                <!-- Legal -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Legal</h4>
+                                    <a href="/privacy-policy">Privacy Policy</a>
+                                    <a href="/terms-of-service">Terms of Service</a>
+                                </div>
+                                <!-- Social Media -->
+                                <div class="mobile-submenu-section">
+                                    <h4 class="mobile-submenu-title">Follow Us</h4>
+                                    <a href="https://twitter.com/awkwardmedia">Twitter</a>
+                                    <a href="https://linkedin.com/company/awkwardmedia">LinkedIn</a>
+                                    <a href="https://instagram.com/awkwardmedia">Instagram</a>
+                                    <a href="https://facebook.com/awkwardmedia">Facebook</a>
+                                    <a href="https://youtube.com/awkwardmedia">YouTube</a>
+                                </div>
                             </div>
                         </div>
 
@@ -324,7 +372,10 @@ import Layout from '../layouts/Layout.astro';
                     </div>
 
                     <div class="mobile-nav-footer">
-                        <a href="/login" class="mobile-nav-link secondary">Login</a>
+                        <div class="mobile-auth-buttons">
+                            <a href="/login" class="mobile-auth-btn">Login</a>
+                            <a href="/register" class="mobile-auth-btn">Register</a>
+                        </div>
                         <a href="#contact" class="mobile-cta-btn">Book a Call</a>
                     </div>
                 </div>
@@ -427,46 +478,47 @@ import Layout from '../layouts/Layout.astro';
         <style>
             /* Mobile menu content hidden by default */
             .mobile-menu-content {
-                opacity: 0;
-                max-height: 0;
-                overflow: hidden;
+                display: none;
+                padding: 20px;
+                width: 100%;
+                flex-direction: column;
+                flex-grow: 1;
+                overflow-y: auto;
+                overflow-x: hidden;
                 background-color: transparent;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
-                padding: 0 20px;
-                width: 100%;
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                max-height: calc(100vh - 80px);
+                -webkit-overflow-scrolling: touch;
             }
             
             /* Show mobile content when header is expanded */
             .header-container.mobile-expanded .mobile-menu-content {
-                opacity: 1;
-                max-height: 100vh;
-                overflow-y: auto;
-                padding: 20px;
-                background-color: transparent;
+                display: flex;
             }
             
             /* Parent container expanded state */
             #main-header.mobile-expanded {
-                height: 100vh !important;
+                position: fixed !important;
                 top: 0 !important;
-                bottom: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
+                bottom: 0 !important;
                 transform: none !important;
                 max-width: none !important;
                 width: 100vw !important;
+                height: 100vh !important;
                 padding: 0 !important;
+                transition: width 0.3s ease-in-out, height 0.3s ease-in-out, max-width 0.3s ease-in-out;
             }
             
             /* Header expanded state */
             .header-container.mobile-expanded {
-                height: 100% !important;
+                height: 100vh !important;
                 background-color: #000000 !important;
                 display: flex;
                 flex-direction: column;
                 border-radius: 0 !important;
-                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
             }
             
             /* Remove centering and max-width constraints when expanded */
@@ -477,63 +529,78 @@ import Layout from '../layouts/Layout.astro';
             }
             
             .header-container.mobile-expanded .flex.justify-between.items-center {
-                padding: 15px !important;
+                padding: 15px 20px !important;
                 max-width: none !important;
+                margin: 0 !important;
             }
             
             /* Navigation section */
             .mobile-nav-section {
                 display: flex;
                 flex-direction: column;
-                gap: 0;
+                gap: 12px;
             }
             
             .mobile-nav-link {
                 display: block;
                 color: white;
                 text-decoration: none;
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 600;
-                padding: 20px 0;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-                transition: color 0.2s ease;
+                padding: 18px 24px;
+                margin: 0;
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
+                transition: all 0.2s ease;
+                min-height: 60px;
+                display: flex;
+                align-items: center;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
             
-            .mobile-nav-link:hover {
-                color: #a855f7;
+            .mobile-nav-link:hover,
+            .mobile-nav-link:active {
+                background-color: rgba(168, 85, 247, 0.15);
+                border-color: rgba(168, 85, 247, 0.3);
+                color: white;
+                transform: translateY(-1px);
             }
             
-            .mobile-nav-link.secondary {
-                font-size: 18px;
-                font-weight: 500;
-                color: #d1d5db;
-                border-bottom: none;
-                padding: 15px 0;
-            }
             
             /* Dropdowns */
             .mobile-dropdown {
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                margin: 0;
             }
             
             .mobile-nav-toggle {
                 width: 100%;
-                background: none;
-                border: none;
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 12px;
                 color: white;
-                font-size: 22px;
+                font-size: 20px;
                 font-weight: 600;
-                padding: 20px 0;
+                padding: 18px 24px;
+                margin: 0;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 cursor: pointer;
                 text-align: left;
-                transition: color 0.2s ease;
+                transition: all 0.2s ease;
+                min-height: 60px;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
             
-            .mobile-nav-toggle:hover {
-                color: #a855f7;
+            .mobile-nav-toggle:hover,
+            .mobile-nav-toggle:active {
+                background-color: rgba(168, 85, 247, 0.15);
+                border-color: rgba(168, 85, 247, 0.3);
+                color: white;
+                transform: translateY(-1px);
             }
             
             .mobile-arrow {
@@ -548,54 +615,137 @@ import Layout from '../layouts/Layout.astro';
                 max-height: 0;
                 overflow: hidden;
                 transition: max-height 0.3s ease;
-                background-color: rgba(255, 255, 255, 0.05);
+                background-color: rgba(0, 0, 0, 0.5);
+                margin-top: 0;
             }
             
             .mobile-submenu.active {
-                max-height: 400px;
+                max-height: none;
+            }
+            
+            /* Mobile submenu sections */
+            .mobile-submenu-section {
+                padding: 16px 0 12px 0;
+            }
+            
+            .mobile-submenu-section:first-child {
+                padding-top: 12px;
+            }
+            
+            .mobile-submenu-section:last-child {
+                padding-bottom: 16px;
+            }
+            
+            .mobile-submenu-title {
+                color: #9ca3af;
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                margin-bottom: 8px;
+                padding: 0 20px;
             }
             
             .mobile-submenu a {
                 display: block;
                 color: #d1d5db;
                 text-decoration: none;
-                font-size: 18px;
+                font-size: 16px;
                 font-weight: 500;
-                padding: 15px 20px;
-                transition: color 0.2s ease, background-color 0.2s ease;
+                padding: 14px 20px;
+                margin: 4px 12px;
+                background-color: rgba(255, 255, 255, 0.03);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 8px;
+                transition: all 0.2s ease;
+                min-height: 48px;
+                display: flex;
+                align-items: center;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
             
-            .mobile-submenu a:hover {
+            .mobile-submenu a:hover,
+            .mobile-submenu a:active {
                 color: white;
-                background-color: rgba(255, 255, 255, 0.1);
+                background-color: rgba(168, 85, 247, 0.1);
+                border-color: rgba(168, 85, 247, 0.2);
+                transform: translateY(-1px);
             }
             
             /* Footer */
+            /* Footer */
             .mobile-nav-footer {
                 margin-top: 40px;
-                padding-top: 30px;
+                padding-top: 24px;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
                 display: flex;
                 flex-direction: column;
-                gap: 20px;
+                gap: 12px;
+            }
+            
+            /* Auth buttons container */
+            .mobile-auth-buttons {
+                display: flex;
+                gap: 12px;
+            }
+            
+            /* Auth buttons (Login/Register) */
+            .mobile-auth-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 1;
+                background-color: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                color: #d1d5db;
+                text-decoration: none;
+                font-size: 16px;
+                font-weight: 600;
+                padding: 16px 20px;
+                border-radius: 12px;
+                transition: all 0.2s ease;
+                min-height: 56px;
+                text-align: center;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            
+            .mobile-auth-btn:hover,
+            .mobile-auth-btn:active {
+                background-color: rgba(255, 255, 255, 0.1);
+                border-color: rgba(255, 255, 255, 0.25);
+                color: white;
+                transform: translateY(-1px);
             }
             
             .mobile-cta-btn {
                 display: block;
-                background: #7c3aed;
+                background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
                 color: white;
                 text-decoration: none;
                 font-size: 18px;
                 font-weight: 600;
-                padding: 18px;
+                padding: 20px 24px;
                 border-radius: 12px;
                 text-align: center;
-                transition: background-color 0.2s ease;
-                margin-top: 10px;
+                transition: all 0.2s ease;
+                margin-top: 16px;
+                min-height: 64px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 2px solid rgba(168, 85, 247, 0.3);
+                box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
             }
             
-            .mobile-cta-btn:hover {
-                background: #6d28d9;
+            .mobile-cta-btn:hover,
+            .mobile-cta-btn:active {
+                background: linear-gradient(135deg, #6d28d9 0%, #7c3aed 100%);
+                transform: translateY(-2px);
+                box-shadow: 0 6px 16px rgba(124, 58, 237, 0.25);
             }
             
             /* Hamburger to X animation */
