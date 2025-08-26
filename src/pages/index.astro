@@ -64,18 +64,72 @@ import Layout from '../layouts/Layout.astro';
             overflow-x: hidden;
         }
         
-        /* Ensure containers don't overflow */
-        * {
+        /* Prevent horizontal scroll - more targeted approach */
+        img, video, iframe {
             max-width: 100%;
+            height: auto;
+        }
+        
+        /* Ensure box-sizing for all elements */
+        * {
             box-sizing: border-box;
         }
+        
+        /* Floating Header Enhancements */
+        #main-header {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .header-container {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        /* Enhanced floating effect on scroll */
+        .header-scrolled {
+            transform: translateY(0);
+        }
+        
+        .header-container:hover {
+            background: rgba(10, 10, 10, 0.95);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Mobile floating adjustments */
+        @media (max-width: 768px) {
+            #main-header {
+                top: 8px;
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+            
+            .header-container {
+                border-radius: 16px;
+            }
+            
+            .mega-menu-content {
+                border-radius: 0 0 16px 16px;
+            }
+        }
+        
+        /* Mega menu floating enhancements */
+        .mega-menu-container {
+            border-radius: 0 0 1rem 1rem;
+            overflow: hidden;
+        }
+        
+        /* Smooth menu transitions */
+        .services-trigger:hover + .mega-menu-container,
+        .mega-menu-container:hover {
+            max-height: 600px !important;
+        }
     </style>
-    <!-- Header with Expandable Menu -->
-    <div class="fixed top-0 left-0 right-0 z-[200] transition-all duration-300 ease-in-out" id="main-header">
-        <!-- Expandable Header -->
-        <header class="header-container bg-neutral-950/80 backdrop-blur-lg border-b border-white/10 transition-all duration-300">
-        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:max-w-none xl:px-16">
-            <div class="flex justify-between items-center h-16 xl:justify-start xl:space-x-16">
+    <!-- Floating Header -->
+    <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-[200] transition-all duration-300 ease-in-out w-full max-w-7xl px-4" id="main-header">
+        <!-- Floating Header Container -->
+        <header class="header-container bg-neutral-950/90 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl shadow-black/20 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-[15px] sm:px-[15px] lg:px-[15px] xl:max-w-none xl:px-[15px]">
+            <div class="flex justify-between items-center py-[15px] xl:justify-start xl:space-x-16">
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-2 text-white hover:text-gray-300 transition-colors">
                         <!-- cms:text key="header.logo.text" label="Logo Text" -->
@@ -85,10 +139,10 @@ import Layout from '../layouts/Layout.astro';
                 </div>
                 
                 <!-- Navigation Menu Container -->
-                <div class="hidden lg:flex items-center space-x-8 xl:flex-1 xl:justify-center xl:space-x-12 relative">
+                <div class="hidden lg:flex items-center space-x-2 xl:flex-1 xl:justify-center xl:space-x-4 relative">
                     <!-- Services Menu Trigger -->
                     <div class="services-trigger cursor-pointer relative">
-                        <span class="text-white hover:text-gray-300 font-medium transition-colors flex items-center space-x-1">
+                        <span class="text-white hover:bg-gray-500/20 font-medium transition-colors flex items-center space-x-1 px-4 py-2 rounded-xl">
                             <span>Services</span>
                             <svg class="w-4 h-4 transition-transform services-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -96,11 +150,11 @@ import Layout from '../layouts/Layout.astro';
                         </span>
                     </div>
                     
-                    <a href="#pricing" class="text-white hover:text-gray-300 font-medium transition-colors">Pricing</a>
+                    <a href="#pricing" class="text-white hover:bg-gray-500/20 font-medium transition-colors px-4 py-2 rounded-xl">Pricing</a>
                     
                     <!-- Explore Menu Trigger -->
                     <div class="explore-trigger cursor-pointer relative">
-                        <span class="text-white hover:text-gray-300 font-medium transition-colors flex items-center space-x-1">
+                        <span class="text-white hover:bg-gray-500/20 font-medium transition-colors flex items-center space-x-1 px-4 py-2 rounded-xl">
                             <span>Explore</span>
                             <svg class="w-4 h-4 transition-transform explore-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
@@ -108,13 +162,13 @@ import Layout from '../layouts/Layout.astro';
                         </span>
                     </div>
                     
-                    <a href="#about" class="text-white hover:text-gray-300 font-medium transition-colors">About</a>
-                    <a href="#contact" class="text-white hover:text-gray-300 font-medium transition-colors">Contact</a>
+                    <a href="#about" class="text-white hover:bg-gray-500/20 font-medium transition-colors px-4 py-2 rounded-xl">About</a>
+                    <a href="#contact" class="text-white hover:bg-gray-500/20 font-medium transition-colors px-4 py-2 rounded-xl">Contact</a>
                 </div>
                 
                 <!-- Login and CTA Buttons -->
                 <div class="hidden lg:flex items-center">
-                    <a href="/login" class="text-white hover:text-gray-300 font-medium mr-6">Login</a>
+                    <a href="/login" class="text-white hover:bg-gray-500/20 font-medium mr-6 px-4 py-2 rounded-xl transition-colors">Login</a>
                     <!-- cms:link key="header.cta" text="Header CTA Button" -->
                     <button class="bg-purple-700 text-white px-4 sm:px-6 lg:px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20 text-sm lg:text-base">
                         Book a Call
@@ -131,237 +185,53 @@ import Layout from '../layouts/Layout.astro';
             
             <!-- Expandable Mega Menu Section -->
             <div class="mega-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
-                <div class="mega-menu-content py-6 lg:py-8 border-t border-white/10">
-                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
-                        <!-- Left Column - Core Services -->
-                        <div class="space-y-4 lg:space-y-6">
-                            <div>
-                                <h3 class="text-xs lg:text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3 lg:mb-4">Core SEO Services</h3>
-                                <div class="space-y-2 lg:space-y-4">
-                                    <a href="/services/local-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🎯</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Local SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Dominate local search results and attract nearby customers.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/services/organic-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🌱</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Organic SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Improve natural search rankings and organic traffic.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/services/technical-seo" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">⚡</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Technical SEO</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Fix technical issues and improve site performance.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/services/link-building" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🔗</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">Link Building</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Build high-quality backlinks to boost authority.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/services/ai-optimization" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🤖</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">AI Optimization</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Leverage AI for advanced SEO strategies.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                <div class="mega-menu-content py-6 lg:py-8 border-t border-white/10 rounded-b-2xl bg-neutral-950/50 backdrop-blur-sm -mx-[15px] sm:-mx-[15px] lg:-mx-[15px] xl:-mx-[15px] px-[15px] sm:px-[15px] lg:px-[15px] xl:px-[15px]">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+                        <!-- Core Services -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Services</h3>
+                            <div class="space-y-1">
+                                <a href="/services/local-seo" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Local SEO</a>
+                                <a href="/services/technical-seo" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Technical SEO</a>
+                                <a href="/services/link-building" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Link Building</a>
+                                <a href="/services/content-strategy" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Content Strategy</a>
+                                <a href="/services/ai-optimization" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">AI Optimization</a>
                             </div>
                         </div>
                         
-                        <!-- Middle Column - SEO Canada -->
-                        <div class="space-y-4 lg:space-y-6">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Canada</h3>
-                                <div class="space-y-2 lg:space-y-4">
-                                    <a href="/seo/toronto" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏙️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Toronto</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Canada's largest city and financial hub.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/calgary" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏔️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Calgary</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Alberta's energy capital and business center.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/mississauga" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏢</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Mississauga</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Major suburban business hub in the GTA.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/edmonton" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🛢️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Edmonton</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Alberta's capital and government center.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/vancouver" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🌊</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Vancouver</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">West Coast tech and trade gateway.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        <!-- Canada -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Canada</h3>
+                            <div class="space-y-1">
+                                <a href="/seo/toronto" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Toronto</a>
+                                <a href="/seo/calgary" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Calgary</a>
+                                <a href="/seo/vancouver" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Vancouver</a>
+                                <a href="/seo/montreal" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Montreal</a>
+                                <a href="/seo/ottawa" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Ottawa</a>
                             </div>
                         </div>
                         
-                        <!-- Right Column - SEO United States -->
-                        <div class="space-y-4 lg:space-y-6">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO United States</h3>
-                                <div class="space-y-2 lg:space-y-4">
-                                    <a href="/seo/new-york" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🗽</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO New York</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">The world's financial and media capital.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/los-angeles" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🌴</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Los Angeles</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Entertainment capital and creative hub.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/san-diego" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">☀️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO San Diego</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Biotech innovation and coastal business.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/san-francisco" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🌉</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO San Francisco</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Silicon Valley's tech epicenter.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/chicago" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏢</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Chicago</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Midwest business hub and trading center.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        <!-- United States -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">United States</h3>
+                            <div class="space-y-1">
+                                <a href="/seo/new-york" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">New York</a>
+                                <a href="/seo/los-angeles" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Los Angeles</a>
+                                <a href="/seo/chicago" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Chicago</a>
+                                <a href="/seo/miami" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Miami</a>
+                                <a href="/seo/austin" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Austin</a>
                             </div>
                         </div>
                         
-                        <!-- Fourth Column - SEO Worldwide -->
-                        <div class="space-y-4 lg:space-y-6">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">SEO Worldwide</h3>
-                                <div class="space-y-2 lg:space-y-4">
-                                    <a href="/seo/london" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏰</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO London</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Global financial capital and business hub.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/dubai" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏗️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Dubai</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Middle East's luxury and trade center.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/zurich" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏔️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Zurich</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Swiss banking and wealth management hub.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/monaco" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🏎️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Monaco</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Ultra-luxury and high-end business haven.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/seo/singapore" class="block group/item">
-                                        <div class="flex items-start space-x-3 p-2 lg:p-3 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-xl lg:text-2xl">🌆</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-1 text-xs lg:text-sm">SEO Singapore</div>
-                                                <div class="text-gray-400 text-xs leading-relaxed hidden lg:block">Asia-Pacific's premier business gateway.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        <!-- Resources -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Resources</h3>
+                            <div class="space-y-1">
+                                <a href="/case-studies" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Case Studies</a>
+                                <a href="/blog" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Blog</a>
+                                <a href="/pricing" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Pricing</a>
+                                <a href="/free-audit" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Free Audit</a>
+                                <a href="/contact" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Contact</a>
                             </div>
                         </div>
                     </div>
@@ -370,71 +240,36 @@ import Layout from '../layouts/Layout.astro';
             
             <!-- Expandable Explore Menu Section -->
             <div class="explore-menu-container overflow-hidden transition-all duration-300" style="max-height: 0;">
-                <div class="explore-menu-content py-8 border-t border-white/10">
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
-                        <!-- Left Column -->
-                        <div class="space-y-8">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Resources</h3>
-                                <div class="space-y-4 lg:space-y-6">
-                                    <a href="/case-studies" class="block group/item">
-                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-3xl">📊</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Case Studies</div>
-                                                <div class="text-gray-400 text-sm leading-relaxed">Real success stories and results from our SEO campaigns and client projects.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/media-mentions" class="block group/item">
-                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-3xl">📰</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Media Mentions</div>
-                                                <div class="text-gray-400 text-sm leading-relaxed">Press coverage, interviews, and industry recognition of our work and expertise.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/blog" class="block group/item">
-                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-3xl">✍️</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Blog</div>
-                                                <div class="text-gray-400 text-sm leading-relaxed">Latest SEO insights, industry trends, and actionable marketing strategies.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                <div class="explore-menu-content py-6 lg:py-8 border-t border-white/10 -mx-[15px] sm:-mx-[15px] lg:-mx-[15px] xl:-mx-[15px] px-[15px] sm:px-[15px] lg:px-[15px] xl:px-[15px]">
+                    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <!-- Resources -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Resources</h3>
+                            <div class="space-y-1">
+                                <a href="/case-studies" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Case Studies</a>
+                                <a href="/media-mentions" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Media Mentions</a>
+                                <a href="/blog" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Blog</a>
                             </div>
                         </div>
                         
-                        <!-- Right Column -->
-                        <div class="space-y-8">
-                            <div>
-                                <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-6">Legal</h3>
-                                <div class="space-y-4 lg:space-y-6">
-                                    <a href="/privacy-policy" class="block group/item">
-                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-3xl">🔒</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Privacy Policy</div>
-                                                <div class="text-gray-400 text-sm leading-relaxed">How we collect, use, and protect your personal information and data.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    
-                                    <a href="/terms-of-service" class="block group/item">
-                                        <div class="flex items-start space-x-4 p-4 rounded-lg hover:bg-white/5 transition-colors">
-                                            <div class="text-3xl">📋</div>
-                                            <div class="flex-1">
-                                                <div class="font-semibold text-white group-hover/item:text-gray-100 mb-2">Terms of Service</div>
-                                                <div class="text-gray-400 text-sm leading-relaxed">Terms and conditions governing the use of our services and website.</div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                        <!-- Legal -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Legal</h3>
+                            <div class="space-y-1">
+                                <a href="/privacy-policy" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Privacy Policy</a>
+                                <a href="/terms-of-service" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Terms of Service</a>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Media -->
+                        <div>
+                            <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Follow Us</h3>
+                            <div class="space-y-1">
+                                <a href="https://twitter.com/awkwardmedia" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Twitter</a>
+                                <a href="https://linkedin.com/company/awkwardmedia" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">LinkedIn</a>
+                                <a href="https://instagram.com/awkwardmedia" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Instagram</a>
+                                <a href="https://facebook.com/awkwardmedia" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">Facebook</a>
+                                <a href="https://youtube.com/awkwardmedia" class="block text-white hover:text-purple-400 text-sm py-1 transition-colors">YouTube</a>
                             </div>
                         </div>
                     </div>
@@ -444,32 +279,32 @@ import Layout from '../layouts/Layout.astro';
         </header>
         
         <!-- Mobile Menu -->
-        <div class="lg:hidden nav-menu bg-neutral-950/90 backdrop-blur-lg border-t border-white/20 absolute left-0 right-0 top-16 shadow-xl hidden">
+        <div class="lg:hidden nav-menu bg-neutral-950/90 backdrop-blur-lg border-t border-white/20 absolute left-0 right-0 top-[60px] shadow-xl hidden rounded-b-2xl">
                 <div class="px-4 py-4 space-y-3">
                     <!-- Mobile Services Menu -->
                     <div class="mobile-services-menu">
-                        <button class="mobile-services-toggle w-full text-left text-white hover:text-gray-300 font-medium flex items-center justify-between">
+                        <button class="mobile-services-toggle w-full text-left text-white hover:bg-gray-500/20 font-medium flex items-center justify-between px-4 py-2 rounded-xl transition-colors">
                             <span>Services</span>
                             <svg class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                             </svg>
                         </button>
                         <div class="mobile-services-submenu hidden ml-4 mt-2 space-y-2">
-                            <a href="/services/local-seo" class="block text-sm text-gray-300 hover:text-gray-100">Local SEO</a>
-                            <a href="/services/technical-seo" class="block text-sm text-gray-300 hover:text-gray-100">Technical SEO</a>
-                            <a href="/services/link-building" class="block text-sm text-gray-300 hover:text-gray-100">Link Building</a>
-                            <a href="/services/ai-optimization" class="block text-sm text-gray-300 hover:text-gray-100">AI Optimization</a>
-                            <a href="/services/content-creation" class="block text-sm text-gray-300 hover:text-gray-100">Content Creation</a>
+                            <a href="/services/local-seo" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Local SEO</a>
+                            <a href="/services/technical-seo" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Technical SEO</a>
+                            <a href="/services/link-building" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Link Building</a>
+                            <a href="/services/ai-optimization" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">AI Optimization</a>
+                            <a href="/services/content-creation" class="block text-sm text-gray-300 hover:bg-gray-500/20 hover:text-white px-3 py-2 rounded-lg transition-colors">Content Creation</a>
                         </div>
                     </div>
                     
-                    <a href="#pricing" class="block text-white hover:text-gray-300 font-medium">Pricing</a>
-                    <a href="#explore" class="block text-white hover:text-gray-300 font-medium">Explore</a>
-                    <a href="#about" class="block text-white hover:text-gray-300 font-medium">About</a>
-                    <a href="#contact" class="block text-white hover:text-gray-300 font-medium">Contact</a>
+                    <a href="#pricing" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Pricing</a>
+                    <a href="#explore" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Explore</a>
+                    <a href="#about" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">About</a>
+                    <a href="#contact" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Contact</a>
                     
                     <div class="pt-2 border-t border-white/20 space-y-3">
-                        <a href="/login" class="block text-white hover:text-gray-300 font-medium">Login</a>
+                        <a href="/login" class="block text-white hover:bg-gray-500/20 font-medium px-4 py-2 rounded-xl transition-colors">Login</a>
                         <button class="w-full bg-purple-700 text-white px-8 py-3 rounded-xl font-semibold hover:bg-purple-800 border border-purple-600/20">
                             Book a Call
                         </button>
@@ -573,7 +408,7 @@ import Layout from '../layouts/Layout.astro';
             
             
             
-            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-10 lg:pt-32 lg:pb-16">
+            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 lg:pt-40 lg:pb-16">
                 <div class="text-center space-y-6 lg:space-y-10">
                     <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
                     <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white leading-tight">
@@ -995,7 +830,7 @@ import Layout from '../layouts/Layout.astro';
                     <!-- Method Features Grid -->
                     <div class="mt-8 lg:mt-16 space-y-6 lg:space-y-8">
                         <!-- Row 1: 65% - 35% -->
-                        <div class="flex gap-4 lg:gap-8 min-h-[300px] lg:min-h-[400px]">
+                        <div class="flex gap-4 lg:gap-8 h-[320px] lg:h-[420px]">
                             <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col">
                                 <!-- cms:text key="method_features.block1_title" label="Block 1 Title" -->
                                 <h3 class="text-2xl font-black text-white leading-tight mb-6">Our Results vs Competitors</h3>
@@ -1197,7 +1032,7 @@ import Layout from '../layouts/Layout.astro';
                                 </p>
                                 <!-- /cms:textarea -->
                             </div>
-                            <div class="flex-[35] group relative bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-between overflow-hidden transition-all duration-300">
+                            <div class="flex-[35] group relative bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col justify-between overflow-hidden transition-all duration-300 h-full">
                                 <!-- Background Pattern -->
                                 <div class="absolute inset-0 opacity-0"></div>
                                 
@@ -1241,8 +1076,8 @@ import Layout from '../layouts/Layout.astro';
                         </div>
                         
                         <!-- Row 2: 35% - 65% -->
-                        <div class="flex gap-4 lg:gap-8 min-h-[300px] lg:min-h-[400px]">
-                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col group/block">
+                        <div class="flex gap-4 lg:gap-8 h-[320px] lg:h-[420px]">
+                            <div class="flex-[35] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col group/block h-full">
                                 <!-- cms:text key="method_features.block3_title" label="Block 3 Title" -->
                                 <h3 class="text-2xl font-bold text-white mb-4">Clear Communication</h3>
                                 <!-- /cms:text -->
@@ -1346,7 +1181,7 @@ import Layout from '../layouts/Layout.astro';
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col">
+                            <div class="flex-[65] bg-neutral-950 rounded-3xl border border-gray-600/30 p-8 flex flex-col h-full">
                                 <!-- cms:text key="method_features.block4_title" label="Block 4 Title" -->
                                 <h3 class="text-2xl font-bold text-white mb-4">Transparent Client Portal</h3>
                                 <!-- /cms:text -->
@@ -1847,10 +1682,10 @@ import Layout from '../layouts/Layout.astro';
                     <!-- Timeline Container -->
                     <div class="max-w-6xl mx-auto relative" id="timeline-container" style="overflow: visible;">
                         <!-- Central Rocket Flight Path -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-600/30"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-px bg-gray-600/30 hidden lg:block"></div>
                         
                         <!-- Rocket Trail -->
-                        <svg class="absolute left-1/2 transform -translate-x-1/2 h-full w-full pointer-events-none" style="max-width: 200px; z-index: 0;">
+                        <svg class="absolute left-1/2 transform -translate-x-1/2 h-full w-full pointer-events-none hidden lg:block" style="max-width: 200px; z-index: 0;">
                             <path id="rocket-trail" fill="none" stroke="url(#trailGradient)" stroke-width="12" stroke-linecap="round" opacity="0.5" d="" filter="url(#fluffy)"/>
                             <defs>
                                 <!-- Enhanced fluffy filter -->
@@ -1892,16 +1727,16 @@ import Layout from '../layouts/Layout.astro';
                         </svg>
                         
                         <!-- Rocket (positioned at trail start) -->
-                        <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50" id="timeline-rocket" style="top: 0;">
+                        <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none z-50 hidden lg:block" id="timeline-rocket" style="top: 0;">
                             <div class="text-5xl">🚀</div>
                         </div>
                         
                         <!-- Timeline Steps -->
                         <div class="relative" style="overflow: visible; z-index: 10;">
                             <!-- Step 1: Start (Left) -->
-                            <div class="flex items-center mb-16 relative">
+                            <div class="flex flex-col lg:flex-row items-center mb-16 relative">
                                 <!-- Left Content -->
-                                <div class="w-5/12 pr-8">
+                                <div class="w-full lg:w-5/12 lg:pr-8 mb-8 lg:mb-0">
                                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left relative z-20">
                                         <!-- cms:text key="how_it_works.step1_title" label="Step 1 Title" -->
                                         <h4 class="text-lg font-bold text-white mb-3">Free SEO Audit & Custom Plan</h4>
@@ -1917,9 +1752,10 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Center Timeline -->
-                                <div class="w-2/12 flex flex-col items-center relative">
+                                <div class="w-full lg:w-2/12 flex flex-col items-center relative mb-8 lg:mb-0">
                                     <!-- Step Number (rotated) -->
-                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">01</div>
+                                    <div class="absolute -left-6 lg:top-1/2 top-0 transform lg:-translate-y-1/2 text-xs font-light text-gray-500/60 hidden lg:block" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">01</div>
+                                    <div class="lg:hidden text-xs font-light text-gray-500/60 mb-2">Step 01</div>
                                     
                                     <!-- Timeline Point -->
                                     <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="0"></div>
@@ -1931,20 +1767,21 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Right Content -->
-                                <div class="w-5/12 pl-8">
+                                <div class="w-full lg:w-5/12 lg:pl-8">
                                 </div>
                             </div>
 
                             <!-- Step 2: 2 Weeks (Right) -->
-                            <div class="flex items-center mb-16 relative">
+                            <div class="flex flex-col lg:flex-row items-center mb-16 relative">
                                 <!-- Left Content -->
-                                <div class="w-5/12 pr-8">
+                                <div class="w-full lg:w-5/12 lg:pr-8 mb-8 lg:mb-0">
                                 </div>
 
                                 <!-- Center Timeline -->
-                                <div class="w-2/12 flex flex-col items-center relative">
+                                <div class="w-full lg:w-2/12 flex flex-col items-center relative mb-8 lg:mb-0">
                                     <!-- Step Number (rotated) -->
-                                    <div class="absolute -right-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">02</div>
+                                    <div class="absolute -right-6 lg:top-1/2 top-0 transform lg:-translate-y-1/2 text-xs font-light text-gray-500/60 hidden lg:block" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">02</div>
+                                    <div class="lg:hidden text-xs font-light text-gray-500/60 mb-2">Step 02</div>
                                     
                                     <!-- Timeline Point -->
                                     <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="1"></div>
@@ -1956,7 +1793,7 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Right Content -->
-                                <div class="w-5/12 pl-8">
+                                <div class="w-full lg:w-5/12 lg:pl-8">
                                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6">
                                         <!-- cms:text key="how_it_works.step2_title" label="Step 2 Title" -->
                                         <h4 class="text-lg font-bold text-white mb-3">AI-Powered Market Domination</h4>
@@ -1970,9 +1807,9 @@ import Layout from '../layouts/Layout.astro';
                             </div>
 
                             <!-- Step 3: 1 Month (Left) -->
-                            <div class="flex items-center mb-16 relative">
+                            <div class="flex flex-col lg:flex-row items-center mb-16 relative">
                                 <!-- Left Content -->
-                                <div class="w-5/12 pr-8">
+                                <div class="w-full lg:w-5/12 lg:pr-8 mb-8 lg:mb-0">
                                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left">
                                         <!-- cms:text key="how_it_works.step3_title" label="Step 3 Title" -->
                                         <h4 class="text-lg font-bold text-white mb-3">Execution at Scale</h4>
@@ -1985,9 +1822,10 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Center Timeline -->
-                                <div class="w-2/12 flex flex-col items-center relative">
+                                <div class="w-full lg:w-2/12 flex flex-col items-center relative mb-8 lg:mb-0">
                                     <!-- Step Number (rotated) -->
-                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">03</div>
+                                    <div class="absolute -left-6 lg:top-1/2 top-0 transform lg:-translate-y-1/2 text-xs font-light text-gray-500/60 hidden lg:block" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">03</div>
+                                    <div class="lg:hidden text-xs font-light text-gray-500/60 mb-2">Step 03</div>
                                     
                                     <!-- Timeline Point -->
                                     <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="2"></div>
@@ -1998,20 +1836,21 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Right Content -->
-                                <div class="w-5/12 pl-8">
+                                <div class="w-full lg:w-5/12 lg:pl-8">
                                 </div>
                             </div>
 
                             <!-- Step 4: 2 Months (Right) -->
-                            <div class="flex items-center mb-16 relative">
+                            <div class="flex flex-col lg:flex-row items-center mb-16 relative">
                                 <!-- Left Content -->
-                                <div class="w-5/12 pr-8">
+                                <div class="w-full lg:w-5/12 lg:pr-8 mb-8 lg:mb-0">
                                 </div>
 
                                 <!-- Center Timeline -->
-                                <div class="w-2/12 flex flex-col items-center relative">
+                                <div class="w-full lg:w-2/12 flex flex-col items-center relative mb-8 lg:mb-0">
                                     <!-- Step Number (rotated) -->
-                                    <div class="absolute -right-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">04</div>
+                                    <div class="absolute -right-6 lg:top-1/2 top-0 transform lg:-translate-y-1/2 text-xs font-light text-gray-500/60 hidden lg:block" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">04</div>
+                                    <div class="lg:hidden text-xs font-light text-gray-500/60 mb-2">Step 04</div>
                                     
                                     <!-- Timeline Point -->
                                     <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="3"></div>
@@ -2022,7 +1861,7 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Right Content -->
-                                <div class="w-5/12 pl-8">
+                                <div class="w-full lg:w-5/12 lg:pl-8">
                                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6">
                                         <!-- cms:text key="how_it_works.step4_title" label="Step 4 Title" -->
                                         <h4 class="text-lg font-bold text-white mb-3">Fast Results Tracking</h4>
@@ -2036,9 +1875,9 @@ import Layout from '../layouts/Layout.astro';
                             </div>
 
                             <!-- Step 5: 90 Days (Left) -->
-                            <div class="flex items-center mb-16 relative">
+                            <div class="flex flex-col lg:flex-row items-center mb-16 relative">
                                 <!-- Left Content -->
-                                <div class="w-5/12 pr-8">
+                                <div class="w-full lg:w-5/12 lg:pr-8 mb-8 lg:mb-0">
                                     <div class="bg-neutral-950 rounded-3xl border border-gray-600/30 p-6 text-left">
                                         <!-- cms:text key="how_it_works.step5_title" label="Step 5 Title" -->
                                         <h4 class="text-lg font-bold text-white mb-3">The Bold Guarantee</h4>
@@ -2051,9 +1890,10 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Center Timeline -->
-                                <div class="w-2/12 flex flex-col items-center relative">
+                                <div class="w-full lg:w-2/12 flex flex-col items-center relative mb-8 lg:mb-0">
                                     <!-- Step Number (rotated) -->
-                                    <div class="absolute -left-6 top-1/2 transform -translate-y-1/2 text-xs font-light text-gray-500/60" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">05</div>
+                                    <div class="absolute -left-6 lg:top-1/2 top-0 transform lg:-translate-y-1/2 text-xs font-light text-gray-500/60 hidden lg:block" style="writing-mode: vertical-lr; text-orientation: upright; letter-spacing: 0.15em;">05</div>
+                                    <div class="lg:hidden text-xs font-light text-gray-500/60 mb-2">Step 05</div>
                                     
                                     <!-- Timeline Point -->
                                     <div class="w-2 h-2 bg-gray-500 rounded-full relative z-10 shadow-sm timeline-point transition-all duration-300" data-step="4"></div>
@@ -2064,7 +1904,7 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
 
                                 <!-- Right Content -->
-                                <div class="w-5/12 pl-8">
+                                <div class="w-full lg:w-5/12 lg:pl-8">
                                 </div>
                             </div>
                         </div>

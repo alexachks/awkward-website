@@ -162,19 +162,26 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
     
-    // Header scroll effect
+    // Floating Header scroll effect
     let lastScrollY = window.scrollY;
-    const header = document.querySelector('.header');
+    const headerContainer = document.querySelector('#main-header');
+    const header = document.querySelector('.header-container');
     
     window.addEventListener('scroll', () => {
         const currentScrollY = window.scrollY;
         
-        if (currentScrollY > 100) {
-            header.style.backgroundColor = 'hsl(var(--background) / 0.95)';
-            header.style.backdropFilter = 'blur(12px)';
-        } else {
-            header.style.backgroundColor = 'hsl(var(--background) / 0.95)';
-            header.style.backdropFilter = 'blur(8px)';
+        if (header) {
+            if (currentScrollY > 50) {
+                header.classList.add('header-scrolled');
+                header.style.background = 'rgba(10, 10, 10, 0.95)';
+                header.style.backdropFilter = 'blur(20px)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.25)';
+            } else {
+                header.classList.remove('header-scrolled');
+                header.style.background = 'rgba(10, 10, 10, 0.90)';
+                header.style.backdropFilter = 'blur(16px)';
+                header.style.borderColor = 'rgba(255, 255, 255, 0.20)';
+            }
         }
         
         lastScrollY = currentScrollY;

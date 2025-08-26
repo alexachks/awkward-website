@@ -280,33 +280,7 @@ const { title = "Awkward Media - Canadian SEO Agency", description = "Profession
                 });
             }
             
-            // Optimized header scroll behavior with throttling
-            let ticking = false;
-            let lastScrollY = 0;
-            const header = document.getElementById('main-header');
-            
-            if (header) {
-                function updateHeader() {
-                    const currentScrollY = window.scrollY;
-                    
-                    if (Math.abs(currentScrollY - lastScrollY) > 5) {
-                        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-                            header.style.transform = 'translateY(-100%)';
-                        } else {
-                            header.style.transform = 'translateY(0)';
-                        }
-                        lastScrollY = currentScrollY;
-                    }
-                    ticking = false;
-                }
-                
-                window.addEventListener('scroll', function() {
-                    if (!ticking) {
-                        requestAnimationFrame(updateHeader);
-                        ticking = true;
-                    }
-                }, { passive: true });
-            }
+            // Header scroll behavior removed - menu stays fixed
             
             // Simplified YouTube autoplay - Only on user interaction or scroll
             const facade = document.querySelector('.youtube-facade');
