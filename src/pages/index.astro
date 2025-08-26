@@ -399,14 +399,20 @@ import Layout from '../layouts/Layout.astro';
                     isMenuOpen = !isMenuOpen;
                     
                     if (isMenuOpen) {
-                        // Open menu
+                        // Open menu - immediately disable transform to prevent animation artifacts
+                        headerContainer.style.transition = 'none';
                         headerContainer.classList.add('mobile-expanded');
                         headerNav.classList.add('mobile-expanded');
                         mobileToggle.classList.add('active');
                         body.classList.add('mobile-menu-open');
                         mobileMenuContent.classList.add('active');
+                        // Re-enable transitions after position is set
+                        setTimeout(() => {
+                            headerContainer.style.transition = '';
+                        }, 50);
                     } else {
-                        // Close menu
+                        // Close menu - disable transitions to prevent jumping
+                        headerContainer.style.transition = 'none';
                         headerContainer.classList.remove('mobile-expanded');
                         headerNav.classList.remove('mobile-expanded');
                         mobileToggle.classList.remove('active');
@@ -420,6 +426,11 @@ import Layout from '../layouts/Layout.astro';
                         document.querySelectorAll('.mobile-nav-toggle.active').forEach(toggle => {
                             toggle.classList.remove('active');
                         });
+                        
+                        // Re-enable transitions after position is restored
+                        setTimeout(() => {
+                            headerContainer.style.transition = '';
+                        }, 50);
                     }
                 }
                 
@@ -478,22 +489,35 @@ import Layout from '../layouts/Layout.astro';
         <style>
             /* Mobile menu content hidden by default */
             .mobile-menu-content {
-                display: none;
-                padding: 20px;
-                width: 100%;
+                display: flex;
                 flex-direction: column;
                 flex-grow: 1;
-                overflow-y: auto;
-                overflow-x: hidden;
+                overflow: hidden;
+                padding: 0 20px;
+                width: 100%;
                 background-color: transparent;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                max-height: calc(100vh - 80px);
+                border-top: 1px solid transparent;
+                max-height: 0;
                 -webkit-overflow-scrolling: touch;
+                
+                /* Animation properties */
+                opacity: 0;
+                transform: translateY(-20px);
+                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transition-delay: 0.1s;
+                pointer-events: none;
             }
             
             /* Show mobile content when header is expanded */
             .header-container.mobile-expanded .mobile-menu-content {
-                display: flex;
+                opacity: 1;
+                transform: translateY(0);
+                pointer-events: auto;
+                max-height: calc(100vh - 80px);
+                padding: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                overflow-y: auto;
+                overflow-x: hidden;
             }
             
             /* Parent container expanded state */
@@ -508,7 +532,7 @@ import Layout from '../layouts/Layout.astro';
                 width: 100vw !important;
                 height: 100vh !important;
                 padding: 0 !important;
-                transition: width 0.3s ease-in-out, height 0.3s ease-in-out, max-width 0.3s ease-in-out;
+                /* No transition for positioning properties to prevent jumping */
             }
             
             /* Header expanded state */
@@ -518,7 +542,7 @@ import Layout from '../layouts/Layout.astro';
                 display: flex;
                 flex-direction: column;
                 border-radius: 0 !important;
-                transition: height 0.3s ease-in-out, background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
+                transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
             }
             
             /* Remove centering and max-width constraints when expanded */
