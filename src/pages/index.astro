@@ -84,9 +84,9 @@ import Layout from '../layouts/Layout.astro';
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        /* Enhanced floating effect on scroll */
+        /* Enhanced floating effect on scroll - УБИРАЕМ чтобы избежать конфликтов */
         .header-scrolled {
-            transform: translateY(0);
+            /* Трансформации управляются через специальные правила ниже */
         }
         
         .header-container:hover {
@@ -388,36 +388,28 @@ import Layout from '../layouts/Layout.astro';
             document.addEventListener('DOMContentLoaded', function() {
                 const mobileToggle = document.querySelector('.mobile-menu-toggle');
                 const headerContainer = document.getElementById('main-header');
-                const headerNav = document.getElementById('main-header-nav');
-                const mobileMenuContent = document.getElementById('mobile-menu-content');
                 const body = document.body;
                 
                 let isMenuOpen = false;
+                let isAnimating = false;
                 
-                // Toggle menu
+                // Toggle mobile menu
                 function toggleMobileMenu() {
+                    if (isAnimating) return; // Предотвращаем множественные клики
+                    
+                    isAnimating = true;
                     isMenuOpen = !isMenuOpen;
                     
                     if (isMenuOpen) {
-                        // Open menu - immediately disable transform to prevent animation artifacts
-                        headerContainer.style.transition = 'none';
-                        headerContainer.classList.add('mobile-expanded');
-                        headerNav.classList.add('mobile-expanded');
+                        // Open menu
+                        headerContainer.classList.add('mobile-menu-expanded');
                         mobileToggle.classList.add('active');
                         body.classList.add('mobile-menu-open');
-                        mobileMenuContent.classList.add('active');
-                        // Re-enable transitions after position is set
-                        setTimeout(() => {
-                            headerContainer.style.transition = '';
-                        }, 50);
                     } else {
-                        // Close menu - disable transitions to prevent jumping
-                        headerContainer.style.transition = 'none';
-                        headerContainer.classList.remove('mobile-expanded');
-                        headerNav.classList.remove('mobile-expanded');
+                        // Close menu
+                        headerContainer.classList.remove('mobile-menu-expanded');
                         mobileToggle.classList.remove('active');
                         body.classList.remove('mobile-menu-open');
-                        mobileMenuContent.classList.remove('active');
                         
                         // Close all submenus
                         document.querySelectorAll('.mobile-submenu.active').forEach(sub => {
@@ -426,21 +418,31 @@ import Layout from '../layouts/Layout.astro';
                         document.querySelectorAll('.mobile-nav-toggle.active').forEach(toggle => {
                             toggle.classList.remove('active');
                         });
-                        
-                        // Re-enable transitions after position is restored
-                        setTimeout(() => {
-                            headerContainer.style.transition = '';
-                        }, 50);
                     }
+                    
+                    // Разрешаем следующий клик через 350ms
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 350);
                 }
                 
-                // Toggle menu on hamburger click
+                // Handle hamburger button click
                 if (mobileToggle) {
                     mobileToggle.addEventListener('click', function(e) {
                         e.preventDefault();
+                        e.stopPropagation();
                         toggleMobileMenu();
                     });
                 }
+                
+                // Close menu when clicking on navigation links
+                document.querySelectorAll('.mobile-nav-link, .mobile-submenu a').forEach(link => {
+                    link.addEventListener('click', function() {
+                        if (isMenuOpen) {
+                            setTimeout(() => toggleMobileMenu(), 200);
+                        }
+                    });
+                });
                 
                 // Handle dropdown toggles
                 document.querySelectorAll('.mobile-nav-toggle').forEach(toggle => {
@@ -487,76 +489,92 @@ import Layout from '../layouts/Layout.astro';
         
         <!-- Mobile Menu CSS -->
         <style>
-            /* Mobile menu content hidden by default */
+            /* ПОЛНОСТЬЮ убираем transitions для элементов с конфликтующими transform */
+            #main-header {
+                /* НЕТ TRANSITIONS - чтобы избежать скачков */
+            }
+            
+            .header-container {
+                transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                           border-radius 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                           height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            /* Base mobile menu styles */
             .mobile-menu-content {
-                display: flex;
+                display: none;
                 flex-direction: column;
-                flex-grow: 1;
+                width: 100%;
+                height: 0;
+                opacity: 0;
                 overflow: hidden;
                 padding: 0 20px;
-                width: 100%;
-                background-color: transparent;
                 border-top: 1px solid transparent;
-                max-height: 0;
-                -webkit-overflow-scrolling: touch;
-                
-                /* Animation properties */
-                opacity: 0;
-                transform: translateY(-20px);
-                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-                transition-delay: 0.1s;
-                pointer-events: none;
+                transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                           height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+                           border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             }
             
-            /* Show mobile content when header is expanded */
-            .header-container.mobile-expanded .mobile-menu-content {
-                opacity: 1;
-                transform: translateY(0);
-                pointer-events: auto;
-                max-height: calc(100vh - 80px);
-                padding: 20px;
-                border-top: 1px solid rgba(255, 255, 255, 0.1);
-                overflow-y: auto;
-                overflow-x: hidden;
-            }
-            
-            /* Parent container expanded state */
-            #main-header.mobile-expanded {
+            /* Mobile menu expanded state - НЕ ИСПОЛЬЗУЕМ transform в transition */
+            .mobile-menu-expanded {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
                 right: 0 !important;
                 bottom: 0 !important;
+                z-index: 1000;
                 transform: none !important;
                 max-width: none !important;
                 width: 100vw !important;
                 height: 100vh !important;
                 padding: 0 !important;
-                /* No transition for positioning properties to prevent jumping */
             }
             
-            /* Header expanded state */
-            .header-container.mobile-expanded {
+            /* СПЕЦИАЛЬНОЕ правило - когда меню НЕ открыто, но есть .header-scrolled */
+            #main-header:not(.mobile-menu-expanded).header-scrolled {
+                /* Разрешаем только translateY, НЕ трогаем translateX */
+                transform: translate(-50%, 0) !important;
+            }
+            
+            /* Базовое состояние без скролла */
+            #main-header:not(.mobile-menu-expanded):not(.header-scrolled) {
+                /* Стандартное центрирование */
+                transform: translate(-50%, 0) !important;
+            }
+            
+            .mobile-menu-expanded .header-container {
                 height: 100vh !important;
                 background-color: #000000 !important;
+                border-radius: 0 !important;
                 display: flex;
                 flex-direction: column;
-                border-radius: 0 !important;
-                transition: background-color 0.3s ease-in-out, border-radius 0.3s ease-in-out !important;
             }
             
-            /* Remove centering and max-width constraints when expanded */
-            .header-container.mobile-expanded nav {
+            /* Фиксированные отступы для предотвращения сдвигов */
+            .mobile-menu-expanded .flex.justify-between.items-center {
+                padding: 15px !important;
+                flex-shrink: 0;
+            }
+            
+            .mobile-menu-expanded .mobile-menu-content {
+                display: flex;
+                height: auto;
+                opacity: 1;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 20px;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+                flex-grow: 1;
+                -webkit-overflow-scrolling: touch;
+                transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+            }
+            
+            .mobile-menu-expanded nav {
                 max-width: none !important;
                 margin: 0 !important;
                 padding: 0 !important;
             }
             
-            .header-container.mobile-expanded .flex.justify-between.items-center {
-                padding: 15px 20px !important;
-                max-width: none !important;
-                margin: 0 !important;
-            }
             
             /* Navigation section */
             .mobile-nav-section {
@@ -897,10 +915,10 @@ import Layout from '../layouts/Layout.astro';
             
             
             
-            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-10 lg:pt-40 lg:pb-16">
+            <div class="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-10 lg:pt-40 lg:pb-16">
                 <div class="text-center space-y-6 lg:space-y-10">
                     <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-8xl font-black text-white leading-tight">
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight">
                         We are Canada's<br>
                         <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">#1 SEO Agency</span>
                     </h1>
@@ -1164,72 +1182,79 @@ import Layout from '../layouts/Layout.astro';
             </div>
             
             <!-- SEO Problems Section -->
-            <div class="seo-problems-section relative mt-8 z-50 flex justify-center" style="margin-left: 40px; margin-right: 40px; margin-bottom: 40px;">
-                <div class="relative pt-20 pb-4 sm:pb-6 lg:pb-8 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white inline-block border border-gray-600/30" style="border-radius: 40px;">
+            <div class="seo-problems-section relative mt-8 z-50 mx-4 sm:mx-6 lg:mx-10 xl:mx-40 mb-8 sm:mb-12 lg:mb-40">
+                <div class="relative pt-12 sm:pt-16 lg:pt-20 pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-8 bg-gray-900 text-white rounded-2xl sm:rounded-3xl lg:rounded-[40px] border border-gray-600/30">
                     <!-- Floating Angry Emoji -->
-                    <div class="absolute -top-8 -right-8 text-8xl pointer-events-none select-none transform rotate-12">😠</div>
+                    <div class="absolute -top-4 sm:-top-6 lg:-top-8 -right-4 sm:-right-6 lg:-right-8 text-4xl sm:text-6xl lg:text-8xl pointer-events-none select-none transform rotate-12">😠</div>
                     
                     <div class="max-w-7xl mx-auto relative z-10">
                             <div class="text-center mb-8 lg:mb-16">
                                 <!-- cms:text key="seo_problems.main_title" label="Main Title" -->
-                                <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white leading-tight mb-4">
+                                <h2 class="text-4xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-black text-white leading-tight mb-4">
                                     Let's face it.<br>
                                     <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">SEO is broken.</span>
                                 </h2>
                                 <!-- /cms:text -->
                                 
                                 <!-- cms:text key="seo_problems.section_subtitle" label="Section Subtitle" -->
-                                <p class="text-lg sm:text-xl lg:text-2xl text-white mt-6">
+                                <p class="text-base sm:text-lg lg:text-2xl text-white mt-4 sm:mt-6 leading-relaxed px-2 sm:px-0">
                                     How traditional SEO agencies fail most businesses
                                 </p>
                                 <!-- /cms:text -->
                             </div>
 
-                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
                                 <!-- Card 1 - Take too long to see results -->
-                                <div class="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-600/30 hover:border-purple-500/50 transition-all duration-300 overflow-hidden h-full flex flex-col">
+                                <div class="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-600/30 hover:border-purple-500/50 transition-all duration-300 overflow-hidden h-full flex flex-col">
                                     <!-- Background Gradient Overlay -->
                                     <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     
                                     <!-- Content -->
                                     <div class="relative z-10">
                                         <!-- Card Header -->
-                                        <div class="flex items-center space-x-4 mb-6">
-                                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="grid grid-cols-[auto_1fr] gap-3 sm:gap-4 mb-4">
+                                            <!-- Mobile Icon -->
+                                            <div class="flex lg:hidden items-center justify-center" style="width:48px;height:48px;flex-shrink:0;background:linear-gradient(135deg,#a855f7,#7c3aed);border-radius:0.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                            </div>
+                                            <!-- Desktop Icon -->
+                                            <div class="hidden lg:flex items-center justify-center" style="width:72px;height:72px;flex-shrink:0;background:linear-gradient(135deg,#a855f7,#7c3aed);border-radius:0.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+                                                <svg class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                                 </svg>
                                             </div>
                                             
                                             <!-- cms:text key="seo_problems.card1_title" label="Card 1 Title" -->
-                                            <h3 class="text-xl font-bold text-white group-hover:text-gray-100 transition-colors">Slow SEO Results Kill Revenue Growth</h3>
+                                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-gray-100 transition-colors leading-tight flex items-center min-h-[48px] sm:min-h-[56px] lg:min-h-[64px]">Slow SEO Results<br>Kill Revenue Growth</h3>
                                             <!-- /cms:text -->
                                         </div>
                                         
-                                        <div class="space-y-5 flex-1">
+                                        <div class="space-y-4 sm:space-y-5 flex-1">
                                             <!-- cms:textarea key="seo_problems.card1_stat1" label="Card 1 Statistic 1" -->
-                                            <p class="text-gray-300 leading-relaxed flex-1 overflow-hidden line-clamp-3">
-                                                Traditional SEO agencies follow outdated strategies that take <span class="text-purple-400 font-bold text-lg">12-18 months</span> to show meaningful organic traffic growth, while your competitors capture market share daily.
+                                            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                                                Traditional SEO agencies follow outdated strategies that take <span class="text-purple-400 font-bold text-base sm:text-lg">12-18 months</span> to show meaningful organic traffic growth, while your competitors capture market share daily.
                                             </p>
                                             <!-- /cms:textarea -->
                                             
                                             <!-- cms:textarea key="seo_problems.card1_stat2" label="Card 1 Statistic 2" -->
-                                            <p class="text-gray-300 leading-relaxed flex-1 overflow-hidden line-clamp-3">
-                                                Most agencies focus on vanity metrics like keyword rankings instead of <span class="text-purple-400 font-bold text-lg">revenue-driving search visibility</span> that converts visitors into paying customers.
+                                            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                                                Most agencies focus on vanity metrics like keyword rankings instead of <span class="text-purple-400 font-bold text-base sm:text-lg">revenue-driving search visibility</span> that converts visitors into paying customers.
                                             </p>
                                             <!-- /cms:textarea -->
                                         </div>
                                         
                                         <!-- Impact Stats - Always at bottom -->
-                                        <div class="bg-neutral-950/30 backdrop-blur-sm border border-purple-700/40 rounded-2xl p-6 mt-6 group-hover:bg-neutral-950/40 transition-colors">
+                                        <div class="bg-neutral-950/30 backdrop-blur-sm border border-purple-700/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 mt-4 sm:mt-6 group-hover:bg-neutral-950/40 transition-colors">
                                             <!-- cms:textarea key="seo_problems.card1_impact" label="Card 1 Impact" -->
-                                            <div class="grid grid-cols-2 gap-4 text-center">
+                                            <div class="grid grid-cols-2 gap-3 sm:gap-4 text-center">
                                                 <div>
-                                                    <div class="text-3xl font-black text-purple-400 mb-2">18 Mo</div>
+                                                    <div class="text-2xl sm:text-3xl font-black text-purple-400 mb-1 sm:mb-2">18 Mo</div>
                                                     <div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Time to ROI</div>
                                                 </div>
                                                 <div>
-                                                    <div class="text-3xl font-black text-purple-400 mb-2">-73%</div>
+                                                    <div class="text-2xl sm:text-3xl font-black text-purple-400 mb-1 sm:mb-2">-73%</div>
                                                     <div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Market share loss</div>
                                                 </div>
                                             </div>
@@ -1239,49 +1264,56 @@ import Layout from '../layouts/Layout.astro';
                                 </div>
                                 
                                 <!-- Card 2 - SEO Agencies Make Empty Promises -->
-                                <div class="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-600/30 hover:border-purple-500/50 transition-all duration-300 overflow-hidden h-full flex flex-col">
+                                <div class="group relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-gray-600/30 hover:border-purple-500/50 transition-all duration-300 overflow-hidden h-full flex flex-col">
                                     <!-- Background Gradient Overlay -->
                                     <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                     
                                     <!-- Content -->
                                     <div class="relative z-10">
                                         <!-- Card Header -->
-                                        <div class="flex items-center space-x-4 mb-6">
-                                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                                                <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <div class="grid grid-cols-[auto_1fr] gap-3 sm:gap-4 mb-4">
+                                            <!-- Mobile Icon -->
+                                            <div class="flex lg:hidden items-center justify-center" style="width:48px;height:48px;flex-shrink:0;background:linear-gradient(135deg,#a855f7,#7c3aed);border-radius:0.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                                                </svg>
+                                            </div>
+                                            <!-- Desktop Icon -->
+                                            <div class="hidden lg:flex items-center justify-center" style="width:72px;height:72px;flex-shrink:0;background:linear-gradient(135deg,#a855f7,#7c3aed);border-radius:0.75rem;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1)">
+                                                <svg class="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
                                                 </svg>
                                             </div>
                                             
                                             <!-- cms:text key="seo_problems.card2_title" label="Card 2 Title" -->
-                                            <h3 class="text-xl font-bold text-white group-hover:text-gray-100 transition-colors">Zero-Accountability SEO Contracts</h3>
+                                            <h3 class="text-xl sm:text-2xl font-bold text-white group-hover:text-gray-100 transition-colors leading-tight flex items-center min-h-[48px] sm:min-h-[56px] lg:min-h-[64px]">Zero-Accountability<br>SEO Contracts</h3>
                                             <!-- /cms:text -->
                                         </div>
                                         
-                                        <div class="space-y-5 flex-1">
+                                        <div class="space-y-4 sm:space-y-5 flex-1">
                                             <!-- cms:textarea key="seo_problems.card2_desc1" label="Card 2 Description 1" -->
-                                            <p class="text-gray-300 leading-relaxed flex-1 overflow-hidden line-clamp-3">
-                                                Most SEO agencies promise <span class="text-purple-400 font-bold text-lg">guaranteed page 1 rankings</span> with vague contracts that offer no financial recourse when they fail to deliver measurable business growth.
+                                            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                                                Most SEO agencies promise <span class="text-purple-400 font-bold text-base sm:text-lg">guaranteed page 1 rankings</span> with vague contracts that offer no financial recourse when they fail to deliver measurable business growth.
                                             </p>
                                             <!-- /cms:textarea -->
                                             
                                             <!-- cms:textarea key="seo_problems.card2_desc2" label="Card 2 Description 2" -->
-                                            <p class="text-gray-300 leading-relaxed flex-1 overflow-hidden line-clamp-3">
-                                                They lock businesses into <span class="text-purple-400 font-bold text-lg">12-month contracts</span> without performance guarantees, leaving you paying for failed strategies while competitors dominate search results.
+                                            <p class="text-sm sm:text-base text-gray-300 leading-relaxed">
+                                                They lock businesses into <span class="text-purple-400 font-bold text-base sm:text-lg">12-month contracts</span> without performance guarantees, leaving you paying for failed strategies while competitors dominate search results.
                                             </p>
                                             <!-- /cms:textarea -->
                                         </div>
                                         
                                         <!-- Impact Stats - Always at bottom -->
-                                        <div class="bg-neutral-950/30 backdrop-blur-sm border border-purple-700/40 rounded-2xl p-6 mt-6 group-hover:bg-neutral-950/40 transition-colors">
+                                        <div class="bg-neutral-950/30 backdrop-blur-sm border border-purple-700/40 rounded-xl sm:rounded-2xl p-4 sm:p-6 mt-4 sm:mt-6 group-hover:bg-neutral-950/40 transition-colors">
                                             <!-- cms:textarea key="seo_problems.card2_impact" label="Card 2 Impact" -->
-                                            <div class="grid grid-cols-2 gap-4 text-center">
+                                            <div class="grid grid-cols-2 gap-3 sm:gap-4 text-center">
                                                 <div>
-                                                    <div class="text-3xl font-black text-purple-400 mb-2">$50K+</div>
+                                                    <div class="text-2xl sm:text-3xl font-black text-purple-400 mb-1 sm:mb-2">$50K+</div>
                                                     <div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Contract waste</div>
                                                 </div>
                                                 <div>
-                                                    <div class="text-3xl font-black text-purple-400 mb-2">0%</div>
+                                                    <div class="text-2xl sm:text-3xl font-black text-purple-400 mb-1 sm:mb-2">0%</div>
                                                     <div class="text-gray-400 text-xs font-medium uppercase tracking-wider">Revenue guarantee</div>
                                                 </div>
                                             </div>
@@ -3820,6 +3852,9 @@ import Layout from '../layouts/Layout.astro';
             }
             
             
+            
+            
+            
             /* Mobile trusted companies grid fix - bottom row items only */
             .logo-cell:nth-child(n+7) {
                 border-bottom: none !important;
@@ -4138,6 +4173,529 @@ import Layout from '../layouts/Layout.astro';
             
             .testimonials-block .text-5xl {
                 font-size: 3rem;
+            }
+        }
+    </style>
+
+    <!-- Search Engine Mastery Method Mobile Adaptation Styles -->
+    <style>
+        /* Mobile adaptation for Solution Intro Section */
+        @media (max-width: 768px) {
+            .solution-intro-section {
+                margin-left: 16px !important;
+                margin-right: 16px !important;
+                margin-bottom: 24px !important;
+            }
+            
+            /* Method Features Grid - Stack vertically on mobile */
+            .solution-intro-section .space-y-6 > div {
+                flex-direction: column !important;
+                height: auto !important;
+                gap: 24px !important;
+            }
+            
+            /* Remove flex ratios and set full width for mobile blocks */
+            .solution-intro-section .flex-\[65\],
+            .solution-intro-section .flex-\[35\] {
+                flex: none !important;
+                width: 100% !important;
+                min-height: auto !important;
+            }
+            
+            /* Adjust block padding on mobile */
+            .solution-intro-section .bg-neutral-950 {
+                padding: 20px !important;
+                border-radius: 20px !important;
+            }
+            
+            /* Chart container mobile optimization */
+            .solution-intro-section .bg-gradient-to-br {
+                padding: 16px !important;
+                min-height: 200px !important;
+            }
+            
+            .solution-intro-section .relative.h-full.min-h-\[150px\] {
+                min-height: 180px !important;
+            }
+            
+            /* Gmail interface mobile optimization - Fixed height to prevent expansion */
+            .solution-intro-section .bg-gray-900.rounded-xl {
+                min-height: 250px !important;
+                max-height: 250px !important; /* Prevent height changes on hover */
+                height: 250px !important; /* Fixed height */
+                overflow: hidden !important; /* Hide overflow content */
+            }
+            
+            /* Fix Gmail email list container height */
+            .solution-intro-section .bg-gray-900.rounded-xl .bg-gray-900 {
+                height: auto !important;
+                max-height: 200px !important; /* Leave space for header */
+                overflow-y: hidden !important; /* Hide vertical scroll, content will be clipped */
+            }
+            
+            /* CRM dashboard mobile optimization */
+            .solution-intro-section .bg-gray-900.rounded-xl.border.border-gray-700.overflow-hidden.shadow-lg.flex {
+                min-height: 280px !important;
+                flex-direction: column !important;
+            }
+            
+            /* This selector is overridden by more specific CRM block styles below */
+            
+            /* AI Brain container mobile size */
+            .ai-brain-container {
+                width: 10rem !important;
+                height: 10rem !important;
+                margin-top: 1rem !important;
+            }
+            
+            /* iPhone Mockup for CRM Dashboard - Top Half Only */
+            .solution-intro-section .bg-gray-900.rounded-xl.border.border-gray-700.overflow-hidden.shadow-lg.flex.group\/crm {
+                /* Create wide iPhone-like container showing only top half */
+                background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+                border-radius: 1.5rem 1.5rem 0 0 !important; /* Only round top corners */
+                border: 3px solid #374151 !important;
+                border-bottom: none !important; /* Remove bottom border for crop effect */
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+                height: 280px !important;
+                width: 100% !important;
+                max-width: 280px !important;
+                margin: 0 auto !important;
+                position: relative !important;
+                flex-direction: column !important;
+                padding: 16px !important;
+                padding-bottom: 0 !important; /* Remove bottom padding for crop */
+                overflow: hidden !important;
+            }
+            
+            /* iPhone Camera Notch */
+            .solution-intro-section .group\/crm::before {
+                content: '' !important;
+                position: absolute !important;
+                top: 12px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 100px !important;
+                height: 22px !important;
+                background: #000 !important;
+                border-radius: 14px !important;
+                z-index: 10 !important;
+            }
+            
+            /* Remove home indicator since iPhone is cropped */
+            .solution-intro-section .group\/crm::after {
+                display: none !important;
+            }
+            
+            /* Hide desktop sidebar completely on mobile */
+            .solution-intro-section .w-16.group-hover\/crm\:w-40 {
+                display: none !important;
+            }
+            
+            /* Mobile CRM App Screen - Extended for cropped iPhone */
+            .solution-intro-section .group\/crm .flex-1.p-6 {
+                padding: 12px !important;
+                margin-top: 32px !important;
+                margin-bottom: 0 !important; /* Remove bottom margin for crop */
+                background: linear-gradient(135deg, #1f2937 0%, #111827 100%) !important;
+                border-radius: 12px 12px 0 0 !important; /* Round only top corners */
+                overflow-y: visible !important; /* Allow content to extend beyond */
+                flex: 1 !important;
+                height: auto !important;
+                padding-bottom: 20px !important; /* Extra padding for cropped content */
+            }
+            
+            /* Mobile App Header */
+            .solution-intro-section .group\/crm h4 {
+                font-size: 0.875rem !important;
+                text-align: center !important;
+                margin-bottom: 12px !important;
+                color: #d1d5db !important;
+                font-weight: 600 !important;
+            }
+            
+            /* Status Bar Simulation */
+            .solution-intro-section .group\/crm h4::before {
+                content: '9:41 AM' !important;
+                position: absolute !important;
+                top: 6px !important;
+                left: 16px !important;
+                font-size: 0.75rem !important;
+                color: #ffffff !important;
+                font-weight: 500 !important;
+            }
+            
+            .solution-intro-section .group\/crm h4::after {
+                content: '⚡ 100%' !important;
+                position: absolute !important;
+                top: 6px !important;
+                right: 16px !important;
+                font-size: 0.75rem !important;
+                color: #ffffff !important;
+                font-weight: 500 !important;
+            }
+            
+            /* Mobile Stats - Use horizontal layout for wider iPhone */
+            .solution-intro-section .group\/crm .grid.grid-cols-3 {
+                display: grid !important;
+                grid-template-columns: 1fr 1fr !important;
+                gap: 8px !important;
+            }
+            
+            /* Third card spans full width */
+            .solution-intro-section .group\/crm .bg-gray-800\/50:nth-child(3) {
+                grid-column: 1 / -1 !important;
+            }
+            
+            .solution-intro-section .group\/crm .bg-gray-800\/50 {
+                padding: 10px !important;
+                border-radius: 8px !important;
+                background: rgba(55, 65, 81, 0.6) !important;
+                border: 1px solid rgba(75, 85, 99, 0.5) !important;
+                text-align: center !important;
+            }
+            
+            .solution-intro-section .group\/crm .text-xs.text-gray-400 {
+                font-size: 0.7rem !important;
+                margin-bottom: 2px !important;
+            }
+            
+            .solution-intro-section .group\/crm .text-lg.font-bold {
+                font-size: 0.875rem !important;
+                margin: 0 !important;
+            }
+            
+            .solution-intro-section .group\/crm .text-xs.text-green-400 {
+                font-size: 0.65rem !important;
+            }
+            
+            /* Hide Tasks Section - Focus only on stats for cropped iPhone */
+            .solution-intro-section .group\/crm .bg-gray-800\/30 {
+                display: none !important;
+            }
+            
+            /* Increase spacing between title and illustration in Gmail and Client Portal blocks */
+            .solution-intro-section .text-gray-400.text-sm.leading-relaxed.mb-6 {
+                margin-bottom: 2rem !important; /* Increase from 1.5rem (mb-6) to 2rem */
+            }
+            
+            /* AI-Powered Market Domination Block - Simple Mobile Redesign */
+            .solution-intro-section .ai-domination-block {
+                min-height: auto !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .relative.z-10.h-full.flex {
+                flex-direction: column !important;
+                text-align: center !important;
+                padding: 16px !important;
+                height: auto !important;
+            }
+            
+            /* Text content first */
+            .solution-intro-section .ai-domination-block .flex-1.flex.flex-col.justify-center.pr-8 {
+                padding-right: 0 !important;
+                margin-bottom: 20px !important;
+                order: 1 !important;
+            }
+            
+            /* Stats second */
+            .solution-intro-section .ai-domination-block .flex.space-x-8 {
+                justify-content: center !important;
+                gap: 24px !important;
+                margin-bottom: 20px !important;
+                order: 2 !important;
+            }
+            
+            /* Increase block height to prevent overlap */
+            .solution-intro-section .ai-domination-block {
+                min-height: 580px !important;
+                padding: 20px 16px !important;
+            }
+            
+            /* AI Brain - Replace with simple mobile version */
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
+                margin: 60px 0 30px 0 !important;
+                order: 3 !important;
+            }
+            
+            /* Hide complex desktop AI brain completely on mobile */
+            .solution-intro-section .ai-domination-block .ai-brain-container,
+            .solution-intro-section .ai-domination-block .ai-brain,
+            .solution-intro-section .ai-domination-block .neural-sphere,
+            .solution-intro-section .ai-domination-block .neural-core,
+            .solution-intro-section .ai-domination-block .supporting-element {
+                display: none !important;
+            }
+            
+            /* Create simple mobile AI circle with badges around it */
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
+                position: relative !important;
+                width: 250px !important;
+                height: 250px !important;
+                margin: 0 auto !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::after {
+                content: 'AI';
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #a855f7 0%, #2563eb 100%);
+                color: white;
+                font-size: 2rem;
+                font-weight: bold;
+                letter-spacing: 0.1em;
+                box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
+                animation: aiGlow 3s ease-in-out infinite alternate;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            
+            /* Simple glow animation for mobile AI */
+            @keyframes aiGlow {
+                0% { box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); }
+                100% { box-shadow: 0 15px 40px rgba(168, 85, 247, 0.6), 0 0 20px rgba(37, 99, 235, 0.4); }
+            }
+            
+            /* Mobile feature badges positioned around AI circle */
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+            
+            /* Show supporting elements as proper desktop-style badges */
+            .solution-intro-section .ai-domination-block .supporting-element {
+                display: block !important;
+                position: absolute !important;
+            }
+            
+            /* Traffic Growth - Top */
+            .solution-intro-section .ai-domination-block .supporting-element.traffic-growth {
+                top: 0px !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+            
+            /* Competitor Insights - Bottom Left */
+            .solution-intro-section .ai-domination-block .supporting-element.competitor-insights {
+                bottom: 0px !important;
+                left: 0px !important;
+            }
+            
+            /* Predictive Keywords - Top Left */
+            .solution-intro-section .ai-domination-block .supporting-element.predictive-keywords {
+                top: 60px !important;
+                left: 0px !important;
+            }
+            
+            /* Market Trends - Bottom Right */
+            .solution-intro-section .ai-domination-block .supporting-element.market-trends {
+                bottom: 60px !important;
+                right: 0px !important;
+            }
+            
+            /* Style supporting elements like desktop */
+            .solution-intro-section .ai-domination-block .supporting-element div {
+                background: rgba(31, 41, 55, 0.9) !important;
+                border-radius: 8px !important;
+                padding: 8px 12px !important;
+                backdrop-filter: blur(8px) !important;
+                font-size: 0.75rem !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .supporting-element span {
+                font-size: 0.75rem !important;
+                font-weight: 600 !important;
+            }
+            
+            /* Hide connection lines on mobile but keep SVG icons */
+            .solution-intro-section .ai-domination-block .supporting-element svg:not(.w-4) {
+                display: none !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .supporting-element .w-4.h-4 {
+                display: inline !important;
+                width: 16px !important;
+                height: 16px !important;
+                margin-right: 6px !important;
+            }
+            
+            /* Reviews/Testimonials Block Improvements */
+            .solution-intro-section .testimonials-block .flex-1.flex.flex-col.justify-center {
+                min-height: 280px !important;
+            }
+            
+            .solution-intro-section .testimonials-block .overflow-hidden.relative {
+                height: 200px !important;
+            }
+            
+            .solution-intro-section .testimonials-block .testimonials-track {
+                animation-duration: 25s !important;
+            }
+            
+            .solution-intro-section .testimonials-block .testimonial-card {
+                min-width: 280px !important;
+                padding: 16px !important;
+            }
+            
+            .solution-intro-section .testimonials-block .text-5xl {
+                font-size: 2.5rem !important;
+                margin-bottom: 8px !important;
+            }
+            
+            /* Typography adjustments */
+            .solution-intro-section h3 {
+                font-size: 1.25rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 12px !important;
+            }
+            
+            .solution-intro-section p {
+                font-size: 0.875rem !important;
+                line-height: 1.5 !important;
+                margin-bottom: 12px !important;
+            }
+            
+            /* Badge adjustments */
+            .solution-intro-section .bg-purple-500\/20,
+            .solution-intro-section .bg-green-500\/20,
+            .solution-intro-section .bg-orange-500\/20 {
+                padding: 4px 8px !important;
+                font-size: 0.75rem !important;
+                margin-bottom: 4px !important;
+            }
+            
+            /* Stats adjustments */
+            .solution-intro-section .text-5xl {
+                font-size: 2rem !important;
+            }
+            
+            .solution-intro-section .text-sm.font-bold {
+                font-size: 0.75rem !important;
+            }
+        }
+        
+        /* Very small mobile screens */
+        @media (max-width: 480px) {
+            .solution-intro-section {
+                margin-left: 12px !important;
+                margin-right: 12px !important;
+            }
+            
+            .solution-intro-section .bg-neutral-950 {
+                padding: 16px !important;
+                border-radius: 16px !important;
+            }
+            
+            .solution-intro-section h3 {
+                font-size: 1.125rem !important;
+            }
+            
+            .solution-intro-section .bg-gradient-to-br {
+                min-height: 180px !important;
+            }
+            
+            .ai-brain-container {
+                width: 8rem !important;
+                height: 8rem !important;
+            }
+            
+            /* AI Block - very small screens */
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
+                width: 220px !important;
+                height: 220px !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::after {
+                width: 100px !important;
+                height: 100px !important;
+                font-size: 1.75rem !important;
+            }
+            
+            /* Smaller AI circle and badges for small screens */
+            .solution-intro-section .ai-domination-block {
+                min-height: 520px !important;
+                padding: 16px 12px !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
+                margin: 50px 0 20px 0 !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .supporting-element div {
+                padding: 6px 8px !important;
+                font-size: 0.65rem !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .supporting-element span {
+                font-size: 0.65rem !important;
+            }
+            
+            .solution-intro-section .ai-domination-block .supporting-element .w-4.h-4 {
+                width: 14px !important;
+                height: 14px !important;
+                margin-right: 4px !important;
+            }
+            
+            /* iPhone CRM - very small screens (cropped) */
+            .solution-intro-section .bg-gray-900.rounded-xl.border.border-gray-700.overflow-hidden.shadow-lg.flex.group\/crm {
+                max-width: 250px !important;
+                height: 250px !important;
+                padding: 12px !important;
+                padding-bottom: 0 !important;
+                border-radius: 1.25rem 1.25rem 0 0 !important;
+                border-bottom: none !important;
+            }
+            
+            .solution-intro-section .group\/crm::before {
+                width: 85px !important;
+                height: 20px !important;
+            }
+            
+            .solution-intro-section .group\/crm .flex-1.p-6 {
+                padding: 8px !important;
+                margin-top: 28px !important;
+                margin-bottom: 0 !important;
+                padding-bottom: 15px !important;
+                border-radius: 10px 10px 0 0 !important;
+            }
+            
+            .solution-intro-section .group\/crm h4 {
+                font-size: 0.75rem !important;
+                margin-bottom: 10px !important;
+            }
+            
+            .solution-intro-section .group\/crm .bg-gray-800\/50 {
+                padding: 6px !important;
+            }
+            
+            .solution-intro-section .group\/crm .space-y-1 > div {
+                padding: 4px !important;
+                margin-bottom: 4px !important;
+            }
+            
+            /* Even more spacing on very small screens */
+            .solution-intro-section .text-gray-400.text-sm.leading-relaxed.mb-6 {
+                margin-bottom: 2.5rem !important; /* Increase to 2.5rem on small screens */
+            }
+            
+            /* Testimonials - very small screens */
+            .solution-intro-section .testimonials-block .testimonial-card {
+                min-width: 260px !important;
+                padding: 12px !important;
+            }
+            
+            .solution-intro-section .testimonials-block .text-5xl {
+                font-size: 2rem !important;
             }
         }
     </style>
