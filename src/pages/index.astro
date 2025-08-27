@@ -45,7 +45,7 @@ import Layout from '../layouts/Layout.astro';
         }
         
         /* Mobile Touch Optimization */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             button, 
             label[for^="faq"],
             .mobile-menu-toggle {
@@ -96,7 +96,7 @@ import Layout from '../layouts/Layout.astro';
         }
         
         /* Mobile floating adjustments */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             #main-header {
                 top: 8px;
                 padding-left: 8px;
@@ -919,8 +919,9 @@ import Layout from '../layouts/Layout.astro';
                 <div class="text-center space-y-6 lg:space-y-10">
                     <!-- cms:text key="hero.title" label="Hero Title" required="true" -->
                     <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-white leading-tight">
-                        We are Canada's<br>
-                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">#1 SEO Agency</span>
+                        Get on Google's<br>
+                        1st Page in <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">60 Days.</span><br>
+                        <span class="bg-gradient-to-r from-purple-600 via-purple-500 to-purple-400 bg-clip-text text-transparent">Guaranteed.</span>
                     </h1>
                     <!-- /cms:text -->
                     
@@ -962,19 +963,19 @@ import Layout from '../layouts/Layout.astro';
                                 <div class="flex items-center space-x-2">
                                     <div class="flex items-center">
                                         <!-- 4.9 Stars -->
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 24 24">
+                                        <svg class="w-5 h-5 text-red-500 fill-current" viewBox="0 0 24 24">
                                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                                         </svg>
                                     </div>
@@ -1936,7 +1937,7 @@ import Layout from '../layouts/Layout.astro';
                                     
                                     <!-- AI Neural Network Animation -->
                                     <div class="flex-1 flex items-center justify-center relative">
-                                        <div class="ai-brain-container relative w-80 h-80">
+                                        <div class="ai-brain-container relative w-80 h-80 max-w-full">
                                             <!-- Central AI Brain/Neural Network -->
                                             <div class="ai-brain absolute inset-0 flex items-center justify-center">
                                                 <!-- Core Neural Sphere -->
@@ -3693,7 +3694,7 @@ import Layout from '../layouts/Layout.astro';
         
         
         
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             
             /* Tablet SEO Problems section */
             .seo-problems-section {
@@ -4146,29 +4147,67 @@ import Layout from '../layouts/Layout.astro';
         /* Responsive adjustments */
         @media (max-width: 1024px) {
             .ai-brain-container {
-                width: 16rem;
-                height: 16rem;
+                width: min(12rem, 80vw);
+                height: min(12rem, 80vw);
+                max-width: 100%;
+                aspect-ratio: 1/1;
             }
             
             .neural-sphere {
-                width: 6rem;
-                height: 6rem;
+                width: min(4rem, 25vw);
+                height: min(4rem, 25vw);
+                aspect-ratio: 1/1;
             }
             
             .supporting-element {
-                display: none;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .ai-brain-container {
-                width: 12rem;
-                height: 12rem;
+                /* Keep supporting elements visible on mobile - FIXED size */
+                opacity: 0.9;
+                transform: scale(1) !important;
             }
             
-            .neural-sphere {
-                width: 4rem;
-                height: 4rem;
+            /* Neural nodes - FIXED size circles on mobile */
+            .solution-intro-section .ai-domination-block .neural-node {
+                width: 10px !important;
+                height: 10px !important;
+                min-width: 10px !important;
+                min-height: 10px !important;
+                max-width: 10px !important;
+                max-height: 10px !important;
+                aspect-ratio: 1/1 !important;
+                border-radius: 50% !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+            }
+            
+            /* Adjust positioning for larger brain container */
+            .supporting-element.traffic-growth {
+                top: -1rem;
+                right: -1rem;
+            }
+            
+            .supporting-element.competitor-insights {
+                bottom: -1rem;
+                left: -1rem;  
+            }
+            
+            .supporting-element.predictive-keywords {
+                top: 20%;
+                left: -1.5rem;
+            }
+            
+            .supporting-element.market-trends {
+                bottom: 20%;
+                right: -1.5rem;
+            }
+            
+            .supporting-element div {
+                font-size: 0.75rem !important;
+                padding: 6px 10px !important;
+            }
+            
+            .supporting-element .w-4.h-4 {
+                width: 14px !important;
+                height: 14px !important;
             }
             
             .testimonials-block .text-5xl {
@@ -4177,10 +4216,240 @@ import Layout from '../layouts/Layout.astro';
         }
     </style>
 
+    <!-- How SEO Service Works Mobile Adaptation Styles -->
+    <style>
+        @media (max-width: 1024px) {
+            /* BRUTE FORCE APPROACH - Hide by partial class matching */
+            
+            /* Hide ANY element that contains these classes */
+            [class*="w-2"][class*="h-2"][class*="bg-gray-500"],
+            [class*="timeline-point"],
+            [class*="lg:w-2/12"],
+            [class*="absolute"][class*="-left-6"],
+            [class*="absolute"][class*="top-6"],
+            [class*="lg:hidden"][class*="text-xs"]:not([class*="Step"]),
+            [class*="flex"][class*="flex-col"][class*="items-center"][class*="lg:w-2/12"],
+            
+            /* Universal timeline element killer */
+            #timeline-container [class*="absolute"],
+            #timeline-container [class*="timeline"],
+            #timeline-container [class*="lg:w-2/12"],
+            #timeline-container [class*="w-2"][class*="h-2"],
+            #timeline-container [class*="lg:hidden"]:not(.text-xs):not([class*="Step"]),
+            #timeline-container svg,
+            #timeline-container path,
+            #timeline-rocket,
+            #rocket-trail {
+                display: none !important;
+                visibility: hidden !important;
+                opacity: 0 !important;
+                position: absolute !important;
+                left: -9999px !important;
+                top: -9999px !important;
+                width: 0 !important;
+                height: 0 !important;
+                overflow: hidden !important;
+                clip: rect(0,0,0,0) !important;
+            }
+            
+            /* Timeline steps - consistent spacing for clean card layout */
+            #timeline-container .flex.flex-col.lg\\:flex-row,
+            #timeline-container .mb-16 {
+                flex-direction: column !important;
+                margin-bottom: 3rem !important; /* Consistent 3rem spacing between each step */
+                text-align: left !important;
+                padding: 0 !important;
+                position: static !important;
+            }
+            
+            /* Remove last step bottom margin */
+            #timeline-container .flex.flex-col.lg\\:flex-row:last-child,
+            #timeline-container .mb-16:last-child {
+                margin-bottom: 0 !important;
+            }
+            
+            /* Content cards - full width with consistent internal spacing */
+            #timeline-container .w-full.lg\\:w-5\\/12 {
+                width: 100% !important;
+                margin: 0 !important; /* Remove individual card margins */
+                padding: 0 !important;
+            }
+            
+            /* Override all nested margin-bottom classes that could interfere */
+            #timeline-container .mb-8,
+            #timeline-container .lg\\:mb-0 {
+                margin-bottom: 0 !important;
+            }
+            
+            /* Brute force ensure all step containers have identical spacing */
+            #timeline-container > .relative > div[class*="flex"][class*="mb-16"],
+            #timeline-container div.flex.flex-col.lg\\:flex-row.items-center.mb-16.relative {
+                margin-bottom: 3rem !important;
+                padding-bottom: 0 !important;
+                min-height: auto !important;
+            }
+            
+            #timeline-container > .relative > div[class*="flex"][class*="mb-16"]:last-child,
+            #timeline-container div.flex.flex-col.lg\\:flex-row.items-center.mb-16.relative:last-child {
+                margin-bottom: 0 !important;
+            }
+            
+            /* Force consistent spacing regardless of content position */
+            #timeline-container .bg-neutral-950 {
+                margin-top: 0 !important;
+                margin-bottom: 0 !important;
+            }
+            
+            /* Content cards styling - consistent padding and spacing */
+            #timeline-container .bg-neutral-950 {
+                margin: 0 auto !important;
+                max-width: 95% !important;
+                padding: 1.5rem !important; /* Consistent internal padding */
+                border-radius: 1.5rem !important; /* Consistent border radius */
+            }
+            
+            /* Force hide any remaining absolute positioned elements */
+            #timeline-container * {
+                position: static !important;
+            }
+            
+            #timeline-container .w-full.lg\\:w-5\\/12,
+            #timeline-container .bg-neutral-950 {
+                position: relative !important;
+            }
+            
+            /* Additional card styling */
+            #timeline-container .bg-neutral-950 h4 {
+                margin-bottom: 1rem !important; /* Consistent title spacing */
+            }
+            
+            #timeline-container .bg-neutral-950 p {
+                margin-bottom: 0.75rem !important; /* Consistent paragraph spacing */
+            }
+            
+            #timeline-container .bg-neutral-950 p:last-child {
+                margin-bottom: 0 !important; /* Remove last paragraph margin */
+            }
+            
+            /* Nuclear option - complete override of all margins in timeline */
+            #timeline-container * {
+                margin-bottom: 0 !important;
+                margin-top: 0 !important;
+            }
+            
+            /* Step containers - manual spacing */
+            #timeline-container > .relative > div:nth-child(1) { margin-bottom: 3rem !important; }
+            #timeline-container > .relative > div:nth-child(2) { margin-bottom: 3rem !important; }
+            #timeline-container > .relative > div:nth-child(3) { margin-bottom: 3rem !important; }
+            #timeline-container > .relative > div:nth-child(4) { margin-bottom: 3rem !important; }
+            #timeline-container > .relative > div:nth-child(5) { margin-bottom: 0 !important; }
+            
+            /* Content cards - restore internal spacing only */
+            #timeline-container .bg-neutral-950 h4 {
+                margin-bottom: 1rem !important;
+            }
+            
+            #timeline-container .bg-neutral-950 p {
+                margin-bottom: 0.75rem !important;
+            }
+            
+            #timeline-container .bg-neutral-950 p:last-child {
+                margin-bottom: 0 !important;
+            }
+            
+            #timeline-container .bg-neutral-950 .space-y-2 > * + * {
+                margin-top: 0.5rem !important;
+            }
+            
+            /* Create mobile step numbers using ::before pseudo-elements - outside cards */
+            #timeline-container > .relative > div:nth-child(1)::before {
+                content: "STEP 01";
+                display: block !important;
+                text-align: center !important;
+                font-size: 0.75rem !important;
+                font-weight: 300 !important;
+                color: rgba(156, 163, 175, 0.6) !important; /* gray-400/60 - like desktop */
+                margin-bottom: 1.5rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.15em !important;
+            }
+            
+            #timeline-container > .relative > div:nth-child(2)::before {
+                content: "STEP 02";
+                display: block !important;
+                text-align: center !important;
+                font-size: 0.75rem !important;
+                font-weight: 300 !important;
+                color: rgba(156, 163, 175, 0.6) !important; /* gray-400/60 - like desktop */
+                margin-bottom: 1.5rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.15em !important;
+            }
+            
+            #timeline-container > .relative > div:nth-child(3)::before {
+                content: "STEP 03";
+                display: block !important;
+                text-align: center !important;
+                font-size: 0.75rem !important;
+                font-weight: 300 !important;
+                color: rgba(156, 163, 175, 0.6) !important; /* gray-400/60 - like desktop */
+                margin-bottom: 1.5rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.15em !important;
+            }
+            
+            #timeline-container > .relative > div:nth-child(4)::before {
+                content: "STEP 04";
+                display: block !important;
+                text-align: center !important;
+                font-size: 0.75rem !important;
+                font-weight: 300 !important;
+                color: rgba(156, 163, 175, 0.6) !important; /* gray-400/60 - like desktop */
+                margin-bottom: 1.5rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.15em !important;
+            }
+            
+            #timeline-container > .relative > div:nth-child(5)::before {
+                content: "STEP 05";
+                display: block !important;
+                text-align: center !important;
+                font-size: 0.75rem !important;
+                font-weight: 300 !important;
+                color: rgba(156, 163, 175, 0.6) !important; /* gray-400/60 - like desktop */
+                margin-bottom: 1.5rem !important;
+                text-transform: uppercase !important;
+                letter-spacing: 0.15em !important;
+            }
+            
+            /* Floating emoji - keep original position but make smaller on mobile */
+            .seo-problems-section .absolute[class*="-top-"][class*="-right-"] {
+                font-size: 2.5rem !important; /* Smaller on mobile */
+            }
+            
+            /* Section title spacing */
+            .text-center.max-w-5xl {
+                margin-bottom: 3rem !important;
+            }
+            
+            /* Headline responsive sizing */
+            .text-2xl.sm\\:text-3xl.md\\:text-4xl.lg\\:text-5xl.xl\\:text-6xl {
+                font-size: 1.75rem !important;
+                line-height: 1.2 !important;
+            }
+            
+            /* Subheadline sizing */
+            .text-lg.sm\\:text-xl.lg\\:text-2xl {
+                font-size: 1rem !important;
+                line-height: 1.4 !important;
+            }
+        }
+    </style>
+
     <!-- Search Engine Mastery Method Mobile Adaptation Styles -->
     <style>
         /* Mobile adaptation for Solution Intro Section */
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .solution-intro-section {
                 margin-left: 16px !important;
                 margin-right: 16px !important;
@@ -4381,6 +4650,7 @@ import Layout from '../layouts/Layout.astro';
             /* AI-Powered Market Domination Block - Simple Mobile Redesign */
             .solution-intro-section .ai-domination-block {
                 min-height: auto !important;
+                overflow: visible !important; /* Allow AI brain to extend beyond container */
             }
             
             .solution-intro-section .ai-domination-block .relative.z-10.h-full.flex {
@@ -4388,6 +4658,7 @@ import Layout from '../layouts/Layout.astro';
                 text-align: center !important;
                 padding: 16px !important;
                 height: auto !important;
+                align-items: center !important;
             }
             
             /* Text content first */
@@ -4411,122 +4682,78 @@ import Layout from '../layouts/Layout.astro';
                 padding: 20px 16px !important;
             }
             
-            /* AI Brain - Replace with simple mobile version */
+            /* AI Brain container - maintain centering on mobile */
             .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
-                margin: 60px 0 30px 0 !important;
+                margin: 40px 0 !important;
                 order: 3 !important;
+                justify-content: center !important;
             }
             
-            /* Hide complex desktop AI brain completely on mobile */
-            .solution-intro-section .ai-domination-block .ai-brain-container,
-            .solution-intro-section .ai-domination-block .ai-brain,
-            .solution-intro-section .ai-domination-block .neural-sphere,
-            .solution-intro-section .ai-domination-block .neural-core,
-            .solution-intro-section .ai-domination-block .supporting-element {
-                display: none !important;
-            }
+            /* Keep AI brain visible on mobile with proper sizing */
             
-            /* Create simple mobile AI circle with badges around it */
-            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
-                position: relative !important;
-                width: 250px !important;
-                height: 250px !important;
+            /* Ensure AI brain container maintains perfect circular aspect ratio */
+            .solution-intro-section .ai-domination-block .ai-brain-container {
+                width: min(300px, 80vw) !important;
+                height: min(300px, 80vw) !important;
+                max-width: 300px !important;
+                max-height: 300px !important;
+                aspect-ratio: 1/1 !important;
                 margin: 0 auto !important;
+                border-radius: 50% !important;
+                position: relative !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
             
-            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::after {
-                content: 'AI';
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 120px;
-                height: 120px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, #a855f7 0%, #2563eb 100%);
-                color: white;
-                font-size: 2rem;
-                font-weight: bold;
-                letter-spacing: 0.1em;
-                box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3);
-                animation: aiGlow 3s ease-in-out infinite alternate;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
+            /* Override Tailwind classes for mobile - Neural sphere with FIXED size */
+            .solution-intro-section .ai-domination-block .neural-sphere.w-32 {
+                width: 140px !important;
+                min-width: 140px !important;
+                max-width: 140px !important;
+                aspect-ratio: 1/1 !important;
+                border-radius: 50% !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+            }
+            .solution-intro-section .ai-domination-block .neural-sphere.h-32 {
+                height: 140px !important;
+                min-height: 140px !important;
+                max-height: 140px !important;
+                aspect-ratio: 1/1 !important;
+                border-radius: 50% !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
             }
             
-            /* Simple glow animation for mobile AI */
-            @keyframes aiGlow {
-                0% { box-shadow: 0 10px 30px rgba(168, 85, 247, 0.3); }
-                100% { box-shadow: 0 15px 40px rgba(168, 85, 247, 0.6), 0 0 20px rgba(37, 99, 235, 0.4); }
-            }
-            
-            /* Mobile feature badges positioned around AI circle */
-            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                pointer-events: none;
-            }
-            
-            /* Show supporting elements as proper desktop-style badges */
-            .solution-intro-section .ai-domination-block .supporting-element {
-                display: block !important;
-                position: absolute !important;
-            }
-            
-            /* Traffic Growth - Top */
-            .solution-intro-section .ai-domination-block .supporting-element.traffic-growth {
-                top: 0px !important;
+            /* Override inset-4 for neural core with FIXED size */
+            .solution-intro-section .ai-domination-block .neural-core.absolute.inset-4 {
+                top: 50% !important;
                 left: 50% !important;
-                transform: translateX(-50%) !important;
+                right: auto !important;
+                bottom: auto !important;
+                transform: translate(-50%, -50%) !important;
+                width: 100px !important;
+                height: 100px !important;
+                min-width: 100px !important;
+                min-height: 100px !important;
+                max-width: 100px !important;
+                max-height: 100px !important;
+                aspect-ratio: 1/1 !important;
+                border-radius: 50% !important;
+                font-size: 1.5rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                flex-shrink: 0 !important;
+                flex-grow: 0 !important;
+                box-sizing: border-box !important;
             }
             
-            /* Competitor Insights - Bottom Left */
-            .solution-intro-section .ai-domination-block .supporting-element.competitor-insights {
-                bottom: 0px !important;
-                left: 0px !important;
-            }
-            
-            /* Predictive Keywords - Top Left */
-            .solution-intro-section .ai-domination-block .supporting-element.predictive-keywords {
-                top: 60px !important;
-                left: 0px !important;
-            }
-            
-            /* Market Trends - Bottom Right */
-            .solution-intro-section .ai-domination-block .supporting-element.market-trends {
-                bottom: 60px !important;
-                right: 0px !important;
-            }
-            
-            /* Style supporting elements like desktop */
-            .solution-intro-section .ai-domination-block .supporting-element div {
-                background: rgba(31, 41, 55, 0.9) !important;
-                border-radius: 8px !important;
-                padding: 8px 12px !important;
-                backdrop-filter: blur(8px) !important;
-                font-size: 0.75rem !important;
-            }
-            
-            .solution-intro-section .ai-domination-block .supporting-element span {
-                font-size: 0.75rem !important;
-                font-weight: 600 !important;
-            }
-            
-            /* Hide connection lines on mobile but keep SVG icons */
-            .solution-intro-section .ai-domination-block .supporting-element svg:not(.w-4) {
-                display: none !important;
-            }
-            
-            .solution-intro-section .ai-domination-block .supporting-element .w-4.h-4 {
-                display: inline !important;
-                width: 16px !important;
-                height: 16px !important;
-                margin-right: 6px !important;
+            /* Additional circle enforcement for all circular elements */
+            .solution-intro-section .ai-domination-block .ai-brain-container *[class*="rounded-full"] {
+                border-radius: 50% !important;
+                box-sizing: border-box !important;
             }
             
             /* Reviews/Testimonials Block Improvements */
@@ -4605,21 +4832,40 @@ import Layout from '../layouts/Layout.astro';
             }
             
             .ai-brain-container {
-                width: 8rem !important;
-                height: 8rem !important;
+                width: min(8rem, 70vw) !important;
+                height: min(8rem, 70vw) !important;
+                max-width: 100% !important;
+                aspect-ratio: 1/1 !important;
             }
             
-            /* AI Block - very small screens */
+            .neural-sphere {
+                width: min(3rem, 20vw) !important;
+                height: min(3rem, 20vw) !important;
+                aspect-ratio: 1/1 !important;
+            }
+            
+            .supporting-element {
+                /* Keep same size on very small screens - NO scaling */
+                transform: scale(1) !important;
+                opacity: 0.9 !important;
+            }
+            
+            .supporting-element div {
+                font-size: 0.75rem !important; /* Keep same as regular mobile */
+                padding: 6px 10px !important; /* Keep same as regular mobile */
+            }
+            
+            .supporting-element .w-4.h-4 {
+                width: 14px !important; /* Keep same as regular mobile */
+                height: 14px !important; /* Keep same as regular mobile */
+            }
+            
+            /* AI Block container - natural sizing */
             .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center {
-                width: 220px !important;
-                height: 220px !important;
+                /* Let the AI brain size naturally based on responsive rules */
             }
             
-            .solution-intro-section .ai-domination-block .flex-1.flex.items-center.justify-center::after {
-                width: 100px !important;
-                height: 100px !important;
-                font-size: 1.75rem !important;
-            }
+            /* Removed fake AI circle - using real AI brain instead */
             
             /* Smaller AI circle and badges for small screens */
             .solution-intro-section .ai-domination-block {
@@ -4762,6 +5008,54 @@ import Layout from '../layouts/Layout.astro';
                         div.style.backgroundImage = `url('${div.dataset.bgSrc}')`;
                     }
                 });
+            }
+        });
+    </script>
+
+    <!-- Mobile Timeline Cleanup Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Only run on mobile devices
+            if (window.innerWidth <= 1024) {
+                // Find and hide all timeline elements by force
+                const timelineContainer = document.getElementById('timeline-container');
+                if (timelineContainer) {
+                    // Hide center columns
+                    const centerColumns = timelineContainer.querySelectorAll('.lg\\:w-2\\/12, [class*="lg:w-2/12"]');
+                    centerColumns.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                        el.style.opacity = '0';
+                    });
+                    
+                    // Hide timeline points
+                    const timelinePoints = timelineContainer.querySelectorAll('.timeline-point, [class*="timeline-point"]');
+                    timelinePoints.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // Hide step numbers
+                    const stepNumbers = timelineContainer.querySelectorAll('[class*="lg:hidden"], [class*="absolute"][class*="-left-6"]');
+                    stepNumbers.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // Hide date info
+                    const dateInfo = timelineContainer.querySelectorAll('[class*="absolute"][class*="top-6"]');
+                    dateInfo.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                    
+                    // Hide all absolute positioned elements
+                    const absoluteElements = timelineContainer.querySelectorAll('.absolute, [class*="absolute"]');
+                    absoluteElements.forEach(el => {
+                        el.style.display = 'none';
+                        el.style.visibility = 'hidden';
+                    });
+                }
             }
         });
     </script>
